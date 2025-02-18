@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -450,7 +450,7 @@ PrefabInstance:
     - target: {fileID: 251486149472376521, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: m_Name
-      value: Placeholder
+      value: Benny's
       objectReference: {fileID: 0}
     - target: {fileID: 3029714028788807029, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -462,10 +462,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.00018310547
       objectReference: {fileID: 0}
+    - target: {fileID: 5796141432557376074, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 028b301f6c6f94c4ab1c1c6bd4e292b4,
+        type: 3}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: sceneName
-      value: SampleScene
+      value: Bennys
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
