@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace group13 {
+namespace SlidingPuzzle {
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform gameTransform;
