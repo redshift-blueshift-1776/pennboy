@@ -114,7 +114,7 @@ public class GameNameScroller : MonoBehaviour
         sb.Clear();
         format = $"{newGameName} / ";
 
-        for (var i = 0; i < 9; i++) {
+        for (var i = 0; i < 20; i++) {
             sb.Append(format);
         }
 

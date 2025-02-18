@@ -98,8 +98,6 @@ public class HomePageManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        var op = SceneManager.LoadSceneAsync(sceneName)!;
-        op.allowSceneActivation = false;
 
         // Set channel to correct initial position
         loadingThumbnail.sprite = thumbnail;
@@ -132,6 +130,9 @@ public class HomePageManager : MonoBehaviour
             loadingOutlineRt.offsetMin = Vector2.Lerp(loadingOutlineMinInit, loadingOutlineMinFinal, newT);
             loadingOutlineRt.offsetMax = Vector2.Lerp(loadingOutlineMaxInit, loadingOutlineMaxFinal, newT);
         }));
+
+        var op = SceneManager.LoadSceneAsync(sceneName)!;
+        op.allowSceneActivation = false;
 
         yield return new WaitForSeconds(0.3f);
 
