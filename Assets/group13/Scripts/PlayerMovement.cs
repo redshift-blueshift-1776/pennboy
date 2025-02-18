@@ -4,8 +4,7 @@ using System.Collections.Specialized;
 using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
-
-namespace group13 {
+namespace SlidingPuzzle {
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController characterController;
