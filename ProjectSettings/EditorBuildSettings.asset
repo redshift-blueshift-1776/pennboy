@@ -90,7 +90,7 @@ EditorBuildSettings:
     path: Assets/HMTT/Scenes/Level1Test.unity
     guid: 4879cce1d997ef44ebe63bee80d21f37
   - enabled: 1
-    path: Assets/group13/Bennys.unity
+    path: Assets/group13/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/group13/SlidingPuzzle/SlidingPuzzle.unity
