@@ -18,11 +18,13 @@ public class HomePageManager : MonoBehaviour
     [SerializeField] private GameObject gamesList;
     [SerializeField] private GameObject date;
     [SerializeField] private GameObject time;
-    [SerializeField] private CanvasGroup pennBoy;
     [SerializeField] private AudioSource music;
 
     [Header("Current Loading Game")]
     [SerializeField] private GameObject loadingObj;
+    [SerializeField] private CanvasGroup pennBoy;
+    [SerializeField] private GameObject gameName;
+    [SerializeField] private GameObject credits;
 
     // Needs to be greater than the total time of FadeTo()
     private const float TIMER_LENGTH = 5f;
@@ -94,10 +96,10 @@ public class HomePageManager : MonoBehaviour
         });
     }
 
-    public IEnumerator OpenGame(string sceneName, Sprite thumbnail, Vector2 pos) {
+    public IEnumerator OpenGame(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
+                                Vector2 pos) {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
 
         // Set channel to correct initial position
         loadingThumbnail.sprite = thumbnail;
@@ -116,13 +118,22 @@ public class HomePageManager : MonoBehaviour
 
         if (overlay != null) StopCoroutine(overlayCoroutine);
 
-        var initialVolume = music.volume;
+        // List contributors in alphabetical order to be fair
+        Array.Sort(currCredits);
+        gameName.GetComponent<TMP_Text>().text = currGameName;
+        credits.GetComponent<TMP_Text>().text = string.Join(", ", currCredits);
+
+        var gameNameCG = gameName.GetComponent<CanvasGroup>();
+        var creditsCG = credits.GetComponent<CanvasGroup>();
         StartCoroutine(Anim.Animate(0.35f, t => {
             overlay.alpha = t;
             pennBoy.alpha = t;
-            music.volume = Mathf.Lerp(initialVolume, 0f, t);
+            gameNameCG.alpha = t;
+            creditsCG.alpha = t;
+            music.volume = Mathf.Lerp(music.volume, 0f, t);
             loadingOutlineImg.color = Color.Lerp(Theme.Up[1], Color.white, t);
         }));
+
         StartCoroutine(Anim.Animate(0.65f, t => {
             var newT = Easing.EaseOutExpo(t);
             loadingRt.sizeDelta = Vector2.Lerp(loadingRtSizeDeltaInit, loadingRtSizeDeltaFinal, newT);

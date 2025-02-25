@@ -1037,6 +1037,7 @@ MonoBehaviour:
   overlay: {fileID: 3925962150115042015}
   lockedScenes:
   - HomePage
+  - PulseTransition
 --- !u!1 &8018691164049812870
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Barlow Light SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -934349206
   material: {fileID: 3009258599721380811}
-  materialHashCode: 0
+  materialHashCode: 873649802
   m_Version: 1.1.0
   m_SourceFontFileGUID: 92bb29861bf0e414284c6d51ec65bc9f
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 92bb29861bf0e414284c6d51ec65bc9f,
@@ -2651,9 +2651,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.90909094
+    - _ScaleRatioB: 0.7386364
+    - _ScaleRatioC: 0.7386364
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

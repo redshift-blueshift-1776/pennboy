@@ -478,6 +478,26 @@ PrefabInstance:
       propertyPath: placeholder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[0]
+      value: Rin Fukuoka
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[1]
+      value: Maria-Christina Nicolaides
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[2]
+      value: Sofia Hedlund
+      objectReference: {fileID: 0}
     - target: {fileID: 9211544114392411712, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -979,6 +999,31 @@ PrefabInstance:
       propertyPath: sceneName
       value: Main Scene v7
       objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[0]
+      value: Lilian Xiao
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[1]
+      value: Sangjoon Lee
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[2]
+      value: Joseph Jeon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[3]
+      value: David M
+      objectReference: {fileID: 0}
     - target: {fileID: 9211544114392411712, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1301,6 +1346,31 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneName
       value: Level1Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[0]
+      value: Kevin Ma
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[1]
+      value: Junie Guo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[2]
+      value: Joey Hale
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[3]
+      value: Eric Cui
       objectReference: {fileID: 0}
     - target: {fileID: 9211544114392411712, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -1994,6 +2064,31 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneName
       value: bloons-td-7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[0]
+      value: Logan Judge
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[1]
+      value: Veer Kakar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[2]
+      value: Justin Zou
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[3]
+      value: Satya Nihal Maddirala
       objectReference: {fileID: 0}
     - target: {fileID: 9211544114392411712, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -2924,9 +3019,11 @@ MonoBehaviour:
   gamesList: {fileID: 1060947560}
   date: {fileID: 1411735794}
   time: {fileID: 121659188}
-  pennBoy: {fileID: 171031407}
   music: {fileID: 1198385548}
   loadingObj: {fileID: 187188133}
+  pennBoy: {fileID: 171031407}
+  gameName: {fileID: 1580489976}
+  credits: {fileID: 1393331179}
 --- !u!1 &914664254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4176,6 +4273,154 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375899837}
   m_CullTransparentMesh: 1
+--- !u!1 &1393331179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1393331180}
+  - component: {fileID: 1393331182}
+  - component: {fileID: 1393331181}
+  - component: {fileID: 1393331183}
+  m_Layer: 5
+  m_Name: Credits
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1393331180
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393331179}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1866533553}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -174}
+  m_SizeDelta: {x: 1920, y: 74.873}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1393331181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393331179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: by First Last, First Last, First Last
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 4f53b4df0c557b1419996f28fe64e512, type: 2}
+  m_sharedMaterial: {fileID: 4005103271439610684, guid: 4f53b4df0c557b1419996f28fe64e512,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 50
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 30
+  m_fontSizeMax: 120
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1393331182
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393331179}
+  m_CullTransparentMesh: 1
+--- !u!225 &1393331183
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393331179}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1411735794
 GameObject:
   m_ObjectHideFlags: 0
@@ -4358,6 +4603,26 @@ PrefabInstance:
       propertyPath: sceneName
       value: MoveInMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[0]
+      value: Miranda Meng
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[1]
+      value: Forest Ho-Chen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[2]
+      value: Robby DeMartino
+      objectReference: {fileID: 0}
     - target: {fileID: 9211544114392411712, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4475,6 +4740,154 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4906321388738228682}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1580489976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1580489977}
+  - component: {fileID: 1580489979}
+  - component: {fileID: 1580489978}
+  - component: {fileID: 1580489980}
+  m_Layer: 5
+  m_Name: Game Name
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1580489977
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580489976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1866533553}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -107}
+  m_SizeDelta: {x: 1920, y: 74.873}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1580489978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580489976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Game Name
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 27921f777dd8ef54cb45fa51b6e85366, type: 2}
+  m_sharedMaterial: {fileID: -4282082697756602854, guid: 27921f777dd8ef54cb45fa51b6e85366,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 60
+  m_fontSizeBase: 60
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 30
+  m_fontSizeMax: 120
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1580489979
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580489976}
+  m_CullTransparentMesh: 1
+--- !u!225 &1580489980
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580489976}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1624417215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4643,6 +5056,31 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneName
       value: Platforms
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[0]
+      value: Henry Huang
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[1]
+      value: Jacky Park
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[2]
+      value: Mark Ma
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[3]
+      value: Ariel Samuelov
       objectReference: {fileID: 0}
     - target: {fileID: 9211544114392411712, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -4832,7 +5270,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 3
@@ -4850,8 +5288,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 547439355}
-  - {fileID: 171031406}
+  - {fileID: 1580489977}
+  - {fileID: 1393331180}
   - {fileID: 187188134}
+  - {fileID: 171031406}
   - {fileID: 441947031}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4893,6 +5333,26 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneName
       value: SoccerScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[0]
+      value: Amber Xiao
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[1]
+      value: Roseline Kim
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[2]
+      value: Shrishti Roy
       objectReference: {fileID: 0}
     - target: {fileID: 9211544114392411712, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -5312,6 +5772,31 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneName
       value: Bryan 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[0]
+      value: Zachary Leong
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[1]
+      value: Kevin Wei
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[2]
+      value: Bryan Chung
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: credits.Array.data[3]
+      value: Charlie Wang
       objectReference: {fileID: 0}
     - target: {fileID: 9211544114392411712, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}

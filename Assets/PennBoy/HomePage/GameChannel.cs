@@ -9,6 +9,7 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [HideInInspector] public GameNameScroller scroller;
 
     [SerializeField] private string sceneName;
+    [SerializeField] private string[] credits;
     [SerializeField] private RectTransform outline;
 
     [Header("Placeholder Mode")]
@@ -79,6 +80,7 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (placeholder) return;
 
         canvasGroup.alpha = 0f;
-        StartCoroutine(manager.OpenGame(sceneName, background.sprite, GetComponent<RectTransform>().anchoredPosition));
+        StartCoroutine(manager.OpenGame(sceneName, gameObject.name, credits, background.sprite,
+                                        GetComponent<RectTransform>().anchoredPosition));
     }
 }
