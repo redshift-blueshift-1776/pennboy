@@ -24,11 +24,18 @@ public class HomePageManager : MonoBehaviour
     [SerializeField] private GameObject loadingObj;
     [SerializeField] private CanvasGroup pennBoy;
     [SerializeField] private GameObject gameName;
-    [SerializeField] private GameObject credits;
+    [SerializeField] private GameObject gameCredits;
 
-    // Needs to be greater than the total time of FadeTo()
-    private const float TIMER_LENGTH = 5f;
-    private List<(float x, float y)> channelPositions;
+    [Header("Credits")]
+    [SerializeField] private Button creditsBtn;
+    [SerializeField] private RectTransform heartIcon;
+    [SerializeField] private RectTransform returnIcon;
+
+    private const float TIMER_LENGTH = 5f; // Needs to be greater than the total time of FadeTo()
+    private const float HEART_INIT_Y = 0f;
+    private const float HEART_FINAL_Y = -100f;
+    private const float RETURN_INIT_Y = 100f;
+    private const float RETURN_FINAL_Y = 0f;
 
     private CanvasGroup dateCG;
     private CanvasGroup timeCG;
@@ -41,10 +48,12 @@ public class HomePageManager : MonoBehaviour
     private Image loadingOutlineImg;
     private Coroutine overlayCoroutine;
     private bool currentlyQuitting;
+    private List<float> channelPositions;
+    private bool creditsOpen;
 
     private void Awake() {
         overlay.alpha = 1f;
-        channelPositions = new List<(float x, float y)>();
+        channelPositions = new List<float>();
 
         var now = DateTime.Now;
         date.GetComponent<TMP_Text>().text = $"{now:ddd} {now.Month}/{now.Day}";
@@ -123,10 +132,10 @@ public class HomePageManager : MonoBehaviour
         // List contributors in alphabetical order to be fair
         Array.Sort(currCredits);
         gameName.GetComponent<TMP_Text>().text = currGameName;
-        credits.GetComponent<TMP_Text>().text = string.Join(", ", currCredits);
+        gameCredits.GetComponent<TMP_Text>().text = string.Join(", ", currCredits);
 
         var gameNameCG = gameName.GetComponent<CanvasGroup>();
-        var creditsCG = credits.GetComponent<CanvasGroup>();
+        var creditsCG = gameCredits.GetComponent<CanvasGroup>();
         StartCoroutine(Anim.Animate(0.35f, t => {
             overlay.alpha = t;
             pennBoy.alpha = t;
@@ -152,7 +161,7 @@ public class HomePageManager : MonoBehaviour
         // Make clones of the outlines to perform the outward echo animation
         var outlineParent = loadingOutline.transform.parent;
         var index = 0;
-        foreach (var obj in new List<GameObject> {
+        foreach (var obj in new[] {
                      Instantiate(loadingOutline, outlineParent),
                      Instantiate(loadingOutline, outlineParent),
                      Instantiate(loadingOutline, outlineParent),
@@ -161,14 +170,12 @@ public class HomePageManager : MonoBehaviour
             var rt = obj.GetComponent<RectTransform>();
             var cg = obj.GetComponent<CanvasGroup>();
             var final = Vector3.one * 4f;
-
             StartCoroutine(Anim.Animate(4f, t => {
                 rt.localScale = Vector3.Lerp(Vector3.one, final, Easing.EaseOutExpo(t));
             }));
             StartCoroutine(Anim.Animate(0.35f, t => {
                 cg.alpha = 1f - t;
             }));
-
             yield return new WaitForSeconds(0.12f + index * 0.04f);
             index++;
         }
@@ -178,10 +185,8 @@ public class HomePageManager : MonoBehaviour
             secondOverlay.alpha = t;
         });
         yield return new WaitForSeconds(0.1f);
-
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
         op.allowSceneActivation = true;
     }
 
@@ -205,29 +210,84 @@ public class HomePageManager : MonoBehaviour
     }
 
     private IEnumerator _OpenCredits() {
+        creditsOpen = true;
         channelPositions.Clear();
 
-        // Disable grid layout component so we can animate channels
+        // Disable grid layout component so we can animate channels and button functionality
         gamesList.GetComponent<GridLayoutGroup>().enabled = false;
+        creditsBtn.interactable = false;
+        foreach (Transform trans in gamesList.transform) {
+            trans.gameObject.GetComponent<Button>().interactable = false;
+        }
+
+        var heartInit = new Vector2(heartIcon.anchoredPosition.x, HEART_INIT_Y);
+        var heartFinal = new Vector2(heartIcon.anchoredPosition.x, HEART_FINAL_Y);
+        var returnInit = new Vector2(returnIcon.anchoredPosition.x, RETURN_INIT_Y);
+        var returnFinal = new Vector2(returnIcon.anchoredPosition.x, RETURN_FINAL_Y);
+        StartCoroutine(Anim.Animate(1.5f, t => {
+            t = Easing.EaseInOutExpo(t);
+            heartIcon.anchoredPosition = Vector2.Lerp(heartInit, heartFinal, t);
+            returnIcon.anchoredPosition = Vector2.Lerp(returnInit, returnFinal, t);
+        }));
 
         foreach (Transform trans in gamesList.transform) {
             var rt = trans.gameObject.GetComponent<RectTransform>();
             var init = rt.anchoredPosition;
-            channelPositions.Add((init.x, init.y));
+            channelPositions.Add(init.y);
 
             var final = new Vector2(init.x, init.y + 800f);
             StartCoroutine(Anim.Animate(0.3f, t => {
                 rt.anchoredPosition = Vector2.Lerp(init, final, Easing.EaseInExpo(t));
             }));
 
-            Debug.Log($"Channel: {trans.gameObject.name}");
             yield return new WaitForSeconds(0.07f);
         }
 
-        yield return null;
+        yield return new WaitForSeconds(1f);
+        creditsBtn.interactable = true;
+    }
+
+    private IEnumerator _CloseCredits() {
+        creditsOpen = false;
+        creditsBtn.interactable = false;
+
+        var heartInit = new Vector2(heartIcon.anchoredPosition.x, HEART_FINAL_Y);
+        var heartFinal = new Vector2(heartIcon.anchoredPosition.x, HEART_INIT_Y);
+        var returnInit = new Vector2(returnIcon.anchoredPosition.x, RETURN_FINAL_Y);
+        var returnFinal = new Vector2(returnIcon.anchoredPosition.x, RETURN_INIT_Y);
+        StartCoroutine(Anim.Animate(1.5f, t => {
+            t = Easing.EaseInOutExpo(t);
+            heartIcon.anchoredPosition = Vector2.Lerp(heartInit, heartFinal, t);
+            returnIcon.anchoredPosition = Vector2.Lerp(returnInit, returnFinal, t);
+        }));
+
+        // Bring the channels back in the opposite order
+        for (var i = channelPositions.Count - 1; i >= 0; i--) {
+            var oldY = channelPositions[i];
+            var rt = gamesList.transform.GetChild(i).gameObject.GetComponent<RectTransform>();
+
+            var init = rt.anchoredPosition;
+            var final = new Vector2(init.x, oldY);
+            StartCoroutine(Anim.Animate(0.3f, t => {
+                rt.anchoredPosition = Vector2.Lerp(init, final, Easing.EaseOutExpo(t));
+            }));
+
+            yield return new WaitForSeconds(0.07f);
+        }
+
+        // Allow the player to select games a little bit quicker...
+        yield return new WaitForSeconds(0.43f);
+        foreach (Transform trans in gamesList.transform) {
+            trans.gameObject.GetComponent<Button>().interactable = true;
+        }
+
+        // ...than reenabling the credits button, mostly because we're still waiting on the coroutines to finish.
+        yield return new WaitForSeconds(0.43f);
+        gamesList.GetComponent<GridLayoutGroup>().enabled = true;
+        creditsBtn.interactable = true;
     }
 
     public void ToggleCredits() {
-        StartCoroutine(_OpenCredits());
+        StartCoroutine(creditsOpen ? _CloseCredits() : _OpenCredits());
     }
 }

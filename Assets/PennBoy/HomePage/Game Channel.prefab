@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scroller: {fileID: 0}
   sceneName: Scene
+  credits: []
   outline: {fileID: 1320727687081558715}
   placeholder: 0
   background: {fileID: 5796141432557376074}
@@ -92,7 +93,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.899371, g: 0.899371, b: 0.899371, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.05
   m_SpriteState:
