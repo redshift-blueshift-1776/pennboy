@@ -28,6 +28,7 @@ public class HomePageManager : MonoBehaviour
 
     // Needs to be greater than the total time of FadeTo()
     private const float TIMER_LENGTH = 5f;
+    private List<(float x, float y)> channelPositions;
 
     private CanvasGroup dateCG;
     private CanvasGroup timeCG;
@@ -43,6 +44,7 @@ public class HomePageManager : MonoBehaviour
 
     private void Awake() {
         overlay.alpha = 1f;
+        channelPositions = new List<(float x, float y)>();
 
         var now = DateTime.Now;
         date.GetComponent<TMP_Text>().text = $"{now:ddd} {now.Month}/{now.Day}";
@@ -200,5 +202,32 @@ public class HomePageManager : MonoBehaviour
 
         currentlyQuitting = true;
         StartCoroutine(_Quit());
+    }
+
+    private IEnumerator _OpenCredits() {
+        channelPositions.Clear();
+
+        // Disable grid layout component so we can animate channels
+        gamesList.GetComponent<GridLayoutGroup>().enabled = false;
+
+        foreach (Transform trans in gamesList.transform) {
+            var rt = trans.gameObject.GetComponent<RectTransform>();
+            var init = rt.anchoredPosition;
+            channelPositions.Add((init.x, init.y));
+
+            var final = new Vector2(init.x, init.y + 800f);
+            StartCoroutine(Anim.Animate(0.3f, t => {
+                rt.anchoredPosition = Vector2.Lerp(init, final, Easing.EaseInExpo(t));
+            }));
+
+            Debug.Log($"Channel: {trans.gameObject.name}");
+            yield return new WaitForSeconds(0.07f);
+        }
+
+        yield return null;
+    }
+
+    public void ToggleCredits() {
+        StartCoroutine(_OpenCredits());
     }
 }
