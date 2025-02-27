@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [HideInInspector] public GameNameScroller scroller;
+    [SerializeField] public string[] credits;
 
     [SerializeField] private string sceneName;
-    [SerializeField] private string[] credits;
     [SerializeField] private RectTransform outline;
 
     [Header("Placeholder Mode")]

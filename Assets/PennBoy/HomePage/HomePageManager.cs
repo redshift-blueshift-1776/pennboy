@@ -30,12 +30,16 @@ public class HomePageManager : MonoBehaviour
     [SerializeField] private Button creditsBtn;
     [SerializeField] private RectTransform heartIcon;
     [SerializeField] private RectTransform returnIcon;
+    [SerializeField] private GameObject spacer;
+    [SerializeField] private GameObject roleGroupPrefab;
 
-    private const float TIMER_LENGTH = 5f; // Needs to be greater than the total time of FadeTo()
+    // Needs to be greater than the total time of FadeTo()
+    private const float TIMER_LENGTH = 5f;
     private const float HEART_INIT_Y = 0f;
     private const float HEART_FINAL_Y = -100f;
     private const float RETURN_INIT_Y = 100f;
     private const float RETURN_FINAL_Y = 0f;
+    private static readonly Vector2 CREDITS_SPEED = new(0f, 0.45f);
 
     private CanvasGroup dateCG;
     private CanvasGroup timeCG;
@@ -50,6 +54,7 @@ public class HomePageManager : MonoBehaviour
     private bool currentlyQuitting;
     private List<float> channelPositions;
     private bool creditsOpen;
+    private RectTransform creditsRt;
 
     private void Awake() {
         overlay.alpha = 1f;
@@ -75,12 +80,43 @@ public class HomePageManager : MonoBehaviour
         loadingOutline = loadingObj.transform.Find("Outline").gameObject;
         loadingOutlineRt = loadingOutline.GetComponent<RectTransform>();
         loadingOutlineImg = loadingOutline.GetComponent<Image>();
+
+        creditsRt = spacer.GetComponent<RectTransform>();
     }
 
     private void Start() {
         overlayCoroutine = StartCoroutine(Anim.Animate(1f, t => {
             overlay.alpha = 1 - t;
         }));
+
+        foreach (Transform trans in gamesList.transform) {
+            var obj = trans.gameObject;
+            var channelComp = obj.GetComponent<GameChannel>();
+
+            var rgTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+            var roleTMP = rgTrans.GetChild(0).GetComponent<TMP_Text>();
+            var namesTMP = rgTrans.GetChild(1).GetComponent<TMP_Text>();
+
+            roleTMP.text = channelComp.name;
+            namesTMP.text = string.Join("\n", channelComp.credits);
+        }
+
+        var roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+        var role = roleGroupTrans.GetChild(0).GetComponent<TMP_Text>();
+        var names = roleGroupTrans.GetChild(1).GetComponent<TMP_Text>();
+
+        role.text = "PennBoy Main UI";
+        names.text = "Charles Wang\nSaahil Gupta";
+
+        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+        role = roleGroupTrans.GetChild(0).GetComponent<TMP_Text>();
+        names = roleGroupTrans.GetChild(1).GetComponent<TMP_Text>();
+
+        role.text = "Thanks for playing!";
+        names.text = "";
+
+        // Hack to force vertical layout group to update. See https://stackoverflow.com/a/60204026
+        LayoutRebuilder.ForceRebuildLayoutImmediate(spacer.GetComponent<RectTransform>());
     }
 
     private void Update() {
@@ -92,6 +128,10 @@ public class HomePageManager : MonoBehaviour
         if (timerElapsed >= TIMER_LENGTH) {
             StartCoroutine(FadeTo(dateCG.alpha == 0f));
             timerElapsed = 0f;
+        }
+
+        if (creditsOpen) {
+            creditsRt.anchoredPosition += CREDITS_SPEED;
         }
     }
 
@@ -210,12 +250,12 @@ public class HomePageManager : MonoBehaviour
     }
 
     private IEnumerator _OpenCredits() {
-        creditsOpen = true;
         channelPositions.Clear();
+        creditsBtn.interactable = false;
+        creditsOpen = true;
 
         // Disable grid layout component so we can animate channels and button functionality
         gamesList.GetComponent<GridLayoutGroup>().enabled = false;
-        creditsBtn.interactable = false;
         foreach (Transform trans in gamesList.transform) {
             trans.gameObject.GetComponent<Button>().interactable = false;
         }
@@ -247,8 +287,19 @@ public class HomePageManager : MonoBehaviour
         creditsBtn.interactable = true;
     }
 
-    private IEnumerator _CloseCredits() {
+    private IEnumerator ResetCredits() {
+        var creditsCG = spacer.GetComponent<CanvasGroup>();
+
+        yield return Anim.Animate(0.1f, t => {
+            creditsCG.alpha = 1f - t;
+        });
+
         creditsOpen = false;
+        creditsRt.anchoredPosition = new Vector2(creditsRt.anchoredPosition.x, -300f);
+        creditsCG.alpha = 1f;
+    }
+
+    private IEnumerator _CloseCredits() {
         creditsBtn.interactable = false;
 
         var heartInit = new Vector2(heartIcon.anchoredPosition.x, HEART_FINAL_Y);
@@ -260,6 +311,8 @@ public class HomePageManager : MonoBehaviour
             heartIcon.anchoredPosition = Vector2.Lerp(heartInit, heartFinal, t);
             returnIcon.anchoredPosition = Vector2.Lerp(returnInit, returnFinal, t);
         }));
+
+        StartCoroutine(ResetCredits());
 
         // Bring the channels back in the opposite order
         for (var i = channelPositions.Count - 1; i >= 0; i--) {
