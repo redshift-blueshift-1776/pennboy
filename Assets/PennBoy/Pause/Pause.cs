@@ -9,9 +9,12 @@ public class Pause : MonoBehaviour
 
     [SerializeField] private GameObject pause;
     [SerializeField] private CanvasGroup overlay;
+    [SerializeField] private CanvasGroup secondOverlay;
     [SerializeField] private string[] lockedScenes;
 
     private bool isPaused;
+    private bool isAnimating;
+
     private float prevTimeScale;
     private CursorLockMode prevLockState;
     private bool prevCursorVisible;
@@ -35,12 +38,16 @@ public class Pause : MonoBehaviour
     }
 
     private void Update() {
+        if (isAnimating) return;
+
         if (Input.GetKeyDown(KeyCode.Escape) && !CheckIfBad()) {
             TogglePauseGame();
         }
     }
 
     public void TogglePauseGame() {
+        isAnimating = true;
+
         if (isPaused) {
             Time.timeScale = prevTimeScale;
             Cursor.lockState = prevLockState;
@@ -67,7 +74,7 @@ public class Pause : MonoBehaviour
         }
 
         isPaused = !isPaused;
-        pause.SetActive(isPaused);
+        isAnimating = false;
     }
 
     public void ResumeGame() {
@@ -80,12 +87,14 @@ public class Pause : MonoBehaviour
         prevLockState = CursorLockMode.None;
         ResumeGame();
 
+        // Reset();
+
         // Let the PulseTransition scene take us back home
         SceneManager.LoadScene("PulseTransition");
     }
 
     private bool CheckIfBad() {
-        //  This can be optimized if we cache by current scene name, but since we have so few locked scenes it doesn't matter
+        // This can be optimized if we cache by current scene name, but since we have so few locked scenes it doesn't matter
         var sceneName = SceneManager.GetActiveScene().name;
         return lockedScenes.Any(locked => locked == sceneName);
     }
