@@ -29,7 +29,6 @@ public class PulseTransitionManager : MonoBehaviour
         const float firstDuration = 0.6f;
         const float secondDuration = 0.7f;
 
-
         StartCoroutine(ChangeAlphaTo(cgList[0], 0f, 1f, firstDuration));
         yield return new WaitForSeconds(firstWaitDuration);
 

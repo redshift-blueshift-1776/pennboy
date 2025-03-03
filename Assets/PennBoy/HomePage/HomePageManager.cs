@@ -6,8 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
 
 public class HomePageManager : MonoBehaviour
 {
@@ -249,7 +247,7 @@ public class HomePageManager : MonoBehaviour
         StartCoroutine(_Quit());
     }
 
-    private IEnumerator _OpenCredits() {
+    private IEnumerator OpenCredits() {
         channelPositions.Clear();
         creditsBtn.interactable = false;
         creditsOpen = true;
@@ -299,7 +297,7 @@ public class HomePageManager : MonoBehaviour
         creditsCG.alpha = 1f;
     }
 
-    private IEnumerator _CloseCredits() {
+    private IEnumerator CloseCredits() {
         creditsBtn.interactable = false;
 
         var heartInit = new Vector2(heartIcon.anchoredPosition.x, HEART_FINAL_Y);
@@ -341,6 +339,6 @@ public class HomePageManager : MonoBehaviour
     }
 
     public void ToggleCredits() {
-        StartCoroutine(creditsOpen ? _CloseCredits() : _OpenCredits());
+        StartCoroutine(creditsOpen ? CloseCredits() : OpenCredits());
     }
 }

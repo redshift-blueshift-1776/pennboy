@@ -226,7 +226,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1448126968559806787}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2553107192126039879}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: ResetSoftware
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4698186762515990381
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +805,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9146348991115133658}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2553107192126039879}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: ReturnToPennBoyMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7046784239065983013
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,9 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c63b7d50aa8e7844b7e3d4a39e5f541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pause: {fileID: 1220259584066753483}
+  pauseCanvas: {fileID: 1220259584066753483}
   overlay: {fileID: 3925962150115042015}
-  secondOverlay: {fileID: 0}
-  lockedScenes:
-  - HomePage
-  - 
+  secondOverlay: {fileID: 4698186762515990381}
+  lockedScenes: []
