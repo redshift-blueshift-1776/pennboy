@@ -1005,4 +1005,5 @@ MonoBehaviour:
   pauseCanvas: {fileID: 1220259584066753483}
   overlay: {fileID: 3925962150115042015}
   secondOverlay: {fileID: 4698186762515990381}
-  lockedScenes: []
+  lockedScenes:
+  - PulseTransition
