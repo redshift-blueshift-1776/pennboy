@@ -41,6 +41,7 @@ public class IntroManager : MonoBehaviour
         healthSafety.SetActive(true);
         logoSequence.SetActive(false);
 #endif
+
         // Get all necessary components
         bgAttrs = (repeatingBg.GetComponent<RectTransform>(), repeatingBg.GetComponent<Image>());
         upgradeLogoAttrs = (upgradeLogo.GetComponent<RectTransform>(), upgradeLogo.GetComponent<CanvasGroup>(),
@@ -69,6 +70,9 @@ public class IntroManager : MonoBehaviour
             rectTrans.anchoredPosition = new Vector2(rectTrans.anchoredPosition.x, -700);
             image.color = Theme.Up[7];
         }
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private IEnumerator Start() {
@@ -111,6 +115,11 @@ public class IntroManager : MonoBehaviour
         if (!polling) return;
 
         if (Input.anyKey) {
+            // Don't activate on mouse clicks (UI says "any key" not mouse after all)
+            if (Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2)) {
+                return;
+            }
+
             polling = false;
             pressAnyKey.paused = true;
             pressAnyKey.Flash();
