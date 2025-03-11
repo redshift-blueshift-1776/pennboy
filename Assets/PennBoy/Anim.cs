@@ -6,14 +6,14 @@ namespace PennBoy
 {
 public static class Anim
 {
-    public static IEnumerator Animate(float animTime, Action<float> enumerate) {
+    public static IEnumerator Animate(float animTime, Action<float> enumerate, bool useUnscaledDelta = false) {
         var elapsedTime = 0f;
 
         while (elapsedTime <= animTime) {
             var t = elapsedTime / animTime;
             enumerate(t);
 
-            elapsedTime += Time.deltaTime;
+            elapsedTime += useUnscaledDelta ? Time.unscaledDeltaTime : Time.deltaTime;
             yield return null;
         }
 

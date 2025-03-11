@@ -30,7 +30,7 @@ public class Pause : MonoBehaviour
 
     private static readonly Vector2 barInit = new(1920f, 0f);
     private static readonly Vector2 topFinal = new(1920f, 315f);
-    private static readonly Vector2 bottomFinal = new(1920f, 242f);
+    private static readonly Vector2 bottomFinal = new(1920f, 210f);
 
     private void Awake() {
         if (I == null) {
@@ -109,7 +109,7 @@ public class Pause : MonoBehaviour
             yield return StartCoroutine(Anim.Animate(0.12f, t => {
                 pennBoyMenuButton.alpha = t;
                 resetButton.alpha = t;
-            }));
+            }, true));
 
             pennBoyMenuButton.interactable = true;
             resetButton.interactable = true;
@@ -121,12 +121,13 @@ public class Pause : MonoBehaviour
             StartCoroutine(Anim.Animate(0.2f, t => {
                 pennBoyMenuButton.alpha = 1f - t;
                 resetButton.alpha = 1f - t;
-            }));
+            }, true));
         }
     }
 
     private IEnumerator OpenPause() {
         SavePreviousStates();
+        Time.timeScale = 0f;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -139,44 +140,42 @@ public class Pause : MonoBehaviour
 
         StartCoroutine(ToggleButton(true));
         StartCoroutine(Anim.Animate(0.4f,
-                                    t => overlay.alpha = Mathf.Lerp(0f, 0.9f, Easing.EaseOutExpo(t))));
+                                    t => overlay.alpha = Mathf.Lerp(0f, 0.9f, Easing.EaseOutExpo(t)),
+                                    true));
 
         StartCoroutine(Anim.Animate(0.7f, t => {
             var newT = Easing.EaseOutExpo(t);
             topBar.sizeDelta = Vector2.Lerp(barInit, topFinal, newT);
             bottomBar.sizeDelta = Vector2.Lerp(barInit, bottomFinal, newT);
-        }));
+        }, true));
 
-        yield return new WaitForSeconds(0.7f);
-
-        // Do this at the end so all the animations can actually play
-        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(0.4f);
     }
 
     private IEnumerator ClosePauseAnimated() {
-        LoadPreviousStates();
-
         StartCoroutine(ToggleButton(false));
         StartCoroutine(Anim.Animate(0.4f,
-                                    t => overlay.alpha = Mathf.Lerp(0.9f, 0f, Easing.EaseInExpo(t))));
+                                    t => overlay.alpha = Mathf.Lerp(0.9f, 0f, Easing.EaseInExpo(t)),
+                                    true));
 
         StartCoroutine(Anim.Animate(0.7f, t => {
             var newT = Easing.EaseOutExpo(t);
             topBar.sizeDelta = Vector2.Lerp(topFinal, barInit, newT);
             bottomBar.sizeDelta = Vector2.Lerp(bottomFinal, barInit, newT);
-        }));
+        }, true));
 
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSecondsRealtime(0.7f);
         pauseCanvas.SetActive(false);
+
+        LoadPreviousStates();
     }
 
     private IEnumerator ClosePauseImmediate() {
-        Time.timeScale = 1f;
-
         secondOverlay.SetActive(true);
         var cg = secondOverlay.GetComponent<CanvasGroup>();
 
-        yield return Anim.Animate(0.4f, t => cg.alpha = t);
+        yield return Anim.Animate(0.4f, t => cg.alpha = t, true);
+        Time.timeScale = 1f;
     }
 
     private IEnumerator _ReturnToPennBoyMenu() {
