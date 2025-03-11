@@ -4,6 +4,7 @@ using System.Linq;
 using PennBoy;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vector2 = UnityEngine.Vector2;
 
 public class Pause : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class Pause : MonoBehaviour
 
     [SerializeField] private CanvasGroup overlay;
     [SerializeField] private GameObject secondOverlay;
+    [SerializeField] private RectTransform topBar;
+    [SerializeField] private RectTransform bottomBar;
+    [SerializeField] private CanvasGroup pennBoyMenuButton;
+    [SerializeField] private CanvasGroup resetButton;
     [SerializeField] private string[] lockedScenes;
 
     private bool isPaused;
@@ -22,6 +27,10 @@ public class Pause : MonoBehaviour
     private CursorLockMode prevLockState;
     private bool prevCursorVisible;
     private List<(AudioSource audioSrc, float volume)> prevAudio;
+
+    private static readonly Vector2 barInit = new(1920f, 0f);
+    private static readonly Vector2 topFinal = new(1920f, 315f);
+    private static readonly Vector2 bottomFinal = new(1920f, 242f);
 
     private void Awake() {
         if (I == null) {
@@ -53,6 +62,7 @@ public class Pause : MonoBehaviour
         secondOverlay.GetComponent<CanvasGroup>().alpha = 0f;
         secondOverlay.SetActive(false);
 
+        // Setting the canvas to false resets all the UI to their initial state!
         pauseCanvas.SetActive(false);
         isPaused = false;
     }
@@ -94,6 +104,27 @@ public class Pause : MonoBehaviour
                     .Select(audioSrc => (audioSrc, audioSrc.volume)).ToList();
     }
 
+    private IEnumerator ToggleButton(bool setToActive) {
+        if (setToActive) {
+            yield return StartCoroutine(Anim.Animate(0.12f, t => {
+                pennBoyMenuButton.alpha = t;
+                resetButton.alpha = t;
+            }));
+
+            pennBoyMenuButton.interactable = true;
+            resetButton.interactable = true;
+        }
+        else {
+            pennBoyMenuButton.interactable = false;
+            resetButton.interactable = false;
+
+            StartCoroutine(Anim.Animate(0.2f, t => {
+                pennBoyMenuButton.alpha = 1f - t;
+                resetButton.alpha = 1f - t;
+            }));
+        }
+    }
+
     private IEnumerator OpenPause() {
         SavePreviousStates();
 
@@ -105,7 +136,18 @@ public class Pause : MonoBehaviour
         }
 
         pauseCanvas.SetActive(true);
-        yield return Anim.Animate(0.4f, t => overlay.alpha = Mathf.Lerp(0f, 0.9f, t));
+
+        StartCoroutine(ToggleButton(true));
+        StartCoroutine(Anim.Animate(0.4f,
+                                    t => overlay.alpha = Mathf.Lerp(0f, 0.9f, Easing.EaseOutExpo(t))));
+
+        StartCoroutine(Anim.Animate(0.7f, t => {
+            var newT = Easing.EaseOutExpo(t);
+            topBar.sizeDelta = Vector2.Lerp(barInit, topFinal, newT);
+            bottomBar.sizeDelta = Vector2.Lerp(barInit, bottomFinal, newT);
+        }));
+
+        yield return new WaitForSeconds(0.7f);
 
         // Do this at the end so all the animations can actually play
         Time.timeScale = 0f;
@@ -114,14 +156,21 @@ public class Pause : MonoBehaviour
     private IEnumerator ClosePauseAnimated() {
         LoadPreviousStates();
 
-        yield return Anim.Animate(0.4f, t => overlay.alpha = Mathf.Lerp(0.9f, 0f, t));
+        StartCoroutine(ToggleButton(false));
+        StartCoroutine(Anim.Animate(0.4f,
+                                    t => overlay.alpha = Mathf.Lerp(0.9f, 0f, Easing.EaseInExpo(t))));
 
+        StartCoroutine(Anim.Animate(0.7f, t => {
+            var newT = Easing.EaseOutExpo(t);
+            topBar.sizeDelta = Vector2.Lerp(topFinal, barInit, newT);
+            bottomBar.sizeDelta = Vector2.Lerp(bottomFinal, barInit, newT);
+        }));
+
+        yield return new WaitForSeconds(0.7f);
         pauseCanvas.SetActive(false);
     }
 
     private IEnumerator ClosePauseImmediate() {
-        // Reset everything to initial state, but no need for animations. Don't need to set anything for the cursor
-        // because the PulseTransition scene does cursor stuff in Awake() anyway
         Time.timeScale = 1f;
 
         secondOverlay.SetActive(true);
