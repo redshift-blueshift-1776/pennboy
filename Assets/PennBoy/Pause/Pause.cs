@@ -8,7 +8,7 @@ using Vector2 = UnityEngine.Vector2;
 
 public class Pause : MonoBehaviour
 {
-    private static Pause I;
+    public static Pause I;
 
     [SerializeField] public GameObject pauseCanvas;
 
@@ -18,6 +18,8 @@ public class Pause : MonoBehaviour
     [SerializeField] private RectTransform bottomBar;
     [SerializeField] private CanvasGroup pennBoyMenuButton;
     [SerializeField] private CanvasGroup resetButton;
+    [SerializeField] private CanvasGroup resetTheSoftwareText;
+    [SerializeField] private CanvasGroup returnBackText;
     [SerializeField] private string[] lockedScenes;
 
     private bool isPaused;
@@ -50,7 +52,7 @@ public class Pause : MonoBehaviour
         if (isAnimating) return;
 
         if (Input.GetKeyDown(KeyCode.Escape) && !IsLockedScene()) {
-            TogglePauseGame();
+            StartCoroutine(_TogglePauseGame());
         }
     }
 
@@ -77,8 +79,6 @@ public class Pause : MonoBehaviour
         isPaused = !isPaused;
         isAnimating = false;
     }
-
-    private void TogglePauseGame() => StartCoroutine(_TogglePauseGame());
 
     private bool IsLockedScene() {
         // This can be optimized if we cache by current scene name, but since we have so few locked scenes it doesn't matter
@@ -158,13 +158,13 @@ public class Pause : MonoBehaviour
                                     t => overlay.alpha = Mathf.Lerp(0.9f, 0f, Easing.EaseInExpo(t)),
                                     true));
 
-        StartCoroutine(Anim.Animate(0.7f, t => {
-            var newT = Easing.EaseOutExpo(t);
+        StartCoroutine(Anim.Animate(0.35f, t => {
+            var newT = Easing.EaseInExpo(t);
             topBar.sizeDelta = Vector2.Lerp(topFinal, barInit, newT);
             bottomBar.sizeDelta = Vector2.Lerp(bottomFinal, barInit, newT);
         }, true));
 
-        yield return new WaitForSecondsRealtime(0.7f);
+        yield return new WaitForSecondsRealtime(0.5f);
         pauseCanvas.SetActive(false);
 
         LoadPreviousStates();
@@ -176,6 +176,22 @@ public class Pause : MonoBehaviour
 
         yield return Anim.Animate(0.4f, t => cg.alpha = t, true);
         Time.timeScale = 1f;
+    }
+
+    public void ReturnTextAnim(bool appear) {
+        const float duration = 0.2f;
+
+        StartCoroutine(appear
+                           ? Anim.FadeIn(duration, returnBackText, true)
+                           : Anim.FadeOut(duration, returnBackText, true));
+    }
+
+    public void ResetTextAnim(bool appear) {
+        const float duration = 0.2f;
+
+        StartCoroutine(appear
+                           ? Anim.FadeIn(duration, resetTheSoftwareText, true)
+                           : Anim.FadeOut(duration, resetTheSoftwareText, true));
     }
 
     private IEnumerator _ReturnToPennBoyMenu() {

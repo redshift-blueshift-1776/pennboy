@@ -388,8 +388,6 @@ RectTransform:
   - {fileID: 6406007757538013741}
   - {fileID: 5649896022665205323}
   - {fileID: 8288887645398426693}
-  - {fileID: 1655124764250099319}
-  - {fileID: 2401591560124529781}
   m_Father: {fileID: 6532138587225344296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -534,6 +532,7 @@ GameObject:
   - component: {fileID: 6165530104940816565}
   - component: {fileID: 6111582942104085574}
   - component: {fileID: 3557627831625044655}
+  - component: {fileID: 1004991343323272778}
   m_Layer: 0
   m_Name: Reset button
   m_TagString: Untagged
@@ -632,6 +631,19 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1004991343323272778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3717005233407187464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6578d7ed2f6084986a511c096f7035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &4698186762515990381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,12 +1344,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2804853677786304267}
+  m_Father: {fileID: 1105966718408552687}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 652.78, y: -227}
-  m_SizeDelta: {x: 1187.8462, y: 62.3586}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 652.7796, y: 129}
+  m_SizeDelta: {x: 1187.8462, y: 62.358597}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2130474214910639849
 CanvasRenderer:
@@ -1555,12 +1567,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2804853677786304267}
+  m_Father: {fileID: 1105966718408552687}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 652.78, y: -227}
-  m_SizeDelta: {x: 1187.8462, y: 62.3586}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 652.7796, y: 129.00002}
+  m_SizeDelta: {x: 1187.8462, y: 62.358597}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5187864639027035537
 CanvasRenderer:
@@ -1704,6 +1716,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7795081093198505706}
+  - {fileID: 1655124764250099319}
+  - {fileID: 2401591560124529781}
   m_Father: {fileID: 6532138587225344296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -1953,6 +1967,8 @@ MonoBehaviour:
   bottomBar: {fileID: 1105966718408552687}
   pennBoyMenuButton: {fileID: 3092372037936790606}
   resetButton: {fileID: 3557627831625044655}
+  resetTheSoftwareText: {fileID: 3747598008809097728}
+  returnBackText: {fileID: 3259923736560931272}
   lockedScenes:
   - PulseTransition
 --- !u!1 &8130118498407455197
@@ -2116,6 +2132,7 @@ GameObject:
   - component: {fileID: 4007963790737136639}
   - component: {fileID: 6936186034055214279}
   - component: {fileID: 3092372037936790606}
+  - component: {fileID: 1048015500798983841}
   m_Layer: 0
   m_Name: PennBoy Menu button
   m_TagString: Untagged
@@ -2214,3 +2231,16 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1048015500798983841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9086712470572018314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6578d7ed2f6084986a511c096f7035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0

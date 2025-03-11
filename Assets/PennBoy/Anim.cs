@@ -20,5 +20,17 @@ public static class Anim
         // Make sure animation finishes completely e.g. completely interpolates to 1
         enumerate(1f);
     }
+
+    public static IEnumerator FadeIn(float duration, CanvasGroup cg, bool useUnscaledDelta = false) {
+        yield return Animate(duration, t => {
+            cg.alpha = t;
+        }, useUnscaledDelta);
+    }
+
+    public static IEnumerator FadeOut(float duration, CanvasGroup cg, bool useUnscaledDelta = false) {
+        yield return Animate(duration, t => {
+            cg.alpha = 1f - t;
+        }, useUnscaledDelta);
+    }
 }
 }
