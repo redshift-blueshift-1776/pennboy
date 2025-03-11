@@ -1970,6 +1970,7 @@ MonoBehaviour:
   resetTheSoftwareText: {fileID: 3747598008809097728}
   returnBackText: {fileID: 3259923736560931272}
   lockedScenes:
+  - HomePage
   - PulseTransition
 --- !u!1 &8130118498407455197
 GameObject:
