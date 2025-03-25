@@ -14,7 +14,7 @@ public class FakeCursor : MonoBehaviour
     [SerializeField] private float offsetY;
 
     private float timer;
-    private const float tick = 0.06f;
+    private const float tick = 0.04f;
     private static readonly Vector3 initScale = new(0.1566519f, 0.1566519f, 0.1566519f);
 
     private void Awake() {
