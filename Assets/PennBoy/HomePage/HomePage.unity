@@ -6662,6 +6662,7 @@ GameObject:
   - component: {fileID: 2071578011}
   - component: {fileID: 2071578013}
   - component: {fileID: 2071578012}
+  - component: {fileID: 2071578014}
   m_Layer: 5
   m_Name: Cursor
   m_TagString: Untagged
@@ -6685,8 +6686,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -49, y: -80}
-  m_SizeDelta: {x: 1025, y: 1025}
+  m_AnchoredPosition: {x: -58.821, y: -70.179}
+  m_SizeDelta: {x: 899.6132, y: 899.6132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2071578012
 MonoBehaviour:
@@ -6726,6 +6727,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071578010}
   m_CullTransparentMesh: 1
+--- !u!225 &2071578014
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071578010}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2083553106
 GameObject:
   m_ObjectHideFlags: 0
@@ -6827,7 +6840,7 @@ GameObject:
   - component: {fileID: 2085484742}
   - component: {fileID: 2085484745}
   m_Layer: 5
-  m_Name: Cursor Canvas
+  m_Name: Fake Cursor Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6911,9 +6924,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e904d581d54aef4abf1c510fe9b62b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 2071578011}
-  offsetX: 33
-  offsetY: -45
+  cursorRect: {fileID: 2071578011}
+  cursorCG: {fileID: 2071578014}
+  offsetX: 29
+  offsetY: -38
 --- !u!1 &2097217470
 GameObject:
   m_ObjectHideFlags: 0

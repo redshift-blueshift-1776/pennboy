@@ -115,6 +115,10 @@ public class HomePageManager : MonoBehaviour
 
         // Hack to force vertical layout group to update. See https://stackoverflow.com/a/60204026
         LayoutRebuilder.ForceRebuildLayoutImmediate(spacer.GetComponent<RectTransform>());
+
+        if (!FakeCursor.I.IsVisible) {
+            FakeCursor.I.FadeIn();
+        }
     }
 
     private void Update() {
@@ -147,7 +151,7 @@ public class HomePageManager : MonoBehaviour
 
     public IEnumerator OpenGame(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
                                 Vector2 pos) {
-        Cursor.visible = false;
+        FakeCursor.I.FadeOut();
         Cursor.lockState = CursorLockMode.Locked;
 
         // Set channel to correct initial position
@@ -223,8 +227,12 @@ public class HomePageManager : MonoBehaviour
             secondOverlay.alpha = t;
         });
         yield return new WaitForSeconds(0.1f);
+
+        // We assume our game start with a visible cursor. They should be setting it to false themselves
+        // if they want so!
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
         op.allowSceneActivation = true;
     }
 

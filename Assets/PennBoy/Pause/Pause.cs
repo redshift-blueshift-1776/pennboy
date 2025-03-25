@@ -129,8 +129,9 @@ public class Pause : MonoBehaviour
         SavePreviousStates();
         Time.timeScale = 0f;
 
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        FakeCursor.I.FadeIn();
 
         foreach (var (audioSource, _) in prevAudio) {
             audioSource.volume = 0f;
@@ -164,6 +165,8 @@ public class Pause : MonoBehaviour
             bottomBar.sizeDelta = Vector2.Lerp(bottomFinal, barInit, newT);
         }, true));
 
+        FakeCursor.I.FadeOut();
+
         yield return new WaitForSecondsRealtime(0.5f);
         pauseCanvas.SetActive(false);
 
@@ -173,6 +176,8 @@ public class Pause : MonoBehaviour
     private IEnumerator ClosePauseImmediate() {
         secondOverlay.SetActive(true);
         var cg = secondOverlay.GetComponent<CanvasGroup>();
+
+        FakeCursor.I.FadeOut();
 
         yield return Anim.Animate(0.4f, t => cg.alpha = t, true);
         Time.timeScale = 1f;
@@ -205,6 +210,7 @@ public class Pause : MonoBehaviour
         if (isAnimating) yield break;
 
         yield return ClosePauseImmediate();
+        Cursor.visible = prevCursorVisible;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
