@@ -34,7 +34,7 @@ public class HomePageManager : MonoBehaviour
     [Header("Quitting")]
     [SerializeField] private GameObject screenshot;
     [SerializeField] private Material grayscale;
-    [SerializeField] private Material mix;
+    [SerializeField] private CanvasGroup ggText;
 
     // Needs to be greater than the total time of FadeTo()
     private const float TIMER_LENGTH = 5f;
@@ -42,7 +42,12 @@ public class HomePageManager : MonoBehaviour
     private const float HEART_FINAL_Y = -100f;
     private const float RETURN_INIT_Y = 100f;
     private const float RETURN_FINAL_Y = 0f;
+
     private static readonly Vector2 CREDITS_SPEED = new(0f, 0.45f);
+
+    private static readonly int InterpolationAmount = Shader.PropertyToID("_Interpolation_Amount");
+    private static readonly int Grayscale = Shader.PropertyToID("_Grayscale");
+    private static readonly int Color = Shader.PropertyToID("_Color");
 
     private CanvasGroup dateCG;
     private CanvasGroup timeCG;
@@ -188,7 +193,7 @@ public class HomePageManager : MonoBehaviour
             gameNameCG.alpha = t;
             creditsCG.alpha = t;
             music.volume = Mathf.Lerp(music.volume, 0f, t);
-            loadingOutlineImg.color = Color.Lerp(Theme.Up[1], Color.white, t);
+            loadingOutlineImg.color = UnityEngine.Color.Lerp(Theme.Up[1], UnityEngine.Color.white, t);
         }));
 
         StartCoroutine(Anim.Animate(0.65f, t => {
@@ -243,49 +248,53 @@ public class HomePageManager : MonoBehaviour
     private IEnumerator AnimateQuit() {
         yield return new WaitForEndOfFrame();
 
+        // Use a render texture to capture the screen in sRGC
         var temp = RenderTexture.GetTemporary(
             Screen.width, Screen.height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB
         );
         ScreenCapture.CaptureScreenshotIntoRenderTexture(temp);
 
-        // Vertically flip the render texture. See https://gist.github.com/mminer/816ff2b8a9599a9dd342e553d189e03f
         var colorRt = new RenderTexture(temp.descriptor);
         var grayRt = new RenderTexture(temp.descriptor);
+
+        // Vertically flip the render texture. See https://gist.github.com/mminer/816ff2b8a9599a9dd342e553d189e03f
         Graphics.Blit(temp, colorRt, new Vector2(1f, -1f), new Vector2(0f, 1f));
-        Graphics.Blit(colorRt, grayRt, grayscale);
         RenderTexture.ReleaseTemporary(temp);
 
-        mix.SetTexture("_Color", colorRt);
-        mix.SetTexture("_Grayscale", grayRt);
-
-        // screenshot.GetComponent<RawImage>().texture = colorRt;
-        screenshot.GetComponent<CanvasGroup>().alpha = 1f;
-        secondOverlay.alpha = 1f;
+        // Create grayscale version of screenshot
+        Graphics.Blit(colorRt, grayRt, grayscale);
 
         var rawImg = screenshot.GetComponent<RawImage>();
-        var tex = new RenderTexture(colorRt.descriptor);
-        yield return Anim.Animate(1f, t => {
-            mix.SetFloat("_Interpolation_Amount", t);
-            Graphics.Blit(null, tex, mix);
-            rawImg.texture = tex;
+        var imgMat = rawImg.material;
+        imgMat.SetTexture(Color, colorRt);
+        imgMat.SetTexture(Grayscale, grayRt);
+
+        screenshot.GetComponent<CanvasGroup>().alpha = 1f;
+        secondOverlay.alpha = 1f;
+        ggText.alpha = 1f;
+
+        // Slowly fade screen to gray
+        StartCoroutine(Anim.Animate(0.5f, t => {
+            imgMat.SetFloat(InterpolationAmount, t);
+        }));
+
+        var ssRect = screenshot.GetComponent<RectTransform>();
+        var firstFinalScale = new Vector3(1f, 0.01f, 1f);
+        yield return Anim.Animate(0.5f, t => {
+            ssRect.localScale = Vector3.Lerp(Vector3.one, firstFinalScale, Easing.EaseInExpo(t));
         });
 
-        // var ssRect = screenshot.GetComponent<RectTransform>();
-        // var firstFinalScale = new Vector3(1f, 0.01f, 1f);
-        // yield return Anim.Animate(0.5f, t => {
-        //     ssRect.localScale = Vector3.Lerp(Vector3.one, firstFinalScale, Easing.EaseInExpo(t));
-        // });
-        //
-        // screenshot.GetComponent<RawImage>().texture = null;
-        // Destroy(colorRt);
-        //
-        // yield return Anim.Animate(0.3f, t => {
-        //     ssRect.localScale = Vector3.Lerp(firstFinalScale, Vector3.zero, Easing.EaseInExpo(t));
-        // });
-
+        // Reset it for use next time (this is not a material instance)
+        rawImg.material.SetFloat(InterpolationAmount, 0f);
+        rawImg.material = null;
         Destroy(colorRt);
         Destroy(grayRt);
-        Destroy(tex);
+
+        yield return Anim.Animate(0.3f, t => {
+            ssRect.localScale = Vector3.Lerp(firstFinalScale, Vector3.zero, Easing.EaseInExpo(t));
+        });
+
+        yield return Anim.FadeOut(0.8f, ggText, true);
     }
 
     private IEnumerator _Quit() {
