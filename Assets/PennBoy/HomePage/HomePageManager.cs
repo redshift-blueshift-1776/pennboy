@@ -31,6 +31,9 @@ public class HomePageManager : MonoBehaviour
     [SerializeField] private GameObject spacer;
     [SerializeField] private GameObject roleGroupPrefab;
 
+    [Header("Quitting")]
+    [SerializeField] private GameObject screenshot;
+
     // Needs to be greater than the total time of FadeTo()
     private const float TIMER_LENGTH = 5f;
     private const float HEART_INIT_Y = 0f;
@@ -151,8 +154,7 @@ public class HomePageManager : MonoBehaviour
 
     public IEnumerator OpenGame(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
                                 Vector2 pos) {
-        FakeCursor.I.FadeOut();
-        Cursor.lockState = CursorLockMode.Locked;
+        FakeCursor.I.FadeOut(true);
 
         // Set channel to correct initial position
         loadingThumbnail.sprite = thumbnail;
@@ -236,14 +238,49 @@ public class HomePageManager : MonoBehaviour
         op.allowSceneActivation = true;
     }
 
+    private IEnumerator AnimateQuit() {
+        yield return new WaitForEndOfFrame();
+
+        var temp = RenderTexture.GetTemporary(
+            Screen.width, Screen.height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB
+        );
+        ScreenCapture.CaptureScreenshotIntoRenderTexture(temp);
+
+        // Vertically flip the render texture. See https://gist.github.com/mminer/816ff2b8a9599a9dd342e553d189e03f
+        var rt = new RenderTexture(temp.descriptor);
+        Graphics.Blit(temp, rt, new Vector2(1f, -1f), new Vector2(0f, 1f));
+        RenderTexture.ReleaseTemporary(temp);
+
+        screenshot.GetComponent<RawImage>().texture = rt;
+        screenshot.GetComponent<CanvasGroup>().alpha = 1f;
+
+        secondOverlay.alpha = 1f;
+
+        var ssRect = screenshot.GetComponent<RectTransform>();
+        var firstFinalScale = new Vector3(1f, 0.01f, 1f);
+        yield return Anim.Animate(0.5f, t => {
+            ssRect.localScale = Vector3.Lerp(Vector3.one, firstFinalScale, Easing.EaseInExpo(t));
+        });
+
+        screenshot.GetComponent<RawImage>().texture = null;
+        Destroy(rt);
+
+        yield return Anim.Animate(0.3f, t => {
+            ssRect.localScale = Vector3.Lerp(firstFinalScale, Vector3.zero, Easing.EaseInExpo(t));
+        });
+    }
+
     private IEnumerator _Quit() {
         if (overlay != null) StopCoroutine(overlayCoroutine);
 
+        FakeCursor.I.FadeOut(true);
+
         var initialVolume = music.volume;
-        yield return StartCoroutine(Anim.Animate(1f, t => {
-            overlay.alpha = t;
+        StartCoroutine(Anim.Animate(1f, t => {
             music.volume = Mathf.Lerp(initialVolume, 0f, t);
         }));
+
+        yield return AnimateQuit();
 
         Application.Quit();
     }

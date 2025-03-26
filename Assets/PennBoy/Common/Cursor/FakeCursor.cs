@@ -58,8 +58,15 @@ public class FakeCursor : MonoBehaviour
         Destroy(particle);
     }
 
+    private IEnumerator _FadeOut(bool lockCursorAfter) {
+        yield return Anim.FadeOut(0.15f, cursorCG, true);
+        if (lockCursorAfter) {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
     public void FadeIn() => StartCoroutine(Anim.FadeIn(0.15f, cursorCG, true));
-    public void FadeOut() => StartCoroutine(Anim.FadeOut(0.15f, cursorCG, true));
+    public void FadeOut(bool lockCursorAfter) => StartCoroutine(_FadeOut(lockCursorAfter));
 
     public bool IsVisible => cursorCG.alpha == 1.0f;
 }

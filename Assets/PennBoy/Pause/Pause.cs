@@ -165,7 +165,7 @@ public class Pause : MonoBehaviour
             bottomBar.sizeDelta = Vector2.Lerp(bottomFinal, barInit, newT);
         }, true));
 
-        FakeCursor.I.FadeOut();
+        FakeCursor.I.FadeOut(false);
 
         yield return new WaitForSecondsRealtime(0.5f);
         pauseCanvas.SetActive(false);
@@ -177,7 +177,7 @@ public class Pause : MonoBehaviour
         secondOverlay.SetActive(true);
         var cg = secondOverlay.GetComponent<CanvasGroup>();
 
-        FakeCursor.I.FadeOut();
+        FakeCursor.I.FadeOut(false);
 
         yield return Anim.Animate(0.4f, t => cg.alpha = t, true);
         Time.timeScale = 1f;
