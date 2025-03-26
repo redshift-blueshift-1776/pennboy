@@ -35,6 +35,7 @@ public class HomePageManager : MonoBehaviour
     [SerializeField] private GameObject screenshot;
     [SerializeField] private Material grayscale;
     [SerializeField] private CanvasGroup ggText;
+    [SerializeField] private RectTransform star;
 
     // Needs to be greater than the total time of FadeTo()
     private const float TIMER_LENGTH = 5f;
@@ -245,6 +246,21 @@ public class HomePageManager : MonoBehaviour
         op.allowSceneActivation = true;
     }
 
+    private IEnumerator AnimateStarEntry() {
+        yield return new WaitForSecondsRealtime(0.35f);
+
+        StartCoroutine(Anim.Animate(0.6f, t => {
+            if (t <= 0.5f) {
+                var newT = Mathf.Clamp01(t / 0.5f);
+                star.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, Easing.EaseInOutExpo(newT));
+            }
+            else {
+                var newT = Mathf.Clamp01((t - 0.5f) / 0.5f);
+                star.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, Easing.EaseInOutExpo(newT));
+            }
+        }, true));
+    }
+
     private IEnumerator AnimateQuit() {
         yield return new WaitForEndOfFrame();
 
@@ -276,13 +292,15 @@ public class HomePageManager : MonoBehaviour
         // Slowly fade screen to gray
         StartCoroutine(Anim.Animate(0.5f, t => {
             imgMat.SetFloat(InterpolationAmount, t);
-        }));
+        }, true));
+
+        StartCoroutine(AnimateStarEntry());
 
         var ssRect = screenshot.GetComponent<RectTransform>();
         var firstFinalScale = new Vector3(1f, 0.01f, 1f);
         yield return Anim.Animate(0.5f, t => {
             ssRect.localScale = Vector3.Lerp(Vector3.one, firstFinalScale, Easing.EaseInExpo(t));
-        });
+        }, true);
 
         // Reset it for use next time (this is not a material instance)
         rawImg.material.SetFloat(InterpolationAmount, 0f);
@@ -292,8 +310,9 @@ public class HomePageManager : MonoBehaviour
 
         yield return Anim.Animate(0.3f, t => {
             ssRect.localScale = Vector3.Lerp(firstFinalScale, Vector3.zero, Easing.EaseInExpo(t));
-        });
+        }, true);
 
+        yield return new WaitForSecondsRealtime(0.25f);
         yield return Anim.FadeOut(0.8f, ggText, true);
     }
 
