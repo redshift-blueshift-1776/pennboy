@@ -23,6 +23,13 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private Coroutine curr;
     private HomePageManager manager;
     private CanvasGroup canvasGroup;
+    private CanvasGroup tbCopy;
+
+    private static readonly int BarNumber = Shader.PropertyToID("_Bar_Number");
+    private static readonly int BarStrength = Shader.PropertyToID("_Bar_Strength");
+    private static readonly int Offset = Shader.PropertyToID("_Offset");
+    private static readonly int BarSize = Shader.PropertyToID("_Bar_Size");
+    private static readonly int FlickerStrength = Shader.PropertyToID("_Flicker_Strength");
 
     private enum ScaleAnim
     {
@@ -39,6 +46,21 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         manager = FindAnyObjectByType<HomePageManager>();
         canvasGroup = GetComponent<CanvasGroup>();
+
+        var materialInst = new Material(background.material);
+        materialInst.SetFloat(BarNumber, Random.Range(1, 4));
+        materialInst.SetFloat(BarStrength, Random.Range(0.05f, 0.17f));
+        materialInst.SetFloat(Offset, Random.Range(-2f, 2f));
+        materialInst.SetFloat(BarSize, Random.Range(0.4f, 0.6f));
+        materialInst.SetFloat(FlickerStrength, 0.1f + Random.Range(0f, 0.2f));
+        background.material = materialInst;
+
+        var tb = Instantiate(background.gameObject, logo.transform.parent);
+        tb.transform.SetSiblingIndex(1);
+        tb.GetComponent<Image>().material = null;
+
+        tbCopy = tb.AddComponent<CanvasGroup>();
+        tbCopy.alpha = 0f;
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
@@ -62,18 +84,16 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
 
     private IEnumerator AnimateScale(ScaleAnim anim) {
-        var init = outline.localScale;
-        var final = anim == ScaleAnim.Expand ? Vector3.one * SCALE_FINAL : Vector3.one * SCALE_INIT;
         var duration = anim == ScaleAnim.Expand ? 0.15f : 2f;
 
-        var elapsed = 0f;
-        while (elapsed < duration) {
-            outline.localScale = Vector3.Lerp(init, final, Easing.EaseOutExpo(elapsed / duration));
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
+        var initScale = outline.localScale;
+        var finalScale = anim == ScaleAnim.Expand ? Vector3.one * SCALE_FINAL : Vector3.one * SCALE_INIT;
 
-        outline.localScale = final;
+        StartCoroutine(anim == ScaleAnim.Expand ? Anim.FadeIn(0.12f, tbCopy) : Anim.FadeOut(0.12f, tbCopy));
+
+        yield return Anim.Animate(duration, t => {
+            outline.localScale = Vector3.Lerp(initScale, finalScale, Easing.EaseOutExpo(t));
+        });
     }
 
     public void Open() {
