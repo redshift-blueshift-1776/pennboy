@@ -3793,6 +3793,8 @@ MonoBehaviour:
   roleGroupPrefab: {fileID: 3757187525912477833, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
     type: 3}
   screenshot: {fileID: 909709695}
+  grayscale: {fileID: 2100000, guid: 2f03b921c22223a41a88a4614aa4a3e8, type: 2}
+  mix: {fileID: 2100000, guid: 83c94815927603544badababa07633db, type: 2}
 --- !u!1 &909709695
 GameObject:
   m_ObjectHideFlags: 0

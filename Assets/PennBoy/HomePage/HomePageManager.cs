@@ -33,6 +33,8 @@ public class HomePageManager : MonoBehaviour
 
     [Header("Quitting")]
     [SerializeField] private GameObject screenshot;
+    [SerializeField] private Material grayscale;
+    [SerializeField] private Material mix;
 
     // Needs to be greater than the total time of FadeTo()
     private const float TIMER_LENGTH = 5f;
@@ -247,27 +249,43 @@ public class HomePageManager : MonoBehaviour
         ScreenCapture.CaptureScreenshotIntoRenderTexture(temp);
 
         // Vertically flip the render texture. See https://gist.github.com/mminer/816ff2b8a9599a9dd342e553d189e03f
-        var rt = new RenderTexture(temp.descriptor);
-        Graphics.Blit(temp, rt, new Vector2(1f, -1f), new Vector2(0f, 1f));
+        var colorRt = new RenderTexture(temp.descriptor);
+        var grayRt = new RenderTexture(temp.descriptor);
+        Graphics.Blit(temp, colorRt, new Vector2(1f, -1f), new Vector2(0f, 1f));
+        Graphics.Blit(colorRt, grayRt, grayscale);
         RenderTexture.ReleaseTemporary(temp);
 
-        screenshot.GetComponent<RawImage>().texture = rt;
-        screenshot.GetComponent<CanvasGroup>().alpha = 1f;
+        mix.SetTexture("_Color", colorRt);
+        mix.SetTexture("_Grayscale", grayRt);
 
+        // screenshot.GetComponent<RawImage>().texture = colorRt;
+        screenshot.GetComponent<CanvasGroup>().alpha = 1f;
         secondOverlay.alpha = 1f;
 
-        var ssRect = screenshot.GetComponent<RectTransform>();
-        var firstFinalScale = new Vector3(1f, 0.01f, 1f);
-        yield return Anim.Animate(0.5f, t => {
-            ssRect.localScale = Vector3.Lerp(Vector3.one, firstFinalScale, Easing.EaseInExpo(t));
+        var rawImg = screenshot.GetComponent<RawImage>();
+        var tex = new RenderTexture(colorRt.descriptor);
+        yield return Anim.Animate(1f, t => {
+            mix.SetFloat("_Interpolation_Amount", t);
+            Graphics.Blit(null, tex, mix);
+            rawImg.texture = tex;
         });
 
-        screenshot.GetComponent<RawImage>().texture = null;
-        Destroy(rt);
+        // var ssRect = screenshot.GetComponent<RectTransform>();
+        // var firstFinalScale = new Vector3(1f, 0.01f, 1f);
+        // yield return Anim.Animate(0.5f, t => {
+        //     ssRect.localScale = Vector3.Lerp(Vector3.one, firstFinalScale, Easing.EaseInExpo(t));
+        // });
+        //
+        // screenshot.GetComponent<RawImage>().texture = null;
+        // Destroy(colorRt);
+        //
+        // yield return Anim.Animate(0.3f, t => {
+        //     ssRect.localScale = Vector3.Lerp(firstFinalScale, Vector3.zero, Easing.EaseInExpo(t));
+        // });
 
-        yield return Anim.Animate(0.3f, t => {
-            ssRect.localScale = Vector3.Lerp(firstFinalScale, Vector3.zero, Easing.EaseInExpo(t));
-        });
+        Destroy(colorRt);
+        Destroy(grayRt);
+        Destroy(tex);
     }
 
     private IEnumerator _Quit() {
