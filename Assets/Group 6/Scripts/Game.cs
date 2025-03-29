@@ -31,7 +31,7 @@ public class Game : MonoBehaviour
         if (hud.getBudget() <= 0) {
             int returnTo = SceneManager.GetActiveScene().buildIndex;
             PlayerPrefs.SetInt("returnTo", returnTo);
-            SceneManager.LoadScene(loseScene);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Cursor.lockState = Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
