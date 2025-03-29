@@ -12,7 +12,7 @@ public class Player_Movement : MonoBehaviour
 
     private CharacterController controller;
 
-    private Vector3 playerVelocity = new Vector3(0,0,0);
+    private Vector3 playerVelocity = new(0,0,0);
     private bool groundedPlayer;
     public static float basePlayerSpeed = 5.0f;
 

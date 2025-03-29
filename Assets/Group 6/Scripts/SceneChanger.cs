@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    public static string lvl_name; 
 
     public void LoadMainMenu()
     {
@@ -71,9 +72,7 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene("MoveInSettings");
     }
 
-    public void restartLevel() {
-        int returnTo = PlayerPrefs.GetInt("returnTo");
-        //Debug.Log(returnTo);
-        SceneManager.LoadScene(returnTo);
+    public void LoadSpecifiedLevel() {
+        SceneManager.LoadScene(lvl_name);
     }
 }
