@@ -264,7 +264,7 @@ public class HomePageManager : MonoBehaviour
     private IEnumerator AnimateQuit() {
         yield return new WaitForEndOfFrame();
 
-        // Use a render texture to capture the screen in sRGC
+        // Use a render texture to capture the screen in sRGB
         var temp = RenderTexture.GetTemporary(
             Screen.width, Screen.height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB
         );
@@ -273,8 +273,13 @@ public class HomePageManager : MonoBehaviour
         var colorRt = new RenderTexture(temp.descriptor);
         var grayRt = new RenderTexture(temp.descriptor);
 
-        // Vertically flip the render texture. See https://gist.github.com/mminer/816ff2b8a9599a9dd342e553d189e03f
-        Graphics.Blit(temp, colorRt, new Vector2(1f, -1f), new Vector2(0f, 1f));
+        // Vertically flip the render texture on Windows because DirectX stores textures upside down compared to
+        // OpenGL/Vulkan. Therefore, this blit shouldn't be necessary on Linux/macOS builds. Also see
+        // https://issuetracker.unity3d.com/issues/graphics-capturescreenshotintorendertexture-output-is-flipped-in-the-editor
+        if (SystemInfo.graphicsDeviceType.ToString().StartsWith("Direct3D")) {
+            Graphics.Blit(temp, colorRt, new Vector2(1f, -1f), new Vector2(0f, 1f));
+        }
+
         RenderTexture.ReleaseTemporary(temp);
 
         // Create grayscale version of screenshot
