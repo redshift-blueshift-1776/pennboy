@@ -44,7 +44,7 @@ public class Player_Movement : MonoBehaviour
 
 
     private KeyCode runKey = KeyCode.LeftShift;
-    private KeyCode failKey = KeyCode.F;
+    private KeyCode failKey = KeyCode.M;
     private KeyCode pushKey = KeyCode.Mouse0;
     private KeyCode pullKey = KeyCode.Mouse1;
 
@@ -126,12 +126,9 @@ public class Player_Movement : MonoBehaviour
             Camera.main.fieldOfView = Mathf.MoveTowards(Camera.main.fieldOfView, defaultFieldOfView, diffFOV * Time.deltaTime / timeToRun);
         }
         if (Input.GetKey(failKey)) {
-            int returnTo = SceneManager.GetActiveScene().buildIndex;
-            Debug.Log(returnTo);
-            PlayerPrefs.SetInt("returnTo", returnTo);
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene("MoveInMenu");
         }
         playerVelocity += Vector3.Normalize(gameObject.transform.right * hSpeed + gameObject.transform.forward * vSpeed) * playerSpeed;
     }
