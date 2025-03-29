@@ -115,7 +115,7 @@ public class HomePageManager : MonoBehaviour
         var names = roleGroupTrans.GetChild(1).GetComponent<TMP_Text>();
 
         role.text = "PennBoy Main UI";
-        names.text = "Charles Wang\nSaahil Gupta";
+        names.text = "Charles Wang\nSaahil Gupta\nAnthony Ge";
 
         roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
         role = roleGroupTrans.GetChild(0).GetComponent<TMP_Text>();
