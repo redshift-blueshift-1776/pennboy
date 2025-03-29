@@ -43,10 +43,10 @@ public class Player_Movement : MonoBehaviour
     private float fastFieldOfView;
 
 
-    private KeyCode runKey = KeyCode.LeftShift;
-    private KeyCode failKey = KeyCode.M;
-    private KeyCode pushKey = KeyCode.Mouse0;
-    private KeyCode pullKey = KeyCode.Mouse1;
+    private readonly KeyCode runKey = KeyCode.LeftShift;
+    private readonly KeyCode failKey = KeyCode.M;
+    private readonly KeyCode pushKey = KeyCode.Mouse0;
+    private readonly KeyCode pullKey = KeyCode.Mouse1;
 
 
     private void Start()
