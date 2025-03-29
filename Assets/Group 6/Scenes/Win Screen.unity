@@ -753,6 +753,7 @@ GameObject:
   - component: {fileID: 803176959}
   - component: {fileID: 803176958}
   - component: {fileID: 803176957}
+  - component: {fileID: 803176960}
   - component: {fileID: 803176956}
   m_Layer: 5
   m_Name: Next Level
@@ -839,7 +840,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 803176956}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: LoadLevelSelect
+        m_MethodName: LoadSpecifiedLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -887,6 +888,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803176954}
   m_CullTransparentMesh: 1
+--- !u!114 &803176960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803176954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5afa141b823007e293ffd13385852cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &868361346
 GameObject:
   m_ObjectHideFlags: 0
