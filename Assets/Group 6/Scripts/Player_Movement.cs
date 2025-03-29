@@ -63,6 +63,9 @@ public class Player_Movement : MonoBehaviour
 
     void Update()
     {
+        if (Pause.I.IsPaused) {
+            return;
+        }
         // modify player velocity
         jumpHelper();
         horizontalMovementHelper();
