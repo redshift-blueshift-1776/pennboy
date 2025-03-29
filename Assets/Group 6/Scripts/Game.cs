@@ -10,7 +10,6 @@ public class Game : MonoBehaviour
     [SerializeField] private int initialBudget = 1000;
     [SerializeField] private int maxBudget;
     [SerializeField] private int winScene = 3;
-    [SerializeField] private int loseScene = 4;
     [SerializeField] private HUD hud;
     [SerializeField] public int secretCoins = 0;
 
