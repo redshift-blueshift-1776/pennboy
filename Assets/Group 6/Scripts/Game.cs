@@ -9,10 +9,9 @@ public class Game : MonoBehaviour
 {
     [SerializeField] private int initialBudget = 1000;
     [SerializeField] private int maxBudget;
-    [SerializeField] private int winScene = 3;
-    [SerializeField] private int loseScene = 4;
     [SerializeField] private HUD hud;
     [SerializeField] public int secretCoins = 0;
+    [SerializeField] private string nextLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +30,8 @@ public class Game : MonoBehaviour
         if (hud.getBudget() <= 0) {
             int returnTo = SceneManager.GetActiveScene().buildIndex;
             PlayerPrefs.SetInt("returnTo", returnTo);
-            SceneManager.LoadScene(loseScene);
+            SceneChanger.lvl_name = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene("Loss Scene");
             Cursor.lockState = Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -50,8 +50,11 @@ public class Game : MonoBehaviour
         PlayerPrefs.SetInt("Scene " + SceneManager.GetActiveScene().buildIndex + " Score", hud.getBudget());
         PlayerPrefs.SetFloat("Scene " + SceneManager.GetActiveScene().buildIndex + " Time", hud.getTime());
         PlayerPrefs.SetInt("Scene " + SceneManager.GetActiveScene().buildIndex + " Coins", hud.getCoins());
-        int returnTo = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("returnTo", returnTo);
-        SceneManager.LoadScene(winScene);
+        if (nextLevel == "NONE") {
+            SceneChanger.lvl_name = null;
+        } else {
+            SceneChanger.lvl_name = nextLevel;
+        }
+        SceneManager.LoadScene("Win Screen");
     }
 }

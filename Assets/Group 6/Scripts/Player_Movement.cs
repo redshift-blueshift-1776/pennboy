@@ -12,7 +12,7 @@ public class Player_Movement : MonoBehaviour
 
     private CharacterController controller;
 
-    private Vector3 playerVelocity = new Vector3(0,0,0);
+    private Vector3 playerVelocity = new(0,0,0);
     private bool groundedPlayer;
     public static float basePlayerSpeed = 5.0f;
 
@@ -43,10 +43,10 @@ public class Player_Movement : MonoBehaviour
     private float fastFieldOfView;
 
 
-    private KeyCode runKey = KeyCode.LeftShift;
-    private KeyCode failKey = KeyCode.F;
-    private KeyCode pushKey = KeyCode.Mouse0;
-    private KeyCode pullKey = KeyCode.Mouse1;
+    private readonly KeyCode runKey = KeyCode.LeftShift;
+    private readonly KeyCode failKey = KeyCode.M;
+    private readonly KeyCode pushKey = KeyCode.Mouse0;
+    private readonly KeyCode pullKey = KeyCode.Mouse1;
 
 
     private void Start()
@@ -63,6 +63,9 @@ public class Player_Movement : MonoBehaviour
 
     void Update()
     {
+        if (Pause.I.IsPaused) {
+            return;
+        }
         // modify player velocity
         jumpHelper();
         horizontalMovementHelper();
@@ -126,12 +129,9 @@ public class Player_Movement : MonoBehaviour
             Camera.main.fieldOfView = Mathf.MoveTowards(Camera.main.fieldOfView, defaultFieldOfView, diffFOV * Time.deltaTime / timeToRun);
         }
         if (Input.GetKey(failKey)) {
-            int returnTo = SceneManager.GetActiveScene().buildIndex;
-            Debug.Log(returnTo);
-            PlayerPrefs.SetInt("returnTo", returnTo);
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene("MoveInMenu");
         }
         playerVelocity += Vector3.Normalize(gameObject.transform.right * hSpeed + gameObject.transform.forward * vSpeed) * playerSpeed;
     }

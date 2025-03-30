@@ -22,7 +22,7 @@ public class Pause : MonoBehaviour
     [SerializeField] private CanvasGroup returnBackText;
     [SerializeField] private string[] lockedScenes;
 
-    private bool isPaused;
+    public bool IsPaused {get; private set;}
     private bool isAnimating;
 
     private float prevTimeScale;
@@ -57,7 +57,7 @@ public class Pause : MonoBehaviour
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        if (!isPaused) return;
+        if (!IsPaused) return;
 
         overlay.alpha = 0f;
 
@@ -66,17 +66,22 @@ public class Pause : MonoBehaviour
 
         // Setting the canvas to false resets all the UI to their initial state!
         pauseCanvas.SetActive(false);
-        isPaused = false;
+        IsPaused = false;
     }
 
     private IEnumerator _TogglePauseGame() {
         isAnimating = true;
 
         // If currently paused, close it. If unpaused, pause it.
-        yield return isPaused ? ClosePauseAnimated() : OpenPause();
+        if (IsPaused) {
+            yield return ClosePauseAnimated();
+            IsPaused = !IsPaused;
+        } else {
+            IsPaused = !IsPaused;
+            yield return OpenPause();
+        }
 
         // Do the actual toggle
-        isPaused = !isPaused;
         isAnimating = false;
     }
 
