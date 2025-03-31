@@ -1176,18 +1176,18 @@ PrefabInstance:
     - target: {fileID: 217486497262486616, guid: ca8da25f2329f99e19c648a8cebde48b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1280
+      value: 2048
       objectReference: {fileID: 0}
     - target: {fileID: 217486497262486616, guid: ca8da25f2329f99e19c648a8cebde48b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 720
+      value: 1536
       objectReference: {fileID: 0}
     - target: {fileID: 327846220644929067, guid: ca8da25f2329f99e19c648a8cebde48b,
         type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 991ebff510d0aa71387fdf54973172de, type: 3}
+      objectReference: {fileID: 2800000, guid: 7709ae5d423381d49a8e61b860734438, type: 3}
     - target: {fileID: 1625328395872539174, guid: ca8da25f2329f99e19c648a8cebde48b,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
@@ -1282,7 +1282,7 @@ RectTransform:
   m_GameObject: {fileID: 1778084323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.9281, y: 1.9281, z: 1.9281}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1669172862}
