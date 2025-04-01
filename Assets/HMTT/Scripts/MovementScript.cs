@@ -131,6 +131,11 @@ public class MovementScript : MonoBehaviour
 
     void Jump() //3
     {
+        SoundManager soundManager = this.GetComponent<SoundManager>();
+        if (soundManager != null)
+        {
+            soundManager.PlayEffect(0);
+        }
         //use AddForce()
         rb.AddForce(Vector3.up * jumpForce * gravityDir, ForceMode.Impulse);
     }
