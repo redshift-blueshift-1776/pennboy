@@ -11,10 +11,18 @@ public class winScreenScript : MonoBehaviour
     public TextMeshProUGUI winnerText;
     public TextMeshProUGUI winText;
     public TextMeshProUGUI scoresText;
+
+    private SoundManager soundManager;
+
+    void Awake()
+    {
+        soundManager = this.GetComponent<SoundManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-
+        soundManager.PlayEffect(0);
         player1score = PlayerPrefs.GetInt("Player 1 Score");
         player2score = PlayerPrefs.GetInt("Player 2 Score");
         if (player1score > player2score)
@@ -37,5 +45,10 @@ public class winScreenScript : MonoBehaviour
     void Update()
     {
       
+    }
+
+    public void RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("PennSoccer/Scenes/SoccerScene");
     }
 }

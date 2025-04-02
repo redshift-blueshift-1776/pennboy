@@ -12,6 +12,12 @@ public class powerUpScript: MonoBehaviour
     public Sprite jumpUp;
     public Sprite sizeUp;
 
+    private SoundManager soundManager;
+
+    private void Awake()
+    {
+        soundManager = this.GetComponent<SoundManager>();
+    }
 
     private void Start()
     {
@@ -42,6 +48,7 @@ public class powerUpScript: MonoBehaviour
 
     private void ApplyPowerUp(GameObject player)
     {
+        soundManager.PlayEffect(0);
         if (gameObject.CompareTag("PennSoccerSuperSpeed"))
         {
             StartCoroutine(ApplySpeedBoost(player));

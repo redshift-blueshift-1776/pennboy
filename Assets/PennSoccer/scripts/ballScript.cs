@@ -14,6 +14,12 @@ public class ballScript : MonoBehaviour
     public int player1score;
     public int player2score;
 
+    private SoundManager soundManager;
+    private void Awake()
+    {
+        soundManager = GetComponent<SoundManager>();
+    }
+
     private void Start()
     {
         // Calculate the world-space boundaries of the camera's view based on orthographic size
@@ -45,11 +51,13 @@ public class ballScript : MonoBehaviour
         if(other.gameObject.tag == "PennSoccerGoalL")
         {
             player2score++;
+            soundManager.PlayEffect(0);
             UpdateScoreText();
         }
         if(other.gameObject.tag == "PennSoccerGoalR")
         {
             player1score++;
+            soundManager.PlayEffect(0);
             UpdateScoreText();
         }
     }
