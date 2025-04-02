@@ -100,6 +100,11 @@ public class GameManager : MonoBehaviour
                 if (Physics.Raycast(ray, out hit))
                 {
                     // Handle hit
+                    SoundManager soundManager = this.GetComponent<SoundManager>();
+                    if (soundManager != null)
+                    {
+                        soundManager.PlayEffect(Random.Range(1, 4));
+                    }
 
                     // Go through the list, the index tells us the position.
                     for (int i = 0; i < pieces.Count; i++)
@@ -134,6 +139,11 @@ public class GameManager : MonoBehaviour
                 if (Physics.Raycast(ray, out hit))
                 {
                     // Handle hit
+                    SoundManager soundManager = this.GetComponent<SoundManager>();
+                    if (soundManager != null)
+                    {
+                        soundManager.PlayEffect(0);
+                    }
 
                     // Go through the list, the index tells us the position.
                     for (int i = 0; i < pieces.Count; i++)
@@ -162,13 +172,17 @@ public class GameManager : MonoBehaviour
                 GameData.doorsPicked[1] = this.doorsPicked[1];
                 GameData.doorsPicked[2] = this.doorsPicked[2];
 
-                SceneManager.LoadScene("SampleScene");
+                StartCoroutine(LoadSceneAfterDelay("SampleScene", 0.8f));
 
             }
 
-
-
         }
+    }
+
+    private IEnumerator LoadSceneAfterDelay(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
     }
 
     // colCheck is used to stop horizontal moves wrapping.

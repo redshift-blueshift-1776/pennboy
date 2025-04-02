@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour
 {
@@ -42,9 +44,23 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void StopMusic()
+    public void StopMusicWithFade(float fadeDuration)
     {
+        StartCoroutine(FadeOutMusic(fadeDuration));
+    }
+
+    private IEnumerator FadeOutMusic(float fadeDuration)
+    {
+        float startVolume = musicSource.volume;
+
+        while (musicSource.volume > 0)
+        {
+            musicSource.volume -= startVolume * Time.deltaTime / fadeDuration;
+            yield return null;
+        }
+
         musicSource.Stop();
+        musicSource.volume = startVolume; // Reset volume to original value
     }
 
     public void SetMusicVolume(float volume)

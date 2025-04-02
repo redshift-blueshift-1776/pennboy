@@ -15,6 +15,12 @@ public class EndGame : MonoBehaviour
             Endtext.SetActive(true);
             Time.timeScale = 0f;
             playerMovement = p.GetComponent<PlayerMovement>();
+            SoundManager soundManager = p.GetComponent<SoundManager>();
+            if (soundManager != null)
+            {
+                soundManager.PlayEffect(0);
+                soundManager.StopMusicWithFade(1f);
+            }
             if (playerMovement != null)
                 playerMovement.enabled = false;
         }
