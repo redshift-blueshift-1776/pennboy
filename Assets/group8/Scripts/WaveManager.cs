@@ -51,6 +51,16 @@ namespace BombGame
         public Image maxBombCanvasImage;
         public Sprite[] maxBombSprites;
 
+        private SoundManager soundManager;
+
+        void Awake()
+        {
+            soundManager = this.GetComponent<SoundManager>();
+            if (soundManager == null)
+            {
+                Debug.LogWarning("SoundManager component not found on this GameObject.");
+            }
+        }
 
         // during player phase, player plays combining game
         // during bombphase, bomb starts falling
@@ -226,6 +236,7 @@ namespace BombGame
 
         void StartBombPhase()
         {
+            soundManager.PlayEffect(0);
             /* runs exactly once at the start of enemy phase */
             currentPhase = Phase.BombPhase;
             phaseStartedAt = Time.time;
@@ -245,6 +256,7 @@ namespace BombGame
 
         void StartEnemyPhase()
         {
+            soundManager.PlayEffect(2);
             /* runs exactly once at the start of enemy phase */
             currentPhase = Phase.EnemyPhase;
             phaseStartedAt = Time.time;

@@ -49,6 +49,16 @@ public class Throw : MonoBehaviour
     private Queue<int> bombLevelQueue;
     int bombLevelQueueLength = 3;
 
+    private SoundManager soundManager;
+
+    void Awake()
+    {
+        soundManager = this.GetComponent<SoundManager>();
+        if (soundManager == null)
+        {
+            Debug.LogWarning("SoundManager component not found on this GameObject.");
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -94,6 +104,7 @@ public class Throw : MonoBehaviour
             // Detect mouse release (end of the drag)
             if (Input.GetMouseButtonDown(0))
             {
+                soundManager.PlayEffect(0);
                 // Calculate and print the extent of the drag
                 Vector3 dragExtent = Input.mousePosition - mouseStartPosition;
 

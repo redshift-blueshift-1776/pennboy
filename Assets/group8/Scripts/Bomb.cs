@@ -34,6 +34,16 @@ public class Bomb : MonoBehaviour
 
     private bool isRollingDownSideOfTower = false;
 
+    private SoundManager soundManager;
+
+    void Awake()
+    {
+        soundManager = this.GetComponent<SoundManager>();
+        if (soundManager == null)
+        {
+            Debug.LogWarning("SoundManager component not found on this GameObject.");
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -89,6 +99,8 @@ public class Bomb : MonoBehaviour
                 // only procreate when you are born first
                 if (born < collidedBomb.born)
                 {
+                    soundManager.PlayEffect(1);
+
                     // determine new position based on which one is born first
                     Vector3 bornFirstPosition = born < collidedBomb.born ? transform.localPosition : collidedBomb.transform.localPosition;
                     Vector3 bornSecondPosition = born > collidedBomb.born ? transform.localPosition : collidedBomb.transform.localPosition;
@@ -206,6 +218,7 @@ public class Bomb : MonoBehaviour
 
             // Wait for 0.5 seconds
             yield return new WaitForSeconds(duration / frequency);
+            soundManager.PlayEffect(0);
         }
 
         

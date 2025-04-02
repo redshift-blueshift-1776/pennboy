@@ -16,7 +16,10 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        PlayMusic(0);
+        if (musicClips != null && musicClips.Length > 0)
+        {
+            PlayMusic(0);
+        }
     }
 
     public void PlayMusic(int clipIndex)
