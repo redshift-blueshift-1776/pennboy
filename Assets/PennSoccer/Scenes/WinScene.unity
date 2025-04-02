@@ -1813,9 +1813,9 @@ MonoBehaviour:
   player1score: 0
   player2score: 0
   winningPlayer: 
-  winnerText: {fileID: 0}
-  winText: {fileID: 0}
-  scoresText: {fileID: 0}
+  winnerText: {fileID: 1606249215}
+  winText: {fileID: 1535516834}
+  scoresText: {fileID: 719934963}
 --- !u!82 &2115388313
 AudioSource:
   m_ObjectHideFlags: 0
