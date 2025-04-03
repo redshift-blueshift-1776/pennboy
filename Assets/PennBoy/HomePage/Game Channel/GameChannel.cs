@@ -100,7 +100,7 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (placeholder) return;
 
         canvasGroup.alpha = 0f;
-        Pause.ResetScene = sceneName;
+        Pause.I.resetScene = sceneName;
         StartCoroutine(manager.OpenGame(sceneName, gameObject.name, credits, background.sprite,
                                         GetComponent<RectTransform>().anchoredPosition));
     }

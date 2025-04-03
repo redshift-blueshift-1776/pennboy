@@ -10,7 +10,7 @@ public class Pause : MonoBehaviour
 {
     public static Pause I;
 
-    public static string ResetScene;
+    public string resetScene = null;
 
     [SerializeField] public GameObject pauseCanvas;
 
@@ -210,6 +210,7 @@ public class Pause : MonoBehaviour
         if (isAnimating) yield break;
 
         yield return ClosePauseImmediate();
+        resetScene = null;
         SceneManager.LoadScene("PulseTransition");
     }
 
@@ -218,7 +219,7 @@ public class Pause : MonoBehaviour
 
         yield return ClosePauseImmediate();
         Cursor.visible = prevCursorVisible;
-        SceneManager.LoadScene(ResetScene);
+        SceneManager.LoadScene(resetScene);
     }
 
     public void ReturnToPennBoyMenu() => StartCoroutine(_ReturnToPennBoyMenu());
