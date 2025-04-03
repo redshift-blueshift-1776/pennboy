@@ -10,6 +10,8 @@ public class Pause : MonoBehaviour
 {
     public static Pause I;
 
+    public static string ResetScene;
+
     [SerializeField] public GameObject pauseCanvas;
 
     [SerializeField] private CanvasGroup overlay;
@@ -216,7 +218,7 @@ public class Pause : MonoBehaviour
 
         yield return ClosePauseImmediate();
         Cursor.visible = prevCursorVisible;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(ResetScene);
     }
 
     public void ReturnToPennBoyMenu() => StartCoroutine(_ReturnToPennBoyMenu());
