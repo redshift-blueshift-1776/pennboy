@@ -11,10 +11,4 @@ public class WinTimer : MonoBehaviour
         TMP_Text txt = GetComponent<TMP_Text>();
         txt.text = "Time: " + SceneChanger.lvl_time.ToString(@"hh\:mm\:ss");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
