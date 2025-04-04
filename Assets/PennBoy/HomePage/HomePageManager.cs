@@ -240,8 +240,9 @@ public class HomePageManager : MonoBehaviour
 
         // We assume our game start with a visible cursor. They should be setting it to false themselves
         // if they want so!
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        // each game must set the cursor value itself
+        // Cursor.visible = true;
+        // Cursor.lockState = CursorLockMode.None;
 
         op.allowSceneActivation = true;
     }
