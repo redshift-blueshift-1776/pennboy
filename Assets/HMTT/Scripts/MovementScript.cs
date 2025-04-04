@@ -86,7 +86,6 @@ public class MovementScript : MonoBehaviour
         CheckWall();
         CheckDash();
         SetGravity();
-        applyGravity();
         if (isActive)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -106,6 +105,10 @@ public class MovementScript : MonoBehaviour
             }
             Move();
         }
+    }
+    
+    void FixedUpdate() {
+        applyGravity();
     }
 
 
