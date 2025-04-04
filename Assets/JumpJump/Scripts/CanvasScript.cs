@@ -38,6 +38,8 @@ public class CanvasScript : MonoBehaviour
     // Call this from a game over function somewhere else that also
     // disables player controls (probably)
     public void DisplayGameOver() {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         gameOverScreen.SetActive(true);
     }
 }
