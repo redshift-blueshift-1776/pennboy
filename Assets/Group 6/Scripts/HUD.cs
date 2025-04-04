@@ -20,6 +20,11 @@ public class HUD : MonoBehaviour
     private bool currentFirstElementInAddLossListIsAPlus = true;
     private float timeStore = 0f;
     private int secretCoins;
+
+    public float TimerAmount {
+        private set;
+        get;
+    } = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,11 +40,11 @@ public class HUD : MonoBehaviour
 
     void Update()
     {
-        float elapsedTime = Time.time - timeStore;
+        TimerAmount = Time.time - timeStore;
 
-        int minutes = Mathf.FloorToInt(elapsedTime / 60); // Calculate the minutes
-        int seconds = Mathf.FloorToInt(elapsedTime % 60); // Calculate the remaining seconds
-        int centiseconds = Mathf.FloorToInt((elapsedTime * 100) % 100);
+        int minutes = Mathf.FloorToInt(TimerAmount / 60); // Calculate the minutes
+        int seconds = Mathf.FloorToInt(TimerAmount % 60); // Calculate the remaining seconds
+        int centiseconds = Mathf.FloorToInt((TimerAmount * 100) % 100);
 
         timeText.text = $"Time: {minutes:00}:{seconds:00}.{centiseconds:00}"; // Format as MM:SS
     }

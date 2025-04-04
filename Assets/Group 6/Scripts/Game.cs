@@ -50,6 +50,7 @@ public class Game : MonoBehaviour
         PlayerPrefs.SetInt("Scene " + SceneManager.GetActiveScene().buildIndex + " Score", hud.getBudget());
         PlayerPrefs.SetFloat("Scene " + SceneManager.GetActiveScene().buildIndex + " Time", hud.getTime());
         PlayerPrefs.SetInt("Scene " + SceneManager.GetActiveScene().buildIndex + " Coins", hud.getCoins());
+        SceneChanger.lvl_time = new TimeSpan(0, 0, Mathf.FloorToInt(hud.TimerAmount));
         if (nextLevel == "NONE") {
             SceneChanger.lvl_name = null;
         } else {

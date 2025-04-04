@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class SceneChanger : MonoBehaviour
 {
-    public static string lvl_name; 
+    public static string lvl_name;
+    public static TimeSpan lvl_time;
 
     public void LoadMainMenu()
     {
