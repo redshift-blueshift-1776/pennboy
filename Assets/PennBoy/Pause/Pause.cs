@@ -218,7 +218,9 @@ public class Pause : MonoBehaviour
         if (isAnimating) yield break;
 
         yield return ClosePauseImmediate();
-        Cursor.visible = prevCursorVisible;
+        // Reset to standard for consistency
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(resetScene);
     }
 
