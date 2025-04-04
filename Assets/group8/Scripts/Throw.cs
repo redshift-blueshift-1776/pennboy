@@ -104,7 +104,6 @@ public class Throw : MonoBehaviour
             // Detect mouse release (end of the drag)
             if (Input.GetMouseButtonDown(0))
             {
-                soundManager.PlayEffect(0);
                 // Calculate and print the extent of the drag
                 Vector3 dragExtent = Input.mousePosition - mouseStartPosition;
 
@@ -114,6 +113,7 @@ public class Throw : MonoBehaviour
 
                     //int level = Random.Range(0, 4);
                     //Debug.Log(newBombLevel);
+                    soundManager.PlayEffect(0);
                     createNextLevelBomb();
                     var bombLevels = bombLevelQueue.ToArray();
                     int throwLevel = bombLevels[0];
