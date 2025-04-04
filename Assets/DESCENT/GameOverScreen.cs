@@ -14,6 +14,10 @@ public class GameOverScreen : MonoBehaviour
     public void SetUp(int score) {
         gameObject.SetActive(true);
         pointsText.text = score.ToString();
+        
+        // make cursor visible and make sure it is not locked
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void Restart() {
