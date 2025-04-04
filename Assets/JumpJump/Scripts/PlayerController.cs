@@ -140,8 +140,8 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         CanvasScript.instance.DisplayGameOver();
-        yield return new WaitForSeconds(2f);
-        CanvasScript.instance.RestartScene();
+        // yield return new WaitForSeconds(2f);
+        // CanvasScript.instance.RestartScene();
     }
 
     /// <summary>
