@@ -14,14 +14,12 @@ public class PlacementSystem : MonoBehaviour
     private PlacementMode currentMode;
     private List<Tower> towersToSacrifice;
     private int totalCost;
-    [SerializeField] private TMP_Text modeText;
 
     private void Start()
     {
         totalCost = 0;
         mouseIndicator.SetActive(false);
         currentMode = PlacementMode.Selection;
-        modeText.text = "Current mode: Placement Mode";
     }
 
     private void Update()
@@ -30,15 +28,9 @@ public class PlacementSystem : MonoBehaviour
         if (currentMode != PlacementMode.Selection && cardUsing.canSacrifice && Input.GetKeyDown(KeyCode.Q))
         {
             if (currentMode == PlacementMode.PlacingTower)
-            {
                 currentMode = PlacementMode.Sacrificing;
-                modeText.text = "Current mode: Sacrifice Mode";
-            }
             else
-            {
                 currentMode = PlacementMode.PlacingTower;
-                modeText.text = "Current mode: Placement Mode";
-            }
         }
 
         switch (currentMode)
