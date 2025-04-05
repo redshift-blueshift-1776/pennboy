@@ -160,6 +160,99 @@ public class HomePageManager : MonoBehaviour
         });
     }
 
+    public IEnumerator OpenGameChannel(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
+                                       Vector2 pos) {
+        // Set channel to correct initial position
+        loadingThumbnail.sprite = thumbnail;
+        loadingRt.anchoredPosition = pos;
+        loadingObj.SetActive(true);
+
+        var loadingRtSizeDeltaInit = loadingRt.sizeDelta;
+        var loadingRtSizeDeltaFinal = new Vector2(408.45f, 241.97f);
+        var loadingRtPosInit = loadingRt.anchoredPosition;
+        var loadingRtPosFinal = new Vector2(1398f, -341f);
+        var loadingOutlineMinInit = loadingOutlineRt.offsetMin;
+        var loadingOutlineMinFinal = new Vector2(-20f, -20f);
+        var loadingOutlineMaxInit = loadingOutlineRt.offsetMax;
+        var loadingOutlineMaxFinal = new Vector2(20f, 20f);
+
+        // I am so sorry
+        // var loadingRtSizeDeltaInit = loadingRt.sizeDelta;
+        // var loadingRtSizeDeltaFinal = new Vector2(787.7651f, 466.6801f);
+        // var loadingRtPosInit = loadingRt.anchoredPosition;
+        // var loadingRtPosFinal = new Vector2(960f, -539.78f);
+        // var loadingOutlineMinInit = loadingOutlineRt.offsetMin;
+        // var loadingOutlineMinFinal = new Vector2(-20f, -20f);
+        // var loadingOutlineMaxInit = loadingOutlineRt.offsetMax;
+        // var loadingOutlineMaxFinal = new Vector2(20f, 20f);
+
+        if (overlay != null) StopCoroutine(overlayCoroutine);
+
+        // List contributors in alphabetical order to be fair
+        Array.Sort(currCredits);
+        gameName.GetComponent<TMP_Text>().text = currGameName;
+        gameCredits.GetComponent<TMP_Text>().text = string.Join(", ", currCredits);
+
+        var gameNameCG = gameName.GetComponent<CanvasGroup>();
+        var creditsCG = gameCredits.GetComponent<CanvasGroup>();
+        StartCoroutine(Anim.Animate(0.35f, t => {
+            overlay.alpha = t;
+            pennBoy.alpha = t;
+            gameNameCG.alpha = t;
+            creditsCG.alpha = t;
+            music.volume = Mathf.Lerp(music.volume, 0f, t);
+            loadingOutlineImg.color = UnityEngine.Color.Lerp(Theme.Up[1], UnityEngine.Color.white, t);
+        }));
+
+        StartCoroutine(Anim.Animate(0.65f, t => {
+            var newT = Easing.EaseOutExpo(t);
+            loadingRt.sizeDelta = Vector2.Lerp(loadingRtSizeDeltaInit, loadingRtSizeDeltaFinal, newT);
+            loadingRt.anchoredPosition = Vector2.Lerp(loadingRtPosInit, loadingRtPosFinal, newT);
+            loadingOutlineRt.offsetMin = Vector2.Lerp(loadingOutlineMinInit, loadingOutlineMinFinal, newT);
+            loadingOutlineRt.offsetMax = Vector2.Lerp(loadingOutlineMaxInit, loadingOutlineMaxFinal, newT);
+        }));
+
+        var op = SceneManager.LoadSceneAsync(sceneName)!;
+        op.allowSceneActivation = false;
+
+        yield return new WaitForSeconds(0.3f);
+
+        // Make clones of the outlines to perform the outward echo animation
+        var outlineParent = loadingOutline.transform.parent;
+        var index = 0;
+        foreach (var obj in new[] {
+                     Instantiate(loadingOutline, outlineParent),
+                     Instantiate(loadingOutline, outlineParent),
+                     Instantiate(loadingOutline, outlineParent),
+                     Instantiate(loadingOutline, outlineParent)
+                 }) {
+            var rt = obj.GetComponent<RectTransform>();
+            var cg = obj.GetComponent<CanvasGroup>();
+            var final = Vector3.one * 4f;
+            StartCoroutine(Anim.Animate(4f, t => {
+                rt.localScale = Vector3.Lerp(Vector3.one, final, Easing.EaseOutExpo(t));
+            }));
+            StartCoroutine(Anim.Animate(0.35f, t => {
+                cg.alpha = 1f - t;
+            }));
+            yield return new WaitForSeconds(0.12f + index * 0.04f);
+            index++;
+        }
+
+        yield return new WaitForSeconds(1f);
+        yield return Anim.Animate(0.35f, t => {
+            secondOverlay.alpha = t;
+        });
+        yield return new WaitForSeconds(0.1f);
+
+        // We assume our game start with a visible cursor. They should be setting it to false themselves
+        // if they want so!
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        op.allowSceneActivation = true;
+    }
+
     public IEnumerator OpenGame(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
                                 Vector2 pos) {
         FakeCursor.I.FadeOut(true);
