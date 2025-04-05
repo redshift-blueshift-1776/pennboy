@@ -23,6 +23,14 @@ public class HomePageManager : MonoBehaviour
     [SerializeField] private CanvasGroup pennBoy;
     [SerializeField] private GameObject gameName;
     [SerializeField] private GameObject gameCredits;
+    [SerializeField] private CanvasGroup secondBackground;
+    [SerializeField] private GameObject gamesCanvas;
+    [SerializeField] private Canvas transitionCanvas;
+    [SerializeField] private RectTransform leftButtonBar;
+    [SerializeField] private RectTransform rightButtonBar;
+    [SerializeField] private CanvasGroup barDetails;
+    [SerializeField] private GameObject backButton;
+    [SerializeField] private GameObject startButton;
 
     [Header("Credits")]
     [SerializeField] private Button creditsBtn;
@@ -32,6 +40,7 @@ public class HomePageManager : MonoBehaviour
     [SerializeField] private GameObject roleGroupPrefab;
 
     [Header("Quitting")]
+    [SerializeField] private Button quitBtn;
     [SerializeField] private GameObject screenshot;
     [SerializeField] private Material grayscale;
     [SerializeField] private CanvasGroup ggText;
@@ -64,6 +73,12 @@ public class HomePageManager : MonoBehaviour
     private List<float> channelPositions;
     private bool creditsOpen;
     private RectTransform creditsRt;
+
+    private Vector2 lastLoadingRtSizeDelta;
+    private Vector2 lastLoadingRtPos;
+    private Vector2 lastLoadingOutlineMin;
+    private Vector2 lastLoadingOutlineMax;
+    private GameChannel lastGameChannel;
 
     private void Awake() {
         overlay.alpha = 1f;
@@ -160,102 +175,180 @@ public class HomePageManager : MonoBehaviour
         });
     }
 
+    private IEnumerator FadeAndDisappearGamesCanvas() {
+        gamesCanvas.GetComponent<GraphicRaycaster>().enabled = false;
+
+        yield return Anim.Animate(0.35f, t => {
+            secondBackground.alpha = t;
+        });
+    }
+
+    private IEnumerator FadeAndAppearGamesCanvas() {
+        yield return Anim.Animate(0.35f, t => {
+            secondBackground.alpha = 1f - t;
+        });
+
+        gamesCanvas.GetComponent<GraphicRaycaster>().enabled = true;
+    }
+
+    private IEnumerator ShowChannelButtons() {
+        var backRt = backButton.GetComponent<RectTransform>();
+        var startRt = startButton.GetComponent<RectTransform>();
+
+        backButton.GetComponent<Button>().interactable = false;
+        startButton.GetComponent<Button>().interactable = false;
+
+        var backPosInit = new Vector2(-280f, -300f);
+        var backPosFinal = new Vector2(-280f, -50f);
+        StartCoroutine(Anim.Animate(0.55f, t => {
+            var newT = Easing.EaseOutExpo(t);
+            backRt.anchoredPosition = Vector2.Lerp(backPosInit, backPosFinal, newT);
+        }));
+
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        var startPosInit = new Vector2(280f, -300f);
+        var startPosFinal = new Vector2(280f, -50f);
+        StartCoroutine(Anim.Animate(0.55f, t => {
+            var newT = Easing.EaseOutExpo(t);
+            startRt.anchoredPosition = Vector2.Lerp(startPosInit, startPosFinal, newT);
+        }));
+
+        backButton.GetComponent<Button>().interactable = true;
+        startButton.GetComponent<Button>().interactable = true;
+    }
+
+    private IEnumerator HideChannelButtons() {
+        var backRt = backButton.GetComponent<RectTransform>();
+        var startRt = startButton.GetComponent<RectTransform>();
+
+        backButton.GetComponent<Button>().interactable = false;
+        startButton.GetComponent<Button>().interactable = false;
+
+        var startPosInit = new Vector2(280f, -50f);
+        var startPosFinal = new Vector2(280f, -300f);
+        StartCoroutine(Anim.Animate(0.3f, t => {
+            var newT = Easing.EaseInExpo(t);
+            startRt.anchoredPosition = Vector2.Lerp(startPosInit, startPosFinal, newT);
+        }));
+
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        var backPosInit = new Vector2(-280f, -50f);
+        var backPosFinal = new Vector2(-280f, -300f);
+        StartCoroutine(Anim.Animate(0.3f, t => {
+            var newT = Easing.EaseInExpo(t);
+            backRt.anchoredPosition = Vector2.Lerp(backPosInit, backPosFinal, newT);
+        }));
+    }
+
     public IEnumerator OpenGameChannel(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
-                                       Vector2 pos) {
+                                       Vector2 initialPos, GameChannel gameChannel) {
+        backButton.GetComponent<Button>().interactable = false;
+
+        lastGameChannel = gameChannel;
+        loadingOutlineRt.localScale = Vector3.zero;
+
         // Set channel to correct initial position
         loadingThumbnail.sprite = thumbnail;
-        loadingRt.anchoredPosition = pos;
+        loadingRt.anchoredPosition = initialPos;
         loadingObj.SetActive(true);
 
-        var loadingRtSizeDeltaInit = loadingRt.sizeDelta;
+        // I am so sorry!
+        lastLoadingRtSizeDelta = loadingRt.sizeDelta;
+        lastLoadingRtPos = loadingRt.anchoredPosition;
         var loadingRtSizeDeltaFinal = new Vector2(408.45f, 241.97f);
-        var loadingRtPosInit = loadingRt.anchoredPosition;
-        var loadingRtPosFinal = new Vector2(1398f, -341f);
-        var loadingOutlineMinInit = loadingOutlineRt.offsetMin;
+        var loadingRtPosFinal = new Vector2(1408f, -342f);
+        var loadingRtScaleFinal = new Vector3(2.1f, 2.1f, 2.1f);
+
+        lastLoadingOutlineMin = loadingOutlineRt.offsetMin;
+        lastLoadingOutlineMax = loadingOutlineRt.offsetMax;
         var loadingOutlineMinFinal = new Vector2(-20f, -20f);
-        var loadingOutlineMaxInit = loadingOutlineRt.offsetMax;
         var loadingOutlineMaxFinal = new Vector2(20f, 20f);
 
-        // I am so sorry
-        // var loadingRtSizeDeltaInit = loadingRt.sizeDelta;
-        // var loadingRtSizeDeltaFinal = new Vector2(787.7651f, 466.6801f);
-        // var loadingRtPosInit = loadingRt.anchoredPosition;
-        // var loadingRtPosFinal = new Vector2(960f, -539.78f);
-        // var loadingOutlineMinInit = loadingOutlineRt.offsetMin;
-        // var loadingOutlineMinFinal = new Vector2(-20f, -20f);
-        // var loadingOutlineMaxInit = loadingOutlineRt.offsetMax;
-        // var loadingOutlineMaxFinal = new Vector2(20f, 20f);
+        var leftButtonBarInit = new Vector2(193f, 0f);
+        var leftButtonBarFinal = new Vector2(-250f, 0f);
+        var rightButtonBarInit = new Vector2(-193f, 0f);
+        var rightButtonBarFinal = new Vector2(250f, 0f);
 
-        if (overlay != null) StopCoroutine(overlayCoroutine);
+        StartCoroutine(FadeAndDisappearGamesCanvas());
+        StartCoroutine(ShowChannelButtons());
 
-        // List contributors in alphabetical order to be fair
-        Array.Sort(currCredits);
-        gameName.GetComponent<TMP_Text>().text = currGameName;
-        gameCredits.GetComponent<TMP_Text>().text = string.Join(", ", currCredits);
+        // Make the cursor appear above everything. Temporary, will be reset when we leave
+        transitionCanvas.sortingOrder = 100;
+        creditsBtn.interactable = false;
+        quitBtn.interactable = false;
 
-        var gameNameCG = gameName.GetComponent<CanvasGroup>();
-        var creditsCG = gameCredits.GetComponent<CanvasGroup>();
+        scroller.UpdateText(currGameName);
+        if (scroller.IsCurrentlyOpen) scroller.Reset();
+        scroller.Appear();
+
         StartCoroutine(Anim.Animate(0.35f, t => {
-            overlay.alpha = t;
-            pennBoy.alpha = t;
-            gameNameCG.alpha = t;
-            creditsCG.alpha = t;
-            music.volume = Mathf.Lerp(music.volume, 0f, t);
-            loadingOutlineImg.color = UnityEngine.Color.Lerp(Theme.Up[1], UnityEngine.Color.white, t);
+            var easeInT = Easing.EaseInExpo(t);
+
+            barDetails.alpha = 1f - t;
+            leftButtonBar.anchoredPosition = Vector2.Lerp(leftButtonBarInit, leftButtonBarFinal, easeInT);
+            rightButtonBar.anchoredPosition = Vector2.Lerp(rightButtonBarInit, rightButtonBarFinal, easeInT);
         }));
 
-        StartCoroutine(Anim.Animate(0.65f, t => {
-            var newT = Easing.EaseOutExpo(t);
-            loadingRt.sizeDelta = Vector2.Lerp(loadingRtSizeDeltaInit, loadingRtSizeDeltaFinal, newT);
-            loadingRt.anchoredPosition = Vector2.Lerp(loadingRtPosInit, loadingRtPosFinal, newT);
-            loadingOutlineRt.offsetMin = Vector2.Lerp(loadingOutlineMinInit, loadingOutlineMinFinal, newT);
-            loadingOutlineRt.offsetMax = Vector2.Lerp(loadingOutlineMaxInit, loadingOutlineMaxFinal, newT);
-        }));
+        yield return Anim.Animate(0.65f, t => {
+            var easeOutT = Easing.EaseOutExpo(t);
 
-        var op = SceneManager.LoadSceneAsync(sceneName)!;
-        op.allowSceneActivation = false;
+            loadingRt.sizeDelta = Vector2.Lerp(lastLoadingRtSizeDelta, loadingRtSizeDeltaFinal, easeOutT);
+            loadingRt.anchoredPosition = Vector2.Lerp(lastLoadingRtPos, loadingRtPosFinal, easeOutT);
+            loadingRt.localScale = Vector3.Lerp(Vector3.one, loadingRtScaleFinal, easeOutT);
 
-        yield return new WaitForSeconds(0.3f);
-
-        // Make clones of the outlines to perform the outward echo animation
-        var outlineParent = loadingOutline.transform.parent;
-        var index = 0;
-        foreach (var obj in new[] {
-                     Instantiate(loadingOutline, outlineParent),
-                     Instantiate(loadingOutline, outlineParent),
-                     Instantiate(loadingOutline, outlineParent),
-                     Instantiate(loadingOutline, outlineParent)
-                 }) {
-            var rt = obj.GetComponent<RectTransform>();
-            var cg = obj.GetComponent<CanvasGroup>();
-            var final = Vector3.one * 4f;
-            StartCoroutine(Anim.Animate(4f, t => {
-                rt.localScale = Vector3.Lerp(Vector3.one, final, Easing.EaseOutExpo(t));
-            }));
-            StartCoroutine(Anim.Animate(0.35f, t => {
-                cg.alpha = 1f - t;
-            }));
-            yield return new WaitForSeconds(0.12f + index * 0.04f);
-            index++;
-        }
-
-        yield return new WaitForSeconds(1f);
-        yield return Anim.Animate(0.35f, t => {
-            secondOverlay.alpha = t;
+            loadingOutlineRt.offsetMin = Vector2.Lerp(lastLoadingOutlineMin, loadingOutlineMinFinal, easeOutT);
+            loadingOutlineRt.offsetMax = Vector2.Lerp(lastLoadingOutlineMax, loadingOutlineMaxFinal, easeOutT);
         });
-        yield return new WaitForSeconds(0.1f);
 
-        // We assume our game start with a visible cursor. They should be setting it to false themselves
-        // if they want so!
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-
-        op.allowSceneActivation = true;
+        backButton.GetComponent<Button>().interactable = true;
     }
+
+    private IEnumerator _CloseGameChannel() {
+        var loadingRtSizeDeltaInit = loadingRt.sizeDelta;
+        var loadingRtPosInit = loadingRt.anchoredPosition;
+        var loadingRtScaleInit = loadingRt.localScale;
+
+        var leftButtonBarInit = leftButtonBar.anchoredPosition;
+        var leftButtonBarFinal = new Vector2(193f, 0f);
+        var rightButtonBarInit = rightButtonBar.anchoredPosition;
+        var rightButtonBarFinal = new Vector2(-193f, 0f);
+
+        StartCoroutine(FadeAndAppearGamesCanvas());
+        StartCoroutine(HideChannelButtons());
+
+        Debug.LogFormat("SIZE DELTA init: {0}, last: {1}", loadingRtSizeDeltaInit, lastLoadingRtSizeDelta);
+        Debug.LogFormat("ANCHOR POS init: {0}, last: {1}", loadingRtPosInit, lastLoadingRtPos);
+
+        yield return Anim.Animate(0.65f, t => {
+            var easeOutT = Easing.EaseOutExpo(t);
+
+            barDetails.alpha = t;
+            leftButtonBar.anchoredPosition = Vector2.Lerp(leftButtonBarInit, leftButtonBarFinal, easeOutT);
+            rightButtonBar.anchoredPosition = Vector2.Lerp(rightButtonBarInit, rightButtonBarFinal, easeOutT);
+
+            loadingRt.sizeDelta = Vector2.Lerp(loadingRtSizeDeltaInit, lastLoadingRtSizeDelta, easeOutT);
+            loadingRt.anchoredPosition = Vector2.Lerp(loadingRtPosInit, lastLoadingRtPos, easeOutT);
+            loadingRt.localScale = Vector3.Lerp(loadingRtScaleInit, Vector3.one, easeOutT);
+        });
+
+        lastGameChannel.DisableOnPointerExit = false;
+        lastGameChannel.canvasGroup.alpha = 1f;
+        lastGameChannel.OnPointerExit(null);
+
+        loadingObj.SetActive(false);
+        transitionCanvas.sortingOrder = 102;
+        creditsBtn.interactable = true;
+        quitBtn.interactable = true;
+    }
+
+    public void CloseGameChannel() => StartCoroutine(_CloseGameChannel());
 
     public IEnumerator OpenGame(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
                                 Vector2 pos) {
         FakeCursor.I.FadeOut(true);
+        loadingOutlineRt.localScale = Vector3.one;
 
         // Set channel to correct initial position
         loadingThumbnail.sprite = thumbnail;
