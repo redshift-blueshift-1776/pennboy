@@ -1817,7 +1817,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: adsfadsdsaf
+  m_text: 'Current Mode:
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f32c186c8e0e55144ab48535c3bd8d69, type: 2}
   m_sharedMaterial: {fileID: 2738091362781035273, guid: f32c186c8e0e55144ab48535c3bd8d69,
@@ -1852,7 +1854,7 @@ MonoBehaviour:
   m_fontSizeMin: 30
   m_fontSizeMax: 120
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1911,7 +1913,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: -208}
+  m_AnchoredPosition: {x: -300, y: -240}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &857809490
@@ -3726,7 +3728,6 @@ MonoBehaviour:
   teleportSound: {fileID: 8300000, guid: 882c62336ef1140659ba9c5b1dbf4ab0, type: 3}
   explosionSound: {fileID: 8300000, guid: ace391db6ba2745e486e6edc10d40d6c, type: 3}
   laserShootSound: {fileID: 8300000, guid: 2272df29926824d63aa7b14290762124, type: 3}
-  winScreen: {fileID: 0}
 --- !u!4 &1459573118
 Transform:
   m_ObjectHideFlags: 0

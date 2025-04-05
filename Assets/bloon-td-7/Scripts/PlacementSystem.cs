@@ -21,7 +21,7 @@ public class PlacementSystem : MonoBehaviour
         totalCost = 0;
         mouseIndicator.SetActive(false);
         currentMode = PlacementMode.Selection;
-        modeText.text = "Placement Mode";
+        modeText.text = "Current mode: Placement Mode";
     }
 
     private void Update()
@@ -32,12 +32,12 @@ public class PlacementSystem : MonoBehaviour
             if (currentMode == PlacementMode.PlacingTower)
             {
                 currentMode = PlacementMode.Sacrificing;
-                modeText.text = "Sacrifice Mode";
+                modeText.text = "Current mode: Sacrifice Mode";
             }
             else
             {
                 currentMode = PlacementMode.PlacingTower;
-                modeText.text = "Placement Mode";
+                modeText.text = "Current mode: Placement Mode";
             }
         }
 
