@@ -103,12 +103,15 @@ public class MovementScript : MonoBehaviour
                     WallJump();
                 }
             }
-            Move();
         }
     }
     
     void FixedUpdate() {
         applyGravity();
+        if (isActive)
+        {
+            Move();
+        }
     }
 
 
