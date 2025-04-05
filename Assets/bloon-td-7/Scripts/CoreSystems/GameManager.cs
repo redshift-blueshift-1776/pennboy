@@ -19,6 +19,7 @@ namespace BTD7
         public AudioClip teleportSound;
         public AudioClip explosionSound;
         public AudioClip laserShootSound;
+        [SerializeField] public GameObject winScreen;
 
         public void ReloadScene()
         {
@@ -29,6 +30,33 @@ namespace BTD7
         {
             instance = this;
         }
+
+        private void Start()
+{
+        if (winScreen != null)
+        {
+        winScreen.SetActive(false); // Hide it at game start
+        }
+}
+
+        public void WinGame()
+        {
+        Time.timeScale = 0f; // optional: pause the game
+        winScreen.SetActive(true);
+        }
+
+        public void RestartGame()
+        {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public void GoToMainMenu()
+        {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu"); // replace with your menu scene name
+        }
+
 
     }
 }
