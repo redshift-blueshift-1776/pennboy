@@ -72,12 +72,16 @@ public class Player_Movement : MonoBehaviour
         // move player
         controller.Move(playerVelocity * Time.deltaTime);
 
-        // interact with objects
-        pushPullRaycast();
+        
 
         
         rotationHelper();
         
+    }
+
+    void FixedUpdate() {
+        // interact with objects
+        pushPullRaycast();
     }
 
 
