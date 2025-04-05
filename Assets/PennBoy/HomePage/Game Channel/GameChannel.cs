@@ -17,12 +17,15 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private Image background;
     [SerializeField] private GameObject logo;
 
+    public bool DisableOnPointerExit { private get; set; }
+
+    public CanvasGroup canvasGroup;
+
     private const float SCALE_INIT = 0.8f;
     private const float SCALE_FINAL = 1f;
 
     private Coroutine curr;
     private HomePageManager manager;
-    private CanvasGroup canvasGroup;
     private CanvasGroup tbCopy;
 
     private static readonly int BarNumber = Shader.PropertyToID("_Bar_Number");
@@ -75,7 +78,7 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
 
     public void OnPointerExit(PointerEventData eventData) {
-        if (placeholder) return;
+        if (placeholder || DisableOnPointerExit) return;
 
         if (curr != null) StopCoroutine(curr);
         curr = StartCoroutine(AnimateScale(ScaleAnim.Shrink));
@@ -100,8 +103,10 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (placeholder) return;
 
         canvasGroup.alpha = 0f;
+        DisableOnPointerExit = true;
         Pause.I.resetScene = sceneName;
+
         StartCoroutine(manager.OpenGameChannel(sceneName, gameObject.name, credits, background.sprite,
-                                               GetComponent<RectTransform>().anchoredPosition));
+                                               GetComponent<RectTransform>().anchoredPosition, this));
     }
 }
