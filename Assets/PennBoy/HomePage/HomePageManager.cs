@@ -76,9 +76,10 @@ public class HomePageManager : MonoBehaviour
 
     private Vector2 lastLoadingRtSizeDelta;
     private Vector2 lastLoadingRtPos;
-    private Vector2 lastLoadingOutlineMin;
-    private Vector2 lastLoadingOutlineMax;
-    private GameChannel lastGameChannel;
+    private GameChannel currentGameChannel;
+    private string currentGameName;
+    private string[] currentCredits;
+    private string currentSceneNameToLoad;
 
     private void Awake() {
         overlay.alpha = 1f;
@@ -175,31 +176,14 @@ public class HomePageManager : MonoBehaviour
         });
     }
 
-    private IEnumerator FadeAndDisappearGamesCanvas() {
-        gamesCanvas.GetComponent<GraphicRaycaster>().enabled = false;
-
-        yield return Anim.Animate(0.35f, t => {
-            secondBackground.alpha = t;
-        });
-    }
-
-    private IEnumerator FadeAndAppearGamesCanvas() {
-        yield return Anim.Animate(0.35f, t => {
-            secondBackground.alpha = 1f - t;
-        });
-
-        gamesCanvas.GetComponent<GraphicRaycaster>().enabled = true;
-    }
-
     private IEnumerator ShowChannelButtons() {
-        var backRt = backButton.GetComponent<RectTransform>();
-        var startRt = startButton.GetComponent<RectTransform>();
-
-        backButton.GetComponent<Button>().interactable = false;
-        startButton.GetComponent<Button>().interactable = false;
+        // Wait a little for the other animations to finish before animating the buttons,
+        // otherwise users may think they're clickable before they really are
+        yield return new WaitForSecondsRealtime(0.35f);
 
         var backPosInit = new Vector2(-280f, -300f);
         var backPosFinal = new Vector2(-280f, -50f);
+        var backRt = backButton.GetComponent<RectTransform>();
         StartCoroutine(Anim.Animate(0.55f, t => {
             var newT = Easing.EaseOutExpo(t);
             backRt.anchoredPosition = Vector2.Lerp(backPosInit, backPosFinal, newT);
@@ -209,24 +193,17 @@ public class HomePageManager : MonoBehaviour
 
         var startPosInit = new Vector2(280f, -300f);
         var startPosFinal = new Vector2(280f, -50f);
+        var startRt = startButton.GetComponent<RectTransform>();
         StartCoroutine(Anim.Animate(0.55f, t => {
             var newT = Easing.EaseOutExpo(t);
             startRt.anchoredPosition = Vector2.Lerp(startPosInit, startPosFinal, newT);
         }));
-
-        backButton.GetComponent<Button>().interactable = true;
-        startButton.GetComponent<Button>().interactable = true;
     }
 
     private IEnumerator HideChannelButtons() {
-        var backRt = backButton.GetComponent<RectTransform>();
-        var startRt = startButton.GetComponent<RectTransform>();
-
-        backButton.GetComponent<Button>().interactable = false;
-        startButton.GetComponent<Button>().interactable = false;
-
         var startPosInit = new Vector2(280f, -50f);
         var startPosFinal = new Vector2(280f, -300f);
+        var startRt = startButton.GetComponent<RectTransform>();
         StartCoroutine(Anim.Animate(0.3f, t => {
             var newT = Easing.EaseInExpo(t);
             startRt.anchoredPosition = Vector2.Lerp(startPosInit, startPosFinal, newT);
@@ -236,6 +213,7 @@ public class HomePageManager : MonoBehaviour
 
         var backPosInit = new Vector2(-280f, -50f);
         var backPosFinal = new Vector2(-280f, -300f);
+        var backRt = backButton.GetComponent<RectTransform>();
         StartCoroutine(Anim.Animate(0.3f, t => {
             var newT = Easing.EaseInExpo(t);
             backRt.anchoredPosition = Vector2.Lerp(backPosInit, backPosFinal, newT);
@@ -244,15 +222,21 @@ public class HomePageManager : MonoBehaviour
 
     public IEnumerator OpenGameChannel(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
                                        Vector2 initialPos, GameChannel gameChannel) {
-        backButton.GetComponent<Button>().interactable = false;
-
-        lastGameChannel = gameChannel;
-        loadingOutlineRt.localScale = Vector3.zero;
+        currentGameChannel = gameChannel;
+        currentSceneNameToLoad = sceneName;
+        currentGameName = currGameName;
+        currentCredits = currCredits;
 
         // Set channel to correct initial position
         loadingThumbnail.sprite = thumbnail;
         loadingRt.anchoredPosition = initialPos;
+        loadingOutlineRt.localScale = Vector3.zero;
         loadingObj.SetActive(true);
+
+        // Make the cursor appear above everything. Temporary, will be reset when we leave
+        transitionCanvas.sortingOrder = 100;
+        creditsBtn.interactable = false;
+        quitBtn.interactable = false;
 
         // I am so sorry!
         lastLoadingRtSizeDelta = loadingRt.sizeDelta;
@@ -261,23 +245,17 @@ public class HomePageManager : MonoBehaviour
         var loadingRtPosFinal = new Vector2(1408f, -342f);
         var loadingRtScaleFinal = new Vector3(2.1f, 2.1f, 2.1f);
 
-        lastLoadingOutlineMin = loadingOutlineRt.offsetMin;
-        lastLoadingOutlineMax = loadingOutlineRt.offsetMax;
-        var loadingOutlineMinFinal = new Vector2(-20f, -20f);
-        var loadingOutlineMaxFinal = new Vector2(20f, 20f);
-
         var leftButtonBarInit = new Vector2(193f, 0f);
         var leftButtonBarFinal = new Vector2(-250f, 0f);
         var rightButtonBarInit = new Vector2(-193f, 0f);
         var rightButtonBarFinal = new Vector2(250f, 0f);
 
-        StartCoroutine(FadeAndDisappearGamesCanvas());
-        StartCoroutine(ShowChannelButtons());
+        gamesCanvas.GetComponent<GraphicRaycaster>().enabled = false;
+        StartCoroutine(Anim.Animate(0.25f, t => {
+            secondBackground.alpha = t;
+        }));
 
-        // Make the cursor appear above everything. Temporary, will be reset when we leave
-        transitionCanvas.sortingOrder = 100;
-        creditsBtn.interactable = false;
-        quitBtn.interactable = false;
+        StartCoroutine(ShowChannelButtons());
 
         scroller.UpdateText(currGameName);
         if (scroller.IsCurrentlyOpen) scroller.Reset();
@@ -291,21 +269,25 @@ public class HomePageManager : MonoBehaviour
             rightButtonBar.anchoredPosition = Vector2.Lerp(rightButtonBarInit, rightButtonBarFinal, easeInT);
         }));
 
-        yield return Anim.Animate(0.65f, t => {
+        // This yield duration should be enough for *all* animations to finish before we enable
+        // the back and start buttons. This means no coroutines should be interrupted
+        yield return Anim.Animate(0.7f, t => {
             var easeOutT = Easing.EaseOutExpo(t);
 
             loadingRt.sizeDelta = Vector2.Lerp(lastLoadingRtSizeDelta, loadingRtSizeDeltaFinal, easeOutT);
             loadingRt.anchoredPosition = Vector2.Lerp(lastLoadingRtPos, loadingRtPosFinal, easeOutT);
             loadingRt.localScale = Vector3.Lerp(Vector3.one, loadingRtScaleFinal, easeOutT);
-
-            loadingOutlineRt.offsetMin = Vector2.Lerp(lastLoadingOutlineMin, loadingOutlineMinFinal, easeOutT);
-            loadingOutlineRt.offsetMax = Vector2.Lerp(lastLoadingOutlineMax, loadingOutlineMaxFinal, easeOutT);
         });
 
+        // Buttons are not interactable by default
         backButton.GetComponent<Button>().interactable = true;
+        startButton.GetComponent<Button>().interactable = true;
     }
 
     private IEnumerator _CloseGameChannel() {
+        backButton.GetComponent<Button>().interactable = false;
+        startButton.GetComponent<Button>().interactable = false;
+
         var loadingRtSizeDeltaInit = loadingRt.sizeDelta;
         var loadingRtPosInit = loadingRt.anchoredPosition;
         var loadingRtScaleInit = loadingRt.localScale;
@@ -315,13 +297,17 @@ public class HomePageManager : MonoBehaviour
         var rightButtonBarInit = rightButtonBar.anchoredPosition;
         var rightButtonBarFinal = new Vector2(-193f, 0f);
 
-        StartCoroutine(FadeAndAppearGamesCanvas());
         StartCoroutine(HideChannelButtons());
+        StartCoroutine(Anim.Animate(0.35f, t => {
+            secondBackground.alpha = 1f - t;
+        }));
 
-        Debug.LogFormat("SIZE DELTA init: {0}, last: {1}", loadingRtSizeDeltaInit, lastLoadingRtSizeDelta);
-        Debug.LogFormat("ANCHOR POS init: {0}, last: {1}", loadingRtPosInit, lastLoadingRtPos);
+        // Manually simulate pointer exit event because we need the animations to play. This also
+        // causes the scroller to disappear
+        currentGameChannel.DisableOnPointerExit = false;
+        currentGameChannel.OnPointerExit(null);
 
-        yield return Anim.Animate(0.65f, t => {
+        yield return Anim.Animate(0.6f, t => {
             var easeOutT = Easing.EaseOutExpo(t);
 
             barDetails.alpha = t;
@@ -333,27 +319,25 @@ public class HomePageManager : MonoBehaviour
             loadingRt.localScale = Vector3.Lerp(loadingRtScaleInit, Vector3.one, easeOutT);
         });
 
-        lastGameChannel.DisableOnPointerExit = false;
-        lastGameChannel.canvasGroup.alpha = 1f;
-        lastGameChannel.OnPointerExit(null);
-
+        currentGameChannel.canvasGroup.alpha = 1f;
         loadingObj.SetActive(false);
+
+        // Reset transition canvas order after "Current Loading Game" object has been disabled
         transitionCanvas.sortingOrder = 102;
         creditsBtn.interactable = true;
         quitBtn.interactable = true;
+
+        gamesCanvas.GetComponent<GraphicRaycaster>().enabled = true;
     }
 
     public void CloseGameChannel() => StartCoroutine(_CloseGameChannel());
 
-    public IEnumerator OpenGame(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
-                                Vector2 pos) {
+    private IEnumerator _OpenGame() {
         FakeCursor.I.FadeOut(true);
         loadingOutlineRt.localScale = Vector3.one;
 
         // Set channel to correct initial position
-        loadingThumbnail.sprite = thumbnail;
-        loadingRt.anchoredPosition = pos;
-        loadingObj.SetActive(true);
+        loadingRt.anchoredPosition = loadingRt.anchoredPosition;
 
         // I am so sorry
         var loadingRtSizeDeltaInit = loadingRt.sizeDelta;
@@ -368,12 +352,13 @@ public class HomePageManager : MonoBehaviour
         if (overlay != null) StopCoroutine(overlayCoroutine);
 
         // List contributors in alphabetical order to be fair
-        Array.Sort(currCredits);
-        gameName.GetComponent<TMP_Text>().text = currGameName;
-        gameCredits.GetComponent<TMP_Text>().text = string.Join(", ", currCredits);
+        Array.Sort(currentCredits);
+        gameName.GetComponent<TMP_Text>().text = currentGameName;
+        gameCredits.GetComponent<TMP_Text>().text = string.Join(", ", currentCredits);
 
         var gameNameCG = gameName.GetComponent<CanvasGroup>();
         var creditsCG = gameCredits.GetComponent<CanvasGroup>();
+        var loadingRtScaleInit = loadingRt.localScale;
         StartCoroutine(Anim.Animate(0.35f, t => {
             overlay.alpha = t;
             pennBoy.alpha = t;
@@ -381,6 +366,7 @@ public class HomePageManager : MonoBehaviour
             creditsCG.alpha = t;
             music.volume = Mathf.Lerp(music.volume, 0f, t);
             loadingOutlineImg.color = UnityEngine.Color.Lerp(Theme.Up[1], UnityEngine.Color.white, t);
+            loadingRt.localScale = Vector3.Lerp(loadingRtScaleInit, Vector3.one, Easing.EaseOutExpo(t));
         }));
 
         StartCoroutine(Anim.Animate(0.65f, t => {
@@ -391,7 +377,7 @@ public class HomePageManager : MonoBehaviour
             loadingOutlineRt.offsetMax = Vector2.Lerp(loadingOutlineMaxInit, loadingOutlineMaxFinal, newT);
         }));
 
-        var op = SceneManager.LoadSceneAsync(sceneName)!;
+        var op = SceneManager.LoadSceneAsync(currentSceneNameToLoad)!;
         op.allowSceneActivation = false;
 
         yield return new WaitForSeconds(0.3f);
@@ -424,14 +410,10 @@ public class HomePageManager : MonoBehaviour
         });
         yield return new WaitForSeconds(0.1f);
 
-        // We assume our game start with a visible cursor. They should be setting it to false themselves
-        // if they want so!
-        // each game must set the cursor value itself
-        // Cursor.visible = true;
-        // Cursor.lockState = CursorLockMode.None;
-
         op.allowSceneActivation = true;
     }
+
+    public void OpenGame() => StartCoroutine(_OpenGame());
 
     private IEnumerator AnimateStarEntry() {
         yield return new WaitForSecondsRealtime(0.35f);

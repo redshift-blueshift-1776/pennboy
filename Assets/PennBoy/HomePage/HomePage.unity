@@ -622,7 +622,7 @@ PrefabInstance:
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
@@ -667,7 +667,7 @@ PrefabInstance:
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
@@ -2486,7 +2486,7 @@ PrefabInstance:
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
@@ -2531,7 +2531,7 @@ PrefabInstance:
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
@@ -5419,7 +5419,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1759477356}
   m_OnClick:
     m_PersistentCalls:
@@ -6622,11 +6622,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1402710284}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 878630754}
+        m_TargetAssemblyTypeName: HomePageManager, Assembly-CSharp
+        m_MethodName: OpenGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1608632771
 GameObject:
   m_ObjectHideFlags: 0
