@@ -6,20 +6,24 @@ using UnityEngine.UI;
 
 public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [HideInInspector] public GameNameScroller scroller;
+    [Header("Game Info")]
     [SerializeField] public string[] credits;
-
+    [TextArea(2, 5)] public string description;
+    [TextArea(2, 5)] public string controlsInstructions;
     [SerializeField] private string sceneName;
-    [SerializeField] private RectTransform outline;
 
     [Header("Placeholder Mode")]
     [SerializeField] private bool placeholder;
     [SerializeField] private Image background;
     [SerializeField] private GameObject logo;
 
+    [Header("References")]
+    [SerializeField] private RectTransform outline;
+
     public bool DisableOnPointerExit { private get; set; }
 
-    public CanvasGroup canvasGroup;
+    [HideInInspector] public CanvasGroup canvasGroup;
+    [HideInInspector] public GameNameScroller scroller;
 
     private const float SCALE_INIT = 0.8f;
     private const float SCALE_FINAL = 1f;

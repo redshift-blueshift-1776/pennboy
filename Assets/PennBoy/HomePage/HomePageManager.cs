@@ -31,6 +31,7 @@ public class HomePageManager : MonoBehaviour
     [SerializeField] private CanvasGroup barDetails;
     [SerializeField] private GameObject backButton;
     [SerializeField] private GameObject startButton;
+    [SerializeField] private GameObject gameInfoObject;
 
     [Header("Credits")]
     [SerializeField] private Button creditsBtn;
@@ -66,12 +67,13 @@ public class HomePageManager : MonoBehaviour
     private Image loadingThumbnail;
     private GameObject loadingOutline;
     private RectTransform loadingOutlineRt;
-    private Image loadingOutlineImg;
     private Coroutine overlayCoroutine;
     private bool currentlyQuitting;
     private List<float> channelPositions;
     private bool creditsOpen;
     private RectTransform creditsRt;
+    private TMP_Text gameInfoText;
+    private CanvasGroup gameInfoCG;
 
     private Vector2 lastLoadingRtSizeDelta;
     private Vector2 lastLoadingRtPos;
@@ -103,7 +105,9 @@ public class HomePageManager : MonoBehaviour
 
         loadingOutline = loadingObj.transform.Find("Outline").gameObject;
         loadingOutlineRt = loadingOutline.GetComponent<RectTransform>();
-        loadingOutlineImg = loadingOutline.GetComponent<Image>();
+
+        gameInfoText = gameInfoObject.GetComponent<TMP_Text>();
+        gameInfoCG = gameInfoObject.GetComponent<CanvasGroup>();
 
         creditsRt = spacer.GetComponent<RectTransform>();
     }
@@ -249,9 +253,12 @@ public class HomePageManager : MonoBehaviour
         var rightButtonBarInit = new Vector2(-193f, 0f);
         var rightButtonBarFinal = new Vector2(250f, 0f);
 
+        gameInfoText.text = $"{gameChannel.description}\n\n{gameChannel.controlsInstructions}";
+
         gamesCanvas.GetComponent<GraphicRaycaster>().enabled = false;
         StartCoroutine(Anim.Animate(0.25f, t => {
             secondBackground.alpha = t;
+            gameInfoCG.alpha = t;
         }));
 
         StartCoroutine(ShowChannelButtons());
@@ -298,6 +305,9 @@ public class HomePageManager : MonoBehaviour
         var rightButtonBarFinal = new Vector2(-193f, 0f);
 
         StartCoroutine(HideChannelButtons());
+        StartCoroutine(Anim.Animate(0.15f, t => {
+            gameInfoCG.alpha = 1f - t;
+        }));
         StartCoroutine(Anim.Animate(0.35f, t => {
             secondBackground.alpha = 1f - t;
         }));
@@ -358,6 +368,10 @@ public class HomePageManager : MonoBehaviour
         gameName.GetComponent<TMP_Text>().text = currentGameName;
         gameCredits.GetComponent<TMP_Text>().text = string.Join(", ", currentCredits);
 
+        StartCoroutine(Anim.Animate(0.15f, t => {
+            gameInfoCG.alpha = 1f - t;
+        }));
+
         var gameNameCG = gameName.GetComponent<CanvasGroup>();
         var creditsCG = gameCredits.GetComponent<CanvasGroup>();
         var loadingRtScaleInit = loadingRt.localScale;
@@ -367,7 +381,6 @@ public class HomePageManager : MonoBehaviour
             gameNameCG.alpha = t;
             creditsCG.alpha = t;
             music.volume = Mathf.Lerp(music.volume, 0f, t);
-            loadingOutlineImg.color = Color.Lerp(Theme.Up[1], Color.white, t);
 
             var newT = Easing.EaseOutExpo(t);
             loadingRt.localScale = Vector3.Lerp(loadingRtScaleInit, Vector3.one, newT);
