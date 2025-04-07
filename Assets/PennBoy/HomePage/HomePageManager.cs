@@ -53,7 +53,6 @@ public class HomePageManager : MonoBehaviour
     private const float HEART_FINAL_Y = -100f;
     private const float RETURN_INIT_Y = 100f;
     private const float RETURN_FINAL_Y = 0f;
-    private static readonly Vector2 CREDITS_SPEED = new(0f, 0.45f);
 
     private static readonly int InterpolationAmountId = Shader.PropertyToID("_Interpolation_Amount");
     private static readonly int GrayscaleId = Shader.PropertyToID("_Grayscale");
@@ -129,19 +128,29 @@ public class HomePageManager : MonoBehaviour
             namesTMP.text = string.Join("\n", channelComp.credits);
         }
 
+        // Terribleness but I don't care anymore
         var roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
-        var role = roleGroupTrans.GetChild(0).GetComponent<TMP_Text>();
-        var names = roleGroupTrans.GetChild(1).GetComponent<TMP_Text>();
-
-        role.text = "PennBoy Main UI";
-        names.text = "Charles Wang\nSaahil Gupta\nAnthony Ge";
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "PennBoy UI";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text = "Charles Wang";
 
         roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
-        role = roleGroupTrans.GetChild(0).GetComponent<TMP_Text>();
-        names = roleGroupTrans.GetChild(1).GetComponent<TMP_Text>();
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "UPGRADE Board 2024-2025";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text =
+            "Charles Wang\nAnthony Ge\nSaahil Gupta\nViraj Doshi\nKevin Du\nChristina Qiu\nFaye Zhang";
 
-        role.text = "Thanks for playing!";
-        names.text = "";
+        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "Packaging & Publishing Team";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text =
+            "Faye Zhang\nRobby DeMartino\nCharles Wang\nForest Ho-Chen\n";
+
+        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "Special Thanks";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text =
+            "Tina Ni";
+
+        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "<b>Thanks for playing! <3</b>";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text = "";
 
         // Hack to force vertical layout group to update. See https://stackoverflow.com/a/60204026
         LayoutRebuilder.ForceRebuildLayoutImmediate(spacer.GetComponent<RectTransform>());
@@ -163,7 +172,7 @@ public class HomePageManager : MonoBehaviour
         }
 
         if (creditsOpen) {
-            creditsRt.anchoredPosition += CREDITS_SPEED;
+            creditsRt.anchoredPosition += new Vector2(0f, 150f * Time.deltaTime);
         }
     }
 
