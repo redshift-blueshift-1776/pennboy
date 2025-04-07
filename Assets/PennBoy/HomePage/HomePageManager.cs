@@ -52,12 +52,11 @@ public class HomePageManager : MonoBehaviour
     private const float HEART_FINAL_Y = -100f;
     private const float RETURN_INIT_Y = 100f;
     private const float RETURN_FINAL_Y = 0f;
-
     private static readonly Vector2 CREDITS_SPEED = new(0f, 0.45f);
 
-    private static readonly int InterpolationAmount = Shader.PropertyToID("_Interpolation_Amount");
-    private static readonly int Grayscale = Shader.PropertyToID("_Grayscale");
-    private static readonly int Color = Shader.PropertyToID("_Color");
+    private static readonly int InterpolationAmountId = Shader.PropertyToID("_Interpolation_Amount");
+    private static readonly int GrayscaleId = Shader.PropertyToID("_Grayscale");
+    private static readonly int ColorId = Shader.PropertyToID("_Color");
 
     private CanvasGroup dateCG;
     private CanvasGroup timeCG;
@@ -230,7 +229,6 @@ public class HomePageManager : MonoBehaviour
         // Set channel to correct initial position
         loadingThumbnail.sprite = thumbnail;
         loadingRt.anchoredPosition = initialPos;
-        loadingOutlineRt.localScale = Vector3.zero;
         loadingObj.SetActive(true);
 
         // Make the cursor appear above everything. Temporary, will be reset when we leave
@@ -244,6 +242,7 @@ public class HomePageManager : MonoBehaviour
         var loadingRtSizeDeltaFinal = new Vector2(408.45f, 241.97f);
         var loadingRtPosFinal = new Vector2(1408f, -342f);
         var loadingRtScaleFinal = new Vector3(2.1f, 2.1f, 2.1f);
+        var loadingOutlineScaleInit = loadingOutlineRt.localScale;
 
         var leftButtonBarInit = new Vector2(193f, 0f);
         var leftButtonBarFinal = new Vector2(-250f, 0f);
@@ -267,6 +266,7 @@ public class HomePageManager : MonoBehaviour
             barDetails.alpha = 1f - t;
             leftButtonBar.anchoredPosition = Vector2.Lerp(leftButtonBarInit, leftButtonBarFinal, easeInT);
             rightButtonBar.anchoredPosition = Vector2.Lerp(rightButtonBarInit, rightButtonBarFinal, easeInT);
+            loadingOutlineRt.localScale = Vector3.Lerp(loadingOutlineScaleInit, Vector3.zero, Easing.EaseOutExpo(t));
         }));
 
         // This yield duration should be enough for *all* animations to finish before we enable
@@ -334,7 +334,9 @@ public class HomePageManager : MonoBehaviour
 
     private IEnumerator _OpenGame() {
         FakeCursor.I.FadeOut(true);
-        loadingOutlineRt.localScale = Vector3.one;
+
+        var loadingOutlineScaleInit = new Vector3(0.8f, 0.8f, 0.8f);
+        loadingOutlineRt.localScale = loadingOutlineScaleInit;
 
         // Set channel to correct initial position
         loadingRt.anchoredPosition = loadingRt.anchoredPosition;
@@ -365,8 +367,11 @@ public class HomePageManager : MonoBehaviour
             gameNameCG.alpha = t;
             creditsCG.alpha = t;
             music.volume = Mathf.Lerp(music.volume, 0f, t);
-            loadingOutlineImg.color = UnityEngine.Color.Lerp(Theme.Up[1], UnityEngine.Color.white, t);
-            loadingRt.localScale = Vector3.Lerp(loadingRtScaleInit, Vector3.one, Easing.EaseOutExpo(t));
+            loadingOutlineImg.color = Color.Lerp(Theme.Up[1], Color.white, t);
+
+            var newT = Easing.EaseOutExpo(t);
+            loadingRt.localScale = Vector3.Lerp(loadingRtScaleInit, Vector3.one, newT);
+            loadingOutlineRt.localScale = Vector3.Lerp(loadingOutlineScaleInit, Vector3.one, newT);
         }));
 
         StartCoroutine(Anim.Animate(0.65f, t => {
@@ -456,8 +461,8 @@ public class HomePageManager : MonoBehaviour
 
         var rawImg = screenshot.GetComponent<RawImage>();
         var imgMat = rawImg.material;
-        imgMat.SetTexture(Color, colorRt);
-        imgMat.SetTexture(Grayscale, grayRt);
+        imgMat.SetTexture(ColorId, colorRt);
+        imgMat.SetTexture(GrayscaleId, grayRt);
 
         screenshot.GetComponent<CanvasGroup>().alpha = 1f;
         secondOverlay.alpha = 1f;
@@ -465,7 +470,7 @@ public class HomePageManager : MonoBehaviour
 
         // Slowly fade screen to gray
         StartCoroutine(Anim.Animate(0.5f, t => {
-            imgMat.SetFloat(InterpolationAmount, t);
+            imgMat.SetFloat(InterpolationAmountId, t);
         }, true));
 
         StartCoroutine(AnimateStarEntry());
@@ -477,7 +482,7 @@ public class HomePageManager : MonoBehaviour
         }, true);
 
         // Reset it for use next time (this is not a material instance)
-        rawImg.material.SetFloat(InterpolationAmount, 0f);
+        rawImg.material.SetFloat(InterpolationAmountId, 0f);
         rawImg.material = null;
         Destroy(colorRt);
         Destroy(grayRt);
