@@ -35,6 +35,8 @@ public class Enemy : MonoBehaviour
     private AudioClip teleportSound;
     private AudioClip explosionSound;
 
+    float timer;
+
     private void Start()
     {
         //Initialize(15f, 1, 3, 0, 1, false, 5);
@@ -106,11 +108,12 @@ public class Enemy : MonoBehaviour
     {
         float randomNum = Random.Range(0, 1000);
         float randomMovement = 0;
+        timer += Time.fixedDeltaTime;
 
 
         if (teleportColorChangeTimer < teleportColorChangeInterval && isTeleporting)
         {
-            teleportColorChangeTimer += Time.deltaTime;
+            teleportColorChangeTimer += Time.fixedDeltaTime;
         } else
         {
             isTeleporting = false;
@@ -129,8 +132,8 @@ public class Enemy : MonoBehaviour
                 audioSource?.Play();
             }
         }
-        targetPos = Vector3.MoveTowards(targetPos, waypoints[waypointIndex + 1], moveSpeed * Time.deltaTime + randomMovement);
-        float sinpos = Mathf.Abs(Mathf.Sin(DistanceTravelled));
+        targetPos = Vector3.MoveTowards(targetPos, waypoints[waypointIndex + 1], moveSpeed * Time.fixedDeltaTime + randomMovement);
+        float sinpos = Mathf.Abs(Mathf.Sin(timer * 5f));
         float sinsize = Mathf.Abs(Mathf.Sin(DistanceTravelled - (Mathf.PI / 5)));
         transform.localScale = new Vector3(size, (renderSizeY * .8f) + (sinsize * renderSizeY * .2f), size);
         transform.position = targetPos + new Vector3(0, (sinpos * 8f) + (renderSizeY/4), 0);
