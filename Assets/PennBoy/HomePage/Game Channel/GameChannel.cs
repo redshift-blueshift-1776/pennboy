@@ -67,7 +67,8 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         tb.GetComponent<Image>().material = null;
 
         tbCopy = tb.AddComponent<CanvasGroup>();
-        tbCopy.alpha = 0f;
+        //tbCopy.alpha = 0f;
+        tbCopy.alpha = 1f;
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
