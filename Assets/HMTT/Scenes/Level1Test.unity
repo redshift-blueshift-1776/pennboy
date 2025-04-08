@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.47269738, g: 0.5171613, b: 1.0618731, a: 1}
+  m_IndirectSpecularColor: {r: 0.47294265, g: 0.5174529, b: 1.0627339, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4242,6 +4242,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShadowPit (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815982255124753498, guid: a6dcd375bfb96f24292a40e6e7e75426,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199059041276336519, guid: a6dcd375bfb96f24292a40e6e7e75426,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7144759729667971825, guid: a6dcd375bfb96f24292a40e6e7e75426,
         type: 3}
