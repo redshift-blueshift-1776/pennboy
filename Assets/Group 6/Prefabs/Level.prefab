@@ -187,8 +187,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Secret Coins: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c2c3c42c144c974afabcac55af9f160b, type: 2}
-  m_sharedMaterial: {fileID: 4493605229660387196, guid: c2c3c42c144c974afabcac55af9f160b,
+  m_fontAsset: {fileID: 11400000, guid: f32c186c8e0e55144ab48535c3bd8d69, type: 2}
+  m_sharedMaterial: {fileID: 2738091362781035273, guid: f32c186c8e0e55144ab48535c3bd8d69,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -657,8 +657,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Time: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c2c3c42c144c974afabcac55af9f160b, type: 2}
-  m_sharedMaterial: {fileID: 4493605229660387196, guid: c2c3c42c144c974afabcac55af9f160b,
+  m_fontAsset: {fileID: 11400000, guid: f32c186c8e0e55144ab48535c3bd8d69, type: 2}
+  m_sharedMaterial: {fileID: 2738091362781035273, guid: f32c186c8e0e55144ab48535c3bd8d69,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
