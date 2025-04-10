@@ -6743,7 +6743,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1459573117}
         m_TargetAssemblyTypeName: BTD7.GameManager, Assembly-CSharp
-        m_MethodName: ReloadScene
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
