@@ -35,6 +35,7 @@ public class HealthManager : MonoBehaviour
 
     void GameOver()
     {
+        Time.timeScale= 0f; // pause game
         Debug.Log("You LOST");
         deadUI.SetActive(true);
     }
