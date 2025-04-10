@@ -64,10 +64,7 @@ public class SpawnSurface : MonoBehaviour
             var enemy = Instantiate(objectToSpawn, position, transform.rotation * Quaternion.Euler(-90,0,0));
             enemy.transform.SetParent(transform);
             
-
-            
-
-            Debug.Log("spawning" + objectToSpawn.name);
+            //Debug.Log("spawning" + objectToSpawn.name);
             if (initialVelocity != -1)
             {
                 enemy.GetComponent<BombGame.Enemy>().initialClimbHeight = initialVelocity;
