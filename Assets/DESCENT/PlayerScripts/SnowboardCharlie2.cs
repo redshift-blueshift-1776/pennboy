@@ -95,8 +95,24 @@ public class SnowboardCharlie2 : MonoBehaviour
         if (animator != null)
             animator.SetFloat("CrouchBlend", animCrouchBlend);
         // Gravity
-        xInput = Input.GetAxis("Horizontal");
-        yInput = Input.GetAxis("Vertical");
+        xInput = 0;
+        yInput = 0;
+        if (Input.GetKey(KeyCode.W))
+        {
+            yInput += 1.0f;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            yInput -= 1.0f;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            xInput -= 1.0f;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            xInput += 1.0f;
+        }
         m_UpdateHandler?.Invoke();
     }
     void FixedUpdate() {
