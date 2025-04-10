@@ -23,6 +23,15 @@ public class HomePageManager : MonoBehaviour
     [SerializeField] private CanvasGroup pennBoy;
     [SerializeField] private GameObject gameName;
     [SerializeField] private GameObject gameCredits;
+    [SerializeField] private CanvasGroup secondBackground;
+    [SerializeField] private GameObject gamesCanvas;
+    [SerializeField] private Canvas transitionCanvas;
+    [SerializeField] private RectTransform leftButtonBar;
+    [SerializeField] private RectTransform rightButtonBar;
+    [SerializeField] private CanvasGroup barDetails;
+    [SerializeField] private GameObject backButton;
+    [SerializeField] private GameObject startButton;
+    [SerializeField] private GameObject gameInfoObject;
 
     [Header("Credits")]
     [SerializeField] private Button creditsBtn;
@@ -32,6 +41,7 @@ public class HomePageManager : MonoBehaviour
     [SerializeField] private GameObject roleGroupPrefab;
 
     [Header("Quitting")]
+    [SerializeField] private Button quitBtn;
     [SerializeField] private GameObject screenshot;
     [SerializeField] private Material grayscale;
     [SerializeField] private CanvasGroup ggText;
@@ -44,11 +54,9 @@ public class HomePageManager : MonoBehaviour
     private const float RETURN_INIT_Y = 100f;
     private const float RETURN_FINAL_Y = 0f;
 
-    private static readonly Vector2 CREDITS_SPEED = new(0f, 0.45f);
-
-    private static readonly int InterpolationAmount = Shader.PropertyToID("_Interpolation_Amount");
-    private static readonly int Grayscale = Shader.PropertyToID("_Grayscale");
-    private static readonly int Color = Shader.PropertyToID("_Color");
+    private static readonly int InterpolationAmountId = Shader.PropertyToID("_Interpolation_Amount");
+    private static readonly int GrayscaleId = Shader.PropertyToID("_Grayscale");
+    private static readonly int ColorId = Shader.PropertyToID("_Color");
 
     private CanvasGroup dateCG;
     private CanvasGroup timeCG;
@@ -58,12 +66,20 @@ public class HomePageManager : MonoBehaviour
     private Image loadingThumbnail;
     private GameObject loadingOutline;
     private RectTransform loadingOutlineRt;
-    private Image loadingOutlineImg;
     private Coroutine overlayCoroutine;
     private bool currentlyQuitting;
     private List<float> channelPositions;
     private bool creditsOpen;
     private RectTransform creditsRt;
+    private TMP_Text gameInfoText;
+    private CanvasGroup gameInfoCG;
+
+    private Vector2 lastLoadingRtSizeDelta;
+    private Vector2 lastLoadingRtPos;
+    private GameChannel currentGameChannel;
+    private string currentGameName;
+    private string[] currentCredits;
+    private string currentSceneNameToLoad;
 
     private void Awake() {
         overlay.alpha = 1f;
@@ -88,7 +104,9 @@ public class HomePageManager : MonoBehaviour
 
         loadingOutline = loadingObj.transform.Find("Outline").gameObject;
         loadingOutlineRt = loadingOutline.GetComponent<RectTransform>();
-        loadingOutlineImg = loadingOutline.GetComponent<Image>();
+
+        gameInfoText = gameInfoObject.GetComponent<TMP_Text>();
+        gameInfoCG = gameInfoObject.GetComponent<CanvasGroup>();
 
         creditsRt = spacer.GetComponent<RectTransform>();
     }
@@ -110,19 +128,29 @@ public class HomePageManager : MonoBehaviour
             namesTMP.text = string.Join("\n", channelComp.credits);
         }
 
+        // Terribleness but I don't care anymore
         var roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
-        var role = roleGroupTrans.GetChild(0).GetComponent<TMP_Text>();
-        var names = roleGroupTrans.GetChild(1).GetComponent<TMP_Text>();
-
-        role.text = "PennBoy Main UI";
-        names.text = "Charles Wang\nSaahil Gupta\nAnthony Ge";
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "PennBoy UI";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text = "Charles Wang";
 
         roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
-        role = roleGroupTrans.GetChild(0).GetComponent<TMP_Text>();
-        names = roleGroupTrans.GetChild(1).GetComponent<TMP_Text>();
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "UPGRADE Board 2024-2025";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text =
+            "Charles Wang\nAnthony Ge\nSaahil Gupta\nViraj Doshi\nKevin Du\nChristina Qiu\nFaye Zhang";
 
-        role.text = "Thanks for playing!";
-        names.text = "";
+        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "Packaging & Publishing Team";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text =
+            "Faye Zhang\nRobby DeMartino\nCharles Wang\nForest Ho-Chen\n";
+
+        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "Special Thanks";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text =
+            "Tina Ni";
+
+        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "<b>Thanks for playing! <3</b>";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text = "";
 
         // Hack to force vertical layout group to update. See https://stackoverflow.com/a/60204026
         LayoutRebuilder.ForceRebuildLayoutImmediate(spacer.GetComponent<RectTransform>());
@@ -144,7 +172,7 @@ public class HomePageManager : MonoBehaviour
         }
 
         if (creditsOpen) {
-            creditsRt.anchoredPosition += CREDITS_SPEED;
+            creditsRt.anchoredPosition += new Vector2(0f, 150f * Time.deltaTime);
         }
     }
 
@@ -160,107 +188,177 @@ public class HomePageManager : MonoBehaviour
         });
     }
 
-    public IEnumerator OpenGameChannel(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
-                                       Vector2 pos) {
-        // Set channel to correct initial position
-        loadingThumbnail.sprite = thumbnail;
-        loadingRt.anchoredPosition = pos;
-        loadingObj.SetActive(true);
+    private IEnumerator ShowChannelButtons() {
+        // Wait a little for the other animations to finish before animating the buttons,
+        // otherwise users may think they're clickable before they really are
+        yield return new WaitForSecondsRealtime(0.35f);
 
-        var loadingRtSizeDeltaInit = loadingRt.sizeDelta;
-        var loadingRtSizeDeltaFinal = new Vector2(408.45f, 241.97f);
-        var loadingRtPosInit = loadingRt.anchoredPosition;
-        var loadingRtPosFinal = new Vector2(1398f, -341f);
-        var loadingOutlineMinInit = loadingOutlineRt.offsetMin;
-        var loadingOutlineMinFinal = new Vector2(-20f, -20f);
-        var loadingOutlineMaxInit = loadingOutlineRt.offsetMax;
-        var loadingOutlineMaxFinal = new Vector2(20f, 20f);
-
-        // I am so sorry
-        // var loadingRtSizeDeltaInit = loadingRt.sizeDelta;
-        // var loadingRtSizeDeltaFinal = new Vector2(787.7651f, 466.6801f);
-        // var loadingRtPosInit = loadingRt.anchoredPosition;
-        // var loadingRtPosFinal = new Vector2(960f, -539.78f);
-        // var loadingOutlineMinInit = loadingOutlineRt.offsetMin;
-        // var loadingOutlineMinFinal = new Vector2(-20f, -20f);
-        // var loadingOutlineMaxInit = loadingOutlineRt.offsetMax;
-        // var loadingOutlineMaxFinal = new Vector2(20f, 20f);
-
-        if (overlay != null) StopCoroutine(overlayCoroutine);
-
-        // List contributors in alphabetical order to be fair
-        Array.Sort(currCredits);
-        gameName.GetComponent<TMP_Text>().text = currGameName;
-        gameCredits.GetComponent<TMP_Text>().text = string.Join(", ", currCredits);
-
-        var gameNameCG = gameName.GetComponent<CanvasGroup>();
-        var creditsCG = gameCredits.GetComponent<CanvasGroup>();
-        StartCoroutine(Anim.Animate(0.35f, t => {
-            overlay.alpha = t;
-            pennBoy.alpha = t;
-            gameNameCG.alpha = t;
-            creditsCG.alpha = t;
-            music.volume = Mathf.Lerp(music.volume, 0f, t);
-            loadingOutlineImg.color = UnityEngine.Color.Lerp(Theme.Up[1], UnityEngine.Color.white, t);
-        }));
-
-        StartCoroutine(Anim.Animate(0.65f, t => {
+        var backPosInit = new Vector2(-280f, -300f);
+        var backPosFinal = new Vector2(-280f, -50f);
+        var backRt = backButton.GetComponent<RectTransform>();
+        StartCoroutine(Anim.Animate(0.55f, t => {
             var newT = Easing.EaseOutExpo(t);
-            loadingRt.sizeDelta = Vector2.Lerp(loadingRtSizeDeltaInit, loadingRtSizeDeltaFinal, newT);
-            loadingRt.anchoredPosition = Vector2.Lerp(loadingRtPosInit, loadingRtPosFinal, newT);
-            loadingOutlineRt.offsetMin = Vector2.Lerp(loadingOutlineMinInit, loadingOutlineMinFinal, newT);
-            loadingOutlineRt.offsetMax = Vector2.Lerp(loadingOutlineMaxInit, loadingOutlineMaxFinal, newT);
+            backRt.anchoredPosition = Vector2.Lerp(backPosInit, backPosFinal, newT);
         }));
 
-        var op = SceneManager.LoadSceneAsync(sceneName)!;
-        op.allowSceneActivation = false;
+        yield return new WaitForSecondsRealtime(0.1f);
 
-        yield return new WaitForSeconds(0.3f);
-
-        // Make clones of the outlines to perform the outward echo animation
-        var outlineParent = loadingOutline.transform.parent;
-        var index = 0;
-        foreach (var obj in new[] {
-                     Instantiate(loadingOutline, outlineParent),
-                     Instantiate(loadingOutline, outlineParent),
-                     Instantiate(loadingOutline, outlineParent),
-                     Instantiate(loadingOutline, outlineParent)
-                 }) {
-            var rt = obj.GetComponent<RectTransform>();
-            var cg = obj.GetComponent<CanvasGroup>();
-            var final = Vector3.one * 4f;
-            StartCoroutine(Anim.Animate(4f, t => {
-                rt.localScale = Vector3.Lerp(Vector3.one, final, Easing.EaseOutExpo(t));
-            }));
-            StartCoroutine(Anim.Animate(0.35f, t => {
-                cg.alpha = 1f - t;
-            }));
-            yield return new WaitForSeconds(0.12f + index * 0.04f);
-            index++;
-        }
-
-        yield return new WaitForSeconds(1f);
-        yield return Anim.Animate(0.35f, t => {
-            secondOverlay.alpha = t;
-        });
-        yield return new WaitForSeconds(0.1f);
-
-        // We assume our game start with a visible cursor. They should be setting it to false themselves
-        // if they want so!
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-
-        op.allowSceneActivation = true;
+        var startPosInit = new Vector2(280f, -300f);
+        var startPosFinal = new Vector2(280f, -50f);
+        var startRt = startButton.GetComponent<RectTransform>();
+        StartCoroutine(Anim.Animate(0.55f, t => {
+            var newT = Easing.EaseOutExpo(t);
+            startRt.anchoredPosition = Vector2.Lerp(startPosInit, startPosFinal, newT);
+        }));
     }
 
-    public IEnumerator OpenGame(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
-                                Vector2 pos) {
-        FakeCursor.I.FadeOut(true);
+    private IEnumerator HideChannelButtons() {
+        var startPosInit = new Vector2(280f, -50f);
+        var startPosFinal = new Vector2(280f, -300f);
+        var startRt = startButton.GetComponent<RectTransform>();
+        StartCoroutine(Anim.Animate(0.3f, t => {
+            var newT = Easing.EaseInExpo(t);
+            startRt.anchoredPosition = Vector2.Lerp(startPosInit, startPosFinal, newT);
+        }));
+
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        var backPosInit = new Vector2(-280f, -50f);
+        var backPosFinal = new Vector2(-280f, -300f);
+        var backRt = backButton.GetComponent<RectTransform>();
+        StartCoroutine(Anim.Animate(0.3f, t => {
+            var newT = Easing.EaseInExpo(t);
+            backRt.anchoredPosition = Vector2.Lerp(backPosInit, backPosFinal, newT);
+        }));
+    }
+
+    public IEnumerator OpenGameChannel(string sceneName, string currGameName, string[] currCredits, Sprite thumbnail,
+                                       Vector2 initialPos, GameChannel gameChannel) {
+        currentGameChannel = gameChannel;
+        currentSceneNameToLoad = sceneName;
+        currentGameName = currGameName;
+        currentCredits = currCredits;
 
         // Set channel to correct initial position
         loadingThumbnail.sprite = thumbnail;
-        loadingRt.anchoredPosition = pos;
+        loadingRt.anchoredPosition = initialPos;
         loadingObj.SetActive(true);
+
+        // Make the cursor appear above everything. Temporary, will be reset when we leave
+        transitionCanvas.sortingOrder = 100;
+        creditsBtn.interactable = false;
+        quitBtn.interactable = false;
+
+        // I am so sorry!
+        lastLoadingRtSizeDelta = loadingRt.sizeDelta;
+        lastLoadingRtPos = loadingRt.anchoredPosition;
+        var loadingRtSizeDeltaFinal = new Vector2(408.45f, 241.97f);
+        var loadingRtPosFinal = new Vector2(1408f, -342f);
+        var loadingRtScaleFinal = new Vector3(2.1f, 2.1f, 2.1f);
+        var loadingOutlineScaleInit = loadingOutlineRt.localScale;
+
+        var leftButtonBarInit = new Vector2(193f, 0f);
+        var leftButtonBarFinal = new Vector2(-250f, 0f);
+        var rightButtonBarInit = new Vector2(-193f, 0f);
+        var rightButtonBarFinal = new Vector2(250f, 0f);
+
+        gameInfoText.text = $"{gameChannel.description}\n\n{gameChannel.controlsInstructions}";
+
+        gamesCanvas.GetComponent<GraphicRaycaster>().enabled = false;
+        StartCoroutine(Anim.Animate(0.25f, t => {
+            secondBackground.alpha = t;
+            gameInfoCG.alpha = t;
+        }));
+
+        StartCoroutine(ShowChannelButtons());
+
+        scroller.UpdateText(currGameName);
+        if (scroller.IsCurrentlyOpen) scroller.Reset();
+        scroller.Appear();
+
+        StartCoroutine(Anim.Animate(0.35f, t => {
+            var easeInT = Easing.EaseInExpo(t);
+
+            barDetails.alpha = 1f - t;
+            leftButtonBar.anchoredPosition = Vector2.Lerp(leftButtonBarInit, leftButtonBarFinal, easeInT);
+            rightButtonBar.anchoredPosition = Vector2.Lerp(rightButtonBarInit, rightButtonBarFinal, easeInT);
+            loadingOutlineRt.localScale = Vector3.Lerp(loadingOutlineScaleInit, Vector3.zero, Easing.EaseOutExpo(t));
+        }));
+
+        // This yield duration should be enough for *all* animations to finish before we enable
+        // the back and start buttons. This means no coroutines should be interrupted
+        yield return Anim.Animate(0.7f, t => {
+            var easeOutT = Easing.EaseOutExpo(t);
+
+            loadingRt.sizeDelta = Vector2.Lerp(lastLoadingRtSizeDelta, loadingRtSizeDeltaFinal, easeOutT);
+            loadingRt.anchoredPosition = Vector2.Lerp(lastLoadingRtPos, loadingRtPosFinal, easeOutT);
+            loadingRt.localScale = Vector3.Lerp(Vector3.one, loadingRtScaleFinal, easeOutT);
+        });
+
+        // Buttons are not interactable by default
+        backButton.GetComponent<Button>().interactable = true;
+        startButton.GetComponent<Button>().interactable = true;
+    }
+
+    private IEnumerator _CloseGameChannel() {
+        backButton.GetComponent<Button>().interactable = false;
+        startButton.GetComponent<Button>().interactable = false;
+
+        var loadingRtSizeDeltaInit = loadingRt.sizeDelta;
+        var loadingRtPosInit = loadingRt.anchoredPosition;
+        var loadingRtScaleInit = loadingRt.localScale;
+
+        var leftButtonBarInit = leftButtonBar.anchoredPosition;
+        var leftButtonBarFinal = new Vector2(193f, 0f);
+        var rightButtonBarInit = rightButtonBar.anchoredPosition;
+        var rightButtonBarFinal = new Vector2(-193f, 0f);
+
+        StartCoroutine(HideChannelButtons());
+        StartCoroutine(Anim.Animate(0.15f, t => {
+            gameInfoCG.alpha = 1f - t;
+        }));
+        StartCoroutine(Anim.Animate(0.35f, t => {
+            secondBackground.alpha = 1f - t;
+        }));
+
+        // Manually simulate pointer exit event because we need the animations to play. This also
+        // causes the scroller to disappear
+        currentGameChannel.DisableOnPointerExit = false;
+        currentGameChannel.OnPointerExit(null);
+
+        yield return Anim.Animate(0.6f, t => {
+            var easeOutT = Easing.EaseOutExpo(t);
+
+            barDetails.alpha = t;
+            leftButtonBar.anchoredPosition = Vector2.Lerp(leftButtonBarInit, leftButtonBarFinal, easeOutT);
+            rightButtonBar.anchoredPosition = Vector2.Lerp(rightButtonBarInit, rightButtonBarFinal, easeOutT);
+
+            loadingRt.sizeDelta = Vector2.Lerp(loadingRtSizeDeltaInit, lastLoadingRtSizeDelta, easeOutT);
+            loadingRt.anchoredPosition = Vector2.Lerp(loadingRtPosInit, lastLoadingRtPos, easeOutT);
+            loadingRt.localScale = Vector3.Lerp(loadingRtScaleInit, Vector3.one, easeOutT);
+        });
+
+        currentGameChannel.canvasGroup.alpha = 1f;
+        loadingObj.SetActive(false);
+
+        // Reset transition canvas order after "Current Loading Game" object has been disabled
+        transitionCanvas.sortingOrder = 102;
+        creditsBtn.interactable = true;
+        quitBtn.interactable = true;
+
+        gamesCanvas.GetComponent<GraphicRaycaster>().enabled = true;
+    }
+
+    public void CloseGameChannel() => StartCoroutine(_CloseGameChannel());
+
+    private IEnumerator _OpenGame() {
+        FakeCursor.I.FadeOut(true);
+
+        var loadingOutlineScaleInit = new Vector3(0.8f, 0.8f, 0.8f);
+        loadingOutlineRt.localScale = loadingOutlineScaleInit;
+
+        // Set channel to correct initial position
+        loadingRt.anchoredPosition = loadingRt.anchoredPosition;
 
         // I am so sorry
         var loadingRtSizeDeltaInit = loadingRt.sizeDelta;
@@ -275,19 +373,27 @@ public class HomePageManager : MonoBehaviour
         if (overlay != null) StopCoroutine(overlayCoroutine);
 
         // List contributors in alphabetical order to be fair
-        Array.Sort(currCredits);
-        gameName.GetComponent<TMP_Text>().text = currGameName;
-        gameCredits.GetComponent<TMP_Text>().text = string.Join(", ", currCredits);
+        Array.Sort(currentCredits);
+        gameName.GetComponent<TMP_Text>().text = currentGameName;
+        gameCredits.GetComponent<TMP_Text>().text = string.Join(", ", currentCredits);
+
+        StartCoroutine(Anim.Animate(0.15f, t => {
+            gameInfoCG.alpha = 1f - t;
+        }));
 
         var gameNameCG = gameName.GetComponent<CanvasGroup>();
         var creditsCG = gameCredits.GetComponent<CanvasGroup>();
+        var loadingRtScaleInit = loadingRt.localScale;
         StartCoroutine(Anim.Animate(0.35f, t => {
             overlay.alpha = t;
             pennBoy.alpha = t;
             gameNameCG.alpha = t;
             creditsCG.alpha = t;
             music.volume = Mathf.Lerp(music.volume, 0f, t);
-            loadingOutlineImg.color = UnityEngine.Color.Lerp(Theme.Up[1], UnityEngine.Color.white, t);
+
+            var newT = Easing.EaseOutExpo(t);
+            loadingRt.localScale = Vector3.Lerp(loadingRtScaleInit, Vector3.one, newT);
+            loadingOutlineRt.localScale = Vector3.Lerp(loadingOutlineScaleInit, Vector3.one, newT);
         }));
 
         StartCoroutine(Anim.Animate(0.65f, t => {
@@ -298,7 +404,7 @@ public class HomePageManager : MonoBehaviour
             loadingOutlineRt.offsetMax = Vector2.Lerp(loadingOutlineMaxInit, loadingOutlineMaxFinal, newT);
         }));
 
-        var op = SceneManager.LoadSceneAsync(sceneName)!;
+        var op = SceneManager.LoadSceneAsync(currentSceneNameToLoad)!;
         op.allowSceneActivation = false;
 
         yield return new WaitForSeconds(0.3f);
@@ -331,14 +437,10 @@ public class HomePageManager : MonoBehaviour
         });
         yield return new WaitForSeconds(0.1f);
 
-        // We assume our game start with a visible cursor. They should be setting it to false themselves
-        // if they want so!
-        // each game must set the cursor value itself
-        // Cursor.visible = true;
-        // Cursor.lockState = CursorLockMode.None;
-
         op.allowSceneActivation = true;
     }
+
+    public void OpenGame() => StartCoroutine(_OpenGame());
 
     private IEnumerator AnimateStarEntry() {
         yield return new WaitForSecondsRealtime(0.35f);
@@ -381,8 +483,8 @@ public class HomePageManager : MonoBehaviour
 
         var rawImg = screenshot.GetComponent<RawImage>();
         var imgMat = rawImg.material;
-        imgMat.SetTexture(Color, colorRt);
-        imgMat.SetTexture(Grayscale, grayRt);
+        imgMat.SetTexture(ColorId, colorRt);
+        imgMat.SetTexture(GrayscaleId, grayRt);
 
         screenshot.GetComponent<CanvasGroup>().alpha = 1f;
         secondOverlay.alpha = 1f;
@@ -390,7 +492,7 @@ public class HomePageManager : MonoBehaviour
 
         // Slowly fade screen to gray
         StartCoroutine(Anim.Animate(0.5f, t => {
-            imgMat.SetFloat(InterpolationAmount, t);
+            imgMat.SetFloat(InterpolationAmountId, t);
         }, true));
 
         StartCoroutine(AnimateStarEntry());
@@ -402,7 +504,7 @@ public class HomePageManager : MonoBehaviour
         }, true);
 
         // Reset it for use next time (this is not a material instance)
-        rawImg.material.SetFloat(InterpolationAmount, 0f);
+        rawImg.material.SetFloat(InterpolationAmountId, 0f);
         rawImg.material = null;
         Destroy(colorRt);
         Destroy(grayRt);

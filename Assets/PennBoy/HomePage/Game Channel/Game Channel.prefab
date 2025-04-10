@@ -61,13 +61,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8a1f1ce3241fc41b5c4a3198275b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scroller: {fileID: 0}
   credits: []
+  description: This is a fake description for a game. This text is rendered using
+    TextMesh Pro so we can use <b>bold weight</b> as well as <i>italics</i>. What
+    fun! Keep this to 4-5 lines. (This is 4.)
+  controlsInstructions: 'Instructions for the game go here. Preferably you should
+    <b>bold</b> controls. For instance: use <b>WASD</b> to move, and <b>Space</b>
+    to jump. Keep this to 4 lines. (This is 4.)'
   sceneName: Scene
-  outline: {fileID: 1320727687081558715}
   placeholder: 0
   background: {fileID: 5796141432557376074}
   logo: {fileID: 5302359067487501612}
+  outline: {fileID: 1320727687081558715}
+  canvasGroup: {fileID: 0}
+  scroller: {fileID: 0}
 --- !u!114 &1627557730683019476
 MonoBehaviour:
   m_ObjectHideFlags: 0

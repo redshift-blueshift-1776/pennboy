@@ -588,7 +588,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.4470589, g: 0.7686276, b: 1, a: 1}
     m_PressedColor: {r: 0.36933976, g: 0.6343008, b: 0.82699996, a: 1}
     m_SelectedColor: {r: 0.36862746, g: 0.63529414, b: 0.82745105, a: 1}
-    m_DisabledColor: {r: 0.10980393, g: 0.47450984, b: 0.7372549, a: 1}
+    m_DisabledColor: {r: 0.043137256, g: 0.3529412, b: 0.5803922, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.15
   m_SpriteState:
@@ -1960,6 +1960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c63b7d50aa8e7844b7e3d4a39e5f541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetScene: 
   pauseCanvas: {fileID: 1220259584066753483}
   overlay: {fileID: 3925962150115042015}
   secondOverlay: {fileID: 4698186762515990381}
@@ -2189,7 +2190,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.4470589, g: 0.7686276, b: 1, a: 1}
     m_PressedColor: {r: 0.36933976, g: 0.6343008, b: 0.82699996, a: 1}
     m_SelectedColor: {r: 0.36862746, g: 0.63529414, b: 0.82745105, a: 1}
-    m_DisabledColor: {r: 0.10980393, g: 0.47450984, b: 0.7372549, a: 1}
+    m_DisabledColor: {r: 0.043137256, g: 0.3529412, b: 0.5803922, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.15
   m_SpriteState:

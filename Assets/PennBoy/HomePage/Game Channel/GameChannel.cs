@@ -6,23 +6,30 @@ using UnityEngine.UI;
 
 public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [HideInInspector] public GameNameScroller scroller;
+    [Header("Game Info")]
     [SerializeField] public string[] credits;
-
+    [TextArea(2, 5)] public string description;
+    [TextArea(2, 5)] public string controlsInstructions;
     [SerializeField] private string sceneName;
-    [SerializeField] private RectTransform outline;
 
     [Header("Placeholder Mode")]
     [SerializeField] private bool placeholder;
     [SerializeField] private Image background;
     [SerializeField] private GameObject logo;
 
+    [Header("References")]
+    [SerializeField] private RectTransform outline;
+
+    public bool DisableOnPointerExit { private get; set; }
+
+    [HideInInspector] public CanvasGroup canvasGroup;
+    [HideInInspector] public GameNameScroller scroller;
+
     private const float SCALE_INIT = 0.8f;
     private const float SCALE_FINAL = 1f;
 
     private Coroutine curr;
     private HomePageManager manager;
-    private CanvasGroup canvasGroup;
     private CanvasGroup tbCopy;
 
     private static readonly int BarNumber = Shader.PropertyToID("_Bar_Number");
@@ -75,7 +82,7 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
 
     public void OnPointerExit(PointerEventData eventData) {
-        if (placeholder) return;
+        if (placeholder || DisableOnPointerExit) return;
 
         if (curr != null) StopCoroutine(curr);
         curr = StartCoroutine(AnimateScale(ScaleAnim.Shrink));
@@ -100,8 +107,10 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (placeholder) return;
 
         canvasGroup.alpha = 0f;
+        DisableOnPointerExit = true;
         Pause.I.resetScene = sceneName;
+
         StartCoroutine(manager.OpenGameChannel(sceneName, gameObject.name, credits, background.sprite,
-                                               GetComponent<RectTransform>().anchoredPosition));
+                                               GetComponent<RectTransform>().anchoredPosition, this));
     }
 }

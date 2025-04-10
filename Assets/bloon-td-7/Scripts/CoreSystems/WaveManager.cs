@@ -30,22 +30,22 @@ public class WaveManager : MonoBehaviour
     /// </summary>
     public EnemyInfo[] enemyList =
     {
-        new EnemyInfo(10f,1,1,5, new Color32(0,255,0,255)),               //0 - slime
-        new EnemyInfo(25f,1,1,10, new Color32(125,209,123, 255)),        //1 - goblin
-        new EnemyInfo(8f,4,5,20, new Color32(21, 92, 20, 255),8),         //2 - orcs
-        new EnemyInfo(6f,10,15,30,new Color32(70, 89, 70, 255),12),        //3 - ogres
-        new EnemyInfo(20f,1,1,5,new Color32(255,255,255,255)),       //4 skeleton
-        new EnemyInfo(10f,10,5,5, new Color32(64, 255, 150,255)),   //5 elf
-        new EnemyInfo(40f,2,1,5, new Color32(222, 182, 250,255)),  //6 fairy
-        new EnemyInfo(50f,15,3,15, new Color32(117, 12, 5,255)),    //7 demon
-        new EnemyInfo(10f,3,4,5, new Color32(100,100,100,255)),    //8 dwarf
-        new EnemyInfo(20f,20,5,10, new Color32(40, 96, 250,255)),   //9 wizard
-        new EnemyInfo(35f,40,12,25, new Color32(139, 155, 199,255)), //10 light wizard
-        new EnemyInfo(35f,40,12,25, new Color32(0, 0, 46,255)), //11 dark wizard
-        new EnemyInfo(50f,100,25,50, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
-        new EnemyInfo(100f,1000,100,100,new Color32(255,0,0,255),20), //13 dragon
-        new EnemyInfo(40f,10,1,20, new Color32(0,0,0,255),4, false, true), //14 the flash
-        new EnemyInfo(5f, 1000, 5000, 1000000, new Color32(255,255,255,255), 30) //15 god
+        new EnemyInfo(10f,1,1,1, new Color32(0,255,0,255)),               //0 - slime
+        new EnemyInfo(25f,1,1,2, new Color32(125,209,123, 255)),        //1 - goblin
+        new EnemyInfo(8f,4,5,5, new Color32(21, 92, 20, 255),8),         //2 - orcs
+        new EnemyInfo(6f,10,15,5,new Color32(70, 89, 70, 255),12),        //3 - ogres
+        new EnemyInfo(20f,1,1,1,new Color32(255,255,255,255)),       //4 skeleton
+        new EnemyInfo(10f,10,5,1, new Color32(64, 255, 150,255)),   //5 elf
+        new EnemyInfo(40f,2,1,1, new Color32(222, 182, 250,255)),  //6 fairy
+        new EnemyInfo(50f,15,3,5, new Color32(117, 12, 5,255)),    //7 demon
+        new EnemyInfo(10f,3,4,1, new Color32(100,100,100,255)),    //8 dwarf
+        new EnemyInfo(20f,20,5,5, new Color32(40, 96, 250,255)),   //9 wizard
+        new EnemyInfo(35f,40,12,10, new Color32(139, 155, 199,255)), //10 light wizard
+        new EnemyInfo(35f,40,12,10, new Color32(0, 0, 46,255)), //11 dark wizard
+        new EnemyInfo(50f,100,25,20, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
+        new EnemyInfo(80f,1000,100,35,new Color32(255,0,0,255),20), //13 dragon
+        new EnemyInfo(40f,10,1,5, new Color32(0,0,0,255),4, false, true), //14 the flash
+        new EnemyInfo(5f, 1000, 5000, 10000, new Color32(255,255,255,255), 30) //15 god
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
         //new EnemyInfo(3,100,1000,1000,new Color(61, 110, 173),30), //5 - boss enemy
@@ -64,7 +64,8 @@ public class WaveManager : MonoBehaviour
         //wave 0 - slimes
         new WaveInfo(
                 "0",
-                "20",
+                //"20",
+                "25",
                 "0.6",
                 "0"
             ),
@@ -127,7 +128,8 @@ public class WaveManager : MonoBehaviour
         //wave 9 - all
         new WaveInfo(
             "0,1,2,3,4,5,6",
-            "100,100,10,10,200,30,30",
+            //"100,100,10,10,200,30,30",
+            "150,150,10,10,200,30,30",
             "0.5,0.5,2,2,0.3,1,1",
             "0,0,1,1,0,0.5,0.5"
             ),
@@ -140,8 +142,10 @@ public class WaveManager : MonoBehaviour
         //wave 11 - dwarfs
         new WaveInfo(
             "1,4,8",
-            "100,40,20",
-            "0.4,0.5,0.5",
+            //"100,40,20",
+            "200,40,20",
+            //"0.4,0.5,0.5",
+            "0.2,0.5,0.5",
             "0,0,1"),
         //wave 12 - wizard
         new WaveInfo(
@@ -174,8 +178,10 @@ public class WaveManager : MonoBehaviour
         //wave 16 - EVERYTHING
         new WaveInfo(
             "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14",
-            "100,100,10,10,100,50,25,25,100,50,25,25,10,5,1",
-            "0.3,0.4,2,2,0.6,1,2,2,0.8,0.6,2,2,4,15,1",
+            //"100,100,10,10,100,50,25,25,100,50,25,25,10,5,1",
+            "100,100,10,10,100,50,25,25,100,50,25,25,10,3,1",
+            //"0.3,0.4,2,2,0.6,1,2,2,0.8,0.6,2,2,4,15,1",
+            "0.3,0.4,2,2,0.6,1,2,2,0.8,0.6,2,2,4,20,1",
             "0,0,2,2,0,2,2,4,0,3,6,6,7,15,30"
             ),
         //wave 17 god
@@ -229,6 +235,10 @@ public class WaveManager : MonoBehaviour
                     waveOccurring = false;
                     waveIndex++;
                     spawnersCreated = 0;
+                    if (waveIndex == 18)
+                    {
+                        BTD7.GameManager.instance.WinGame();
+                    }
                 }
             }
         }
