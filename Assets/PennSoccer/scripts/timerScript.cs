@@ -20,6 +20,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         timeLeft -= Time.deltaTime;
+        timeLeft = Mathf.Max(0, timeLeft);
         int minutes = Mathf.FloorToInt(timeLeft / 60);
         int seconds = Mathf.FloorToInt(timeLeft % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
