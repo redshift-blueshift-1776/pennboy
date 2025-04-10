@@ -19,6 +19,7 @@ public class Win_Zone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         winText.SetActive(false);
         restartButton.SetActive(false);
     }
@@ -35,6 +36,7 @@ public class Win_Zone : MonoBehaviour
             Cursor.visible = true;
             winText.SetActive(true);
             restartButton.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
