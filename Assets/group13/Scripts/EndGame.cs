@@ -11,7 +11,6 @@ public class EndGame : MonoBehaviour
     {
         if (p.CompareTag("Player"))
         {
-            
             Endtext.SetActive(true);
             Time.timeScale = 0f;
             playerMovement = p.GetComponent<PlayerMovement>();
@@ -23,6 +22,9 @@ public class EndGame : MonoBehaviour
             }
             if (playerMovement != null)
                 playerMovement.enabled = false;
+            
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
