@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 7861103692076388225}
   - component: {fileID: 3178517318594630295}
   - component: {fileID: 3622209378917703951}
+  - component: {fileID: 4601145863911551728}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -413,6 +414,18 @@ MonoBehaviour:
   pointA: {fileID: 1421928488707047878}
   pointB: {fileID: 6307956729348022253}
   speed: 2
+--- !u!114 &4601145863911551728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4026487473485016302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ba34d40a58845a78e668acd56680d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7527194294257982095
 GameObject:
   m_ObjectHideFlags: 0
