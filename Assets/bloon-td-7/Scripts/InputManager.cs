@@ -28,7 +28,8 @@ public class InputManager : MonoBehaviour
         }
         else
         {
-            LastPos = new Vector3(0, -100, 0);
+            LastPos = hit.point;
+            // LastPos = new Vector3(0, -100, 0);
         }
         
         return (LastPos, valid);

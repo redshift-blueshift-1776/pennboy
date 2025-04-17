@@ -16,12 +16,15 @@ public class PlacementSystem : MonoBehaviour
     private int totalCost;
     [SerializeField] private TMP_Text modeText;
 
+    private TowerIndicator towerIndicator;
+
     private void Start()
     {
         totalCost = 0;
         mouseIndicator.SetActive(false);
         currentMode = PlacementMode.Selection;
         modeText.text = "Placement Mode";
+        towerIndicator = mouseIndicator.GetComponent<TowerIndicator>();
     }
 
     private void Update()
@@ -72,7 +75,13 @@ public class PlacementSystem : MonoBehaviour
                 (Vector3 MousePosition, bool validplacement) = inputManager.GetPlacementPosition();
 
                 mouseIndicator.transform.position = MousePosition + new Vector3(0, 3.5f, 0);
-                if (!validplacement) { return; }
+                if (!validplacement) { 
+                    towerIndicator.CantPlace();
+                    return;
+                }
+                else {
+                    towerIndicator.CanPlace();
+                }
 
                 if (Input.GetMouseButtonDown(0))
                 {
