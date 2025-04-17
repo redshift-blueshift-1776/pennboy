@@ -8,7 +8,7 @@ using UnityEngine.Rendering.Universal.Internal;
 public class MoneyManager : MonoBehaviour
 {
     //testing money
-    private int startingMoney = 15000; 
+    private int startingMoney = 150; 
     private int currentMoney;
 
     [SerializeField] public GameObject moneyUI; 
