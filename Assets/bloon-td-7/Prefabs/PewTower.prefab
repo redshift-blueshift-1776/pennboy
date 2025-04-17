@@ -221,7 +221,6 @@ GameObject:
   - component: {fileID: 4549503749102351657}
   - component: {fileID: 1022918022752849493}
   - component: {fileID: 265624616193714575}
-  - component: {fileID: 4965867828688278868}
   - component: {fileID: 8214901739824537978}
   - component: {fileID: 7577443898952166616}
   m_Layer: 7
@@ -300,33 +299,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &4965867828688278868
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9054721832674411252}
-  serializedVersion: 4
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 36
-  m_CollisionDetection: 1
 --- !u!135 &8214901739824537978
 SphereCollider:
   m_ObjectHideFlags: 0

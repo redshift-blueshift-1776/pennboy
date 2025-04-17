@@ -44,7 +44,7 @@ public class InputManager : MonoBehaviour
         if (Physics.Raycast(mouseray, out hit, 1000, PlacementLayerMask) && (hit.transform.gameObject.tag == "BTD7Tower"))
         {
             Debug.Log("Hit a Tower");
-            return hit.transform.GetComponent<Tower>();
+            return hit.transform.parent.gameObject.GetComponent<Tower>();
         }
         return null;
     }
