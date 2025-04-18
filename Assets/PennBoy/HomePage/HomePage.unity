@@ -583,10 +583,9 @@ PrefabInstance:
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: description
-      value: Escape the hallway and the relentless Quaker mascot by solving puzzles
-        like tile and memory challenges. After each puzzle, receive a hint and choose
-        3 doors to close to stay safe. Choose wrong, and it's game over. Survive
-        5 hallways to win!
+      value: Escape the relentless Quaker by solving puzzles like tile and memory
+        challenges. After each puzzle, receive a hint and choose 3 doors to close
+        to stay safe. Choose wrong, and it's game over!
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -597,6 +596,12 @@ PrefabInstance:
         type: 3}
       propertyPath: credits.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: controlsInstructions
+      value: Use <b>WASD</b> to move and <b>Mouse</b> to look around. <b>Left Click</b>
+        to interact with puzzles.
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -1118,12 +1123,19 @@ PrefabInstance:
         type: 3}
       propertyPath: description
       value: Defend your base from relentless enemy swarms by combining bombs before
-        time runs out. Just don't let a bomb fall, or your turn will end in disaster!
+        time runs out. Your turn gets cut short if a bomb fall off the edge early!
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: credits.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: controlsInstructions
+      value: Press <b>A</b> and <b>D</b> to rotate left and right around the stump,
+        move your <b>Mouse</b> up and down to change the trajectory, and <b>Left
+        Click</b> to place a bomb.
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -1639,14 +1651,19 @@ PrefabInstance:
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: description
-      value: 'Where comfort meets chaos: navigate deadly spikes, shadow portals,
-        and a relentless shadow monster while savoring your stay in the not-so-quiet
-        Happy Mansion!'
+      value: Navigate deadly spikes, wall jumps, and anti-gravity in this treacherous
+        obstacle course!
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: credits.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: controlsInstructions
+      value: Use <b>Arrow Keys</b> to move. Press <b>Space</b> to jump and again
+        in midair to double jump.
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -2644,13 +2661,19 @@ PrefabInstance:
         type: 3}
       propertyPath: description
       value: Dive into a 2.5D Tower Defense adventure with deck-building elements.
-        Strategically place towers and activate abilities, spend money to fend off
-        waves of enemies, and survive as long as you can!
+        Strategically place towers, spend money to fend off waves of enemies, and
+        survive as long as you can!
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: credits.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: controlsInstructions
+      value: Use your <b>Mouse</b> to select a card and to place towers down. Towers
+        can only be placed when they're not highlighted red.
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -3560,7 +3583,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 900.25
+  m_fontSize: 899.65
   m_fontSizeBase: 1200
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6082,14 +6105,21 @@ PrefabInstance:
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: description
-      value: "Race to move in before Freddy Fazbear catches you in this chaotic adventure.
-        Push your cart to the finish line, dodge obstacles, minimize property damage,
+      value: "It's time to move in to Penn campus in this chaotic adventure! Push
+        your cart to the finish line, dodge obstacles, minimize property damage,
         and beat each level as fast as you can!\r"
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: credits.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: controlsInstructions
+      value: Use <b>WASD</b> to move and <b>Space</b> to jump. <b>Mouse</b> to look
+        around, <b>Left Click</b> to push the cart and <b>Right Click</b> to pull.
+        Press <b>M</b> to go back to the game's main menu.
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -6770,13 +6800,18 @@ PrefabInstance:
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: description
-      value: Help your favorite cylinder jump onto endless boxes, gauging your jumping
-        power carefully to avoid falling and score as many points as possible!
+      value: Jump on to endless platforms, gauging your jumping power carefully to
+        avoid falling and score as many points as possible!
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: credits.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: controlsInstructions
+      value: Press and hold <b>Space</b>. The longer you hold, the further you jump.
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -7487,6 +7522,12 @@ PrefabInstance:
         type: 3}
       propertyPath: credits.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: controlsInstructions
+      value: The player starting on the left uses <b>WASD</b> keys, and the player
+        on the right uses <b>Arrow Keys</b> to move and jump.
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
@@ -8594,14 +8635,19 @@ PrefabInstance:
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: description
-      value: Embark on an endless, zen snowboard adventure down a snowy terrain,
-        where you dodge obstacles, build speed, perform tricks midair, and earn points
-        for stylish moves.
+      value: Embark on an endless, zen snowboard adventure down a snowy (or sandy)
+        terrain, where you dodge obstacles, build speed, perform tricks midair, and
+        earn points for stylish moves.
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: credits.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
+        type: 3}
+      propertyPath: controlsInstructions
+      value: Use <b>WASD</b> to steer and <b>Space</b> to jump.
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
