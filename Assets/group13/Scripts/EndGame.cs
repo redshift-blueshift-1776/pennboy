@@ -12,7 +12,7 @@ public class EndGame : MonoBehaviour
         if (p.CompareTag("Player"))
         {
             Endtext.SetActive(true);
-            Time.timeScale = 0f;
+            Time.timeScale = 1f;
             playerMovement = p.GetComponent<PlayerMovement>();
             SoundManager soundManager = p.GetComponent<SoundManager>();
             if (soundManager != null)
