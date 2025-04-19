@@ -51,6 +51,7 @@ public class PlacementSystem : MonoBehaviour
         switch (currentMode)
         {
             case PlacementMode.Sacrificing:
+                towerIndicator.gameObject.SetActive(false);
                 // Logic for tower upgrading (sacrificing)
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -77,6 +78,7 @@ public class PlacementSystem : MonoBehaviour
                 }
                 return;
             case PlacementMode.PlacingTower:
+                towerIndicator.gameObject.SetActive(true);
                 if (!towersToSacrifice.Any()) {
                     upgradeLevelText.gameObject.SetActive(true);
                     upgradeLevelText.text = upgradeLevelString + 0;
