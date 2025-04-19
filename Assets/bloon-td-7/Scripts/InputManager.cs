@@ -42,7 +42,7 @@ public class InputManager : MonoBehaviour
         Ray mouseray = SceneCamera.ScreenPointToRay(mousePos);
 
         RaycastHit hit;
-        if (Physics.Raycast(mouseray, out hit, 1000, PlacementLayerMask) && (hit.transform.gameObject.tag == "BTD7Tower"))
+        if (Physics.Raycast(mouseray, out hit, 1000, PlacementLayerMask, QueryTriggerInteraction.Collide) && (hit.transform.gameObject.tag == "BTD7Tower"))
         {
             Debug.Log("Hit a Tower");
             return hit.transform.parent.gameObject.GetComponent<Tower>();
