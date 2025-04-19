@@ -12,6 +12,6 @@ public class CursorSetter : MonoBehaviour
         Cursor.visible = cursorVisibility;
         Cursor.lockState = cursorLockMode;
         // destroy the object
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }
