@@ -79,6 +79,10 @@ public class PlacementSystem : MonoBehaviour
                 return;
             case PlacementMode.PlacingTower:
                 towerIndicator.gameObject.SetActive(true);
+
+                // change range indicator size
+                towerIndicator.SetRangeIndicator(cardUsing.GetRange());
+
                 if (!towersToSacrifice.Any()) {
                     upgradeLevelText.gameObject.SetActive(true);
                     upgradeLevelText.text = upgradeLevelString + 0;

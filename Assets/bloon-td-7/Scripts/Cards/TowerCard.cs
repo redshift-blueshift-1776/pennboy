@@ -12,6 +12,7 @@ public class TowerCard : Card
     private Vector3 origin;
     private Vector3 Targetpos;
     private int cost;
+    private string name;
 
     private void Start()
     {
@@ -27,6 +28,9 @@ public class TowerCard : Card
         isUsing = false;
         canSacrifice = true;
         Targetpos = origin;
+
+        cost = GetCost();
+        name = GetName();
     }
 
     public override bool Use()
@@ -76,10 +80,10 @@ public class TowerCard : Card
         base.Update();
         if (isUsing)
         {
-            text.text = id + " USING";
+            text.text = name + "\n Tower \n\n" + "$" + cost + " USING";
         }
         else
-            text.text = id+"";
+            text.text = name + "\n Tower \n\n" + "$" + cost + "";
     }
 
     public int GetCost()
@@ -87,7 +91,27 @@ public class TowerCard : Card
         return towerPrefab.GetComponent<Tower>().GetCost();
     }
 
+    public string GetName()
+    {
+        if (id == 0)
+        {
+            return "Shotgun";
+        }
+        else if (id == 1)
+        {
+            return "Pew";
+        }
+        else
+        {
+            return "Basic";
+        }
+    }
+
     public int GetLevel(int cost) {
         return towerPrefab.GetComponent<Tower>().GetLevel(cost);
+    }
+
+    public float GetRange() {
+        return towerPrefab.GetComponent<Tower>().GetRange();
     }
 }
