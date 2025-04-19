@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class PlacementSystem : MonoBehaviour
 {
+    [SerializeField] private TMP_Text upgradeLevelText;
+    private string upgradeLevelString = "Upgrade Level: ";
+
     [SerializeField]
     private GameObject mouseIndicator;
     [SerializeField]
@@ -60,17 +64,23 @@ public class PlacementSystem : MonoBehaviour
                         {
                             towersToSacrifice.Add(towerClicked);
                             totalCost += towerClicked.GetCost();
+                            updateUpgradeLevelText();
                         }
                         else
                         {
                             towersToSacrifice.Remove(towerClicked);
                             totalCost -= towerClicked.GetCost();
+                            updateUpgradeLevelText();
                         }
                         
                     }
                 }
                 return;
             case PlacementMode.PlacingTower:
+                if (!towersToSacrifice.Any()) {
+                    upgradeLevelText.gameObject.SetActive(true);
+                    upgradeLevelText.text = upgradeLevelString + 0;
+                }
                 // Logic for tower placement
                 (Vector3 MousePosition, bool validplacement) = inputManager.GetPlacementPosition();
 
@@ -104,8 +114,20 @@ public class PlacementSystem : MonoBehaviour
                 return;
             case PlacementMode.Selection:
                 // Do logic for selecting towers to open a UI menu here
+                upgradeLevelText.gameObject.SetActive(false);
                 return;
         }
+    }
+
+    private void disableSacrifices() {
+        foreach (Tower t in towersToSacrifice) {
+            t.ToggleSacrifice();
+        }
+        towersToSacrifice.Clear();
+    }
+
+    private void updateUpgradeLevelText() {
+        upgradeLevelText.text = upgradeLevelString + cardUsing.GetLevel(totalCost);
     }
 
     /// <summary>
@@ -114,13 +136,18 @@ public class PlacementSystem : MonoBehaviour
     /// <returns></returns>
     private int calculateTotalSacrifice()
     {
-        int sum = 0;
-        while (towersToSacrifice.Count > 0)
-        {
-            Tower t = towersToSacrifice[0];
-            towersToSacrifice.RemoveAt(0);
-            sum += t.GetCost();
+        int amount = calcCost();
+        foreach (Tower t in towersToSacrifice) {
             t.Die();
+        }
+        towersToSacrifice.Clear();
+        return amount;
+    }
+
+    private int calcCost() {
+        int sum = 0;
+        foreach (Tower t in towersToSacrifice) {
+            sum += t.GetCost();
         }
         return sum;
     }
@@ -157,6 +184,7 @@ public class PlacementSystem : MonoBehaviour
         cardUsing.Deactivate(didPlace);
         mouseIndicator.SetActive(false);
         currentMode = PlacementMode.Selection;
+        disableSacrifices();
     }
 
     private enum PlacementMode
