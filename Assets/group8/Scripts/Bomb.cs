@@ -177,6 +177,8 @@ public class Bomb : MonoBehaviour
     {
         Renderer renderer = GetComponent<Renderer>();
 
+        Debug.Log("set material" + material.name);
+
         if (renderer != null)
         {
             if (renderer.materials.Length == 1)

@@ -26,7 +26,8 @@ public class Instancing : MonoBehaviour
             } else {
                 Transform t = Instantiate(prefab);
                 t.localPosition = new Vector3(pos.x, height, pos.y);
-                t.localRotation = Quaternion.Euler(0, 0, 0);
+                float angle = Random.Range(0, 360);
+                t.localRotation = Quaternion.Euler(0, angle, 0);
                 t.SetParent(transform);
             }
 
