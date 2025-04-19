@@ -10,7 +10,7 @@ public class Pause : MonoBehaviour
 {
     public static Pause I;
 
-    public string resetScene = null;
+    public string resetScene;
 
     [SerializeField] public GameObject pauseCanvas;
 
@@ -24,7 +24,7 @@ public class Pause : MonoBehaviour
     [SerializeField] private CanvasGroup returnBackText;
     [SerializeField] private string[] lockedScenes;
 
-    public bool IsPaused {get; private set;}
+    public bool IsPaused { get; private set; }
     private bool isAnimating;
 
     private float prevTimeScale;
@@ -78,7 +78,8 @@ public class Pause : MonoBehaviour
         if (IsPaused) {
             yield return ClosePauseAnimated();
             IsPaused = !IsPaused;
-        } else {
+        }
+        else {
             IsPaused = !IsPaused;
             yield return OpenPause();
         }
@@ -108,6 +109,8 @@ public class Pause : MonoBehaviour
         prevLockState = Cursor.lockState;
         prevCursorVisible = Cursor.visible;
         prevAudio = FindObjectsByType<AudioSource>(FindObjectsSortMode.None)
+                    .Where(src => src != null && src.transform.parent != null &&
+                                  src.transform.parent.name != "Pause Manager")
                     .Select(audioSrc => (audioSrc, audioSrc.volume)).ToList();
     }
 
@@ -218,6 +221,7 @@ public class Pause : MonoBehaviour
         if (isAnimating) yield break;
 
         yield return ClosePauseImmediate();
+
         // Reset to standard for consistency
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
