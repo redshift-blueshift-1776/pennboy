@@ -1476,7 +1476,6 @@ GameObject:
   - component: {fileID: 1804860097}
   - component: {fileID: 1804860096}
   - component: {fileID: 1804860095}
-  - component: {fileID: 1804860098}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1534,24 +1533,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1804860098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804860094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4b0e7b0ede2ac44bc6a1e7fbbb0f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player1score: 0
-  player2score: 0
-  winningPlayer: 
-  winnerText: {fileID: 1606249215}
-  winText: {fileID: 1535516834}
-  scoresText: {fileID: 719934963}
 --- !u!1 &1856426921
 GameObject:
   m_ObjectHideFlags: 0
