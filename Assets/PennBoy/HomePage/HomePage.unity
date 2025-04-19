@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.1341474, b: 0.12107861, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3743,7 +3743,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 899.65
+  m_fontSize: 815.05
   m_fontSizeBase: 1200
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4484,7 +4484,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 8300000, guid: 2105b64b84b56a64fbd90be252f1cbdc, type: 3}
+      objectReference: {fileID: 8300000, guid: 4bb5ede8ba89a4b8ca7a12f802159d3c, type: 3}
     - target: {fileID: 2934521642787230881, guid: 4c5ff1dd330214c449e7c56ebaa05411,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
