@@ -12,7 +12,7 @@ public class TowerCard : Card
     private Vector3 origin;
     private Vector3 Targetpos;
     private int cost;
-    private string name;
+    private string towerName;
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class TowerCard : Card
         Targetpos = origin;
 
         cost = GetCost();
-        name = GetName();
+        towerName = GetName();
     }
 
     public override bool Use()
@@ -80,10 +80,10 @@ public class TowerCard : Card
         base.Update();
         if (isUsing)
         {
-            text.text = name + "\n Tower \n\n" + "$" + cost + " USING";
+            text.text = towerName + "\n Tower \n\n" + "$" + cost + " USING";
         }
         else
-            text.text = name + "\n Tower \n\n" + "$" + cost + "";
+            text.text = towerName + "\n Tower \n\n" + "$" + cost + "";
     }
 
     public int GetCost()
