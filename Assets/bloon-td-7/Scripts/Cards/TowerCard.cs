@@ -90,4 +90,8 @@ public class TowerCard : Card
     public int GetLevel(int cost) {
         return towerPrefab.GetComponent<Tower>().GetLevel(cost);
     }
+
+    public float GetRange() {
+        return towerPrefab.GetComponent<Tower>().GetRange();
+    }
 }

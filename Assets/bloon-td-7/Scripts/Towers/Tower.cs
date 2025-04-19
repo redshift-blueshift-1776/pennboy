@@ -160,4 +160,8 @@ public class Tower : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public float GetRange() {
+        return range;
+    }
 }
