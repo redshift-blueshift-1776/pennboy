@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
 namespace SlidingPuzzle {
-public class PlayerMovement : MonoBehaviour
+public class BennyPlayerMovement : MonoBehaviour
 {
     public CharacterController characterController;
     //public float speed = 0.1f;

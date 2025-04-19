@@ -14,6 +14,8 @@ public class MouseLook : MonoBehaviour
 
     float xRotation = 0f;
 
+    public bool noUpdate = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,10 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (noUpdate) {
+            return;
+        }
+        
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 

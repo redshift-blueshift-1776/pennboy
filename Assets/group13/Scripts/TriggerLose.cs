@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SlidingPuzzle;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +12,7 @@ public class TriggerLose : MonoBehaviour
     public GameObject Ben;
     public GameObject GameOverCanvas;
     public int checker;
-    private PlayerMovement playerMovement;
+    private BennyPlayerMovement playerMovement;
 
     void Start()
     {
@@ -77,7 +78,7 @@ public class TriggerLose : MonoBehaviour
 
         Time.timeScale = 0f;
         GameOverCanvas.SetActive(true);
-        playerMovement = player.GetComponent<PlayerMovement>();
+        playerMovement = player.GetComponentInChildren<BennyPlayerMovement>();
         if (playerMovement != null)
             playerMovement.enabled = false;
 
