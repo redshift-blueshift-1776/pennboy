@@ -187,6 +187,7 @@ public class PlacementSystem : MonoBehaviour
         mouseIndicator.SetActive(false);
         currentMode = PlacementMode.Selection;
         disableSacrifices();
+        modeText.text = "Placement Mode";
     }
 
     private enum PlacementMode
