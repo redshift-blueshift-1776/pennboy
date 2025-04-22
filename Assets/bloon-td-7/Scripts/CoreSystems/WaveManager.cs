@@ -345,7 +345,9 @@ public class WaveManager : MonoBehaviour
                     enemyInfo.canTeleport
                     );
                 
-                //newEnemy.GetComponent<Renderer>().material.color = enemyInfo.color;
+                Transform meshTransform = newEnemy.transform.Find("body");
+                meshTransform.GetComponent<Renderer>().material.color = enemyInfo.color;
+
                 enemies.Add(newEnemy);
                 enemySpawned++;
                 timer = start_time;
