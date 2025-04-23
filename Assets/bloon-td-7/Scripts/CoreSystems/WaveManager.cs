@@ -333,7 +333,7 @@ public class WaveManager : MonoBehaviour
                 GameObject newEnemy = Instantiate(BTD7.GameManager.instance.enemy,
                     BTD7.GameManager.instance.waveManager.gameObject.transform.position,
                     BTD7.GameManager.instance.waveManager.gameObject.transform.rotation);
-                newEnemy.GetComponent<Enemy>().Initialize(
+                newEnemy.GetComponentInChildren<Enemy>().Initialize(
                     enemyInfo.moveSpeed,
                     enemyInfo.dmg,
                     enemyInfo.health,

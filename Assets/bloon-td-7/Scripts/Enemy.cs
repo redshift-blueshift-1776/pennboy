@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] public GameObject body;
+    [SerializeField] public GameObject model;
+    [SerializeField] public GameObject parent;
 
     public float moveSpeed;
     public int waypointIndex = 0;
@@ -66,10 +68,12 @@ public class Enemy : MonoBehaviour
         body.GetComponent<Renderer>().material.color = originalColor;
 
         //height given random deviations to prevent ui glitching
-        transform.localScale = new Vector3(size, size + Random.Range(-1f,4f), size);
+        Vector3 scaleVector = new Vector3(size, size + Random.Range(-1f,4f), size);
+        transform.localScale = scaleVector;
+        model.transform.localScale = scaleVector;
         renderSizeY = size + Random.Range(-1f, 4f);
         waypoints = new List<Vector3>();
-        this.gameObject.layer = 2;
+        parent.layer = 2;
 
         Transform waypointListTransform = GameObject.Find("EnemyWaypoints").transform;
 
@@ -79,12 +83,12 @@ public class Enemy : MonoBehaviour
             waypoints.Add(child.position);
         }
 
-        transform.position = waypoints[0];
+        parent.transform.position = waypoints[0];
 
         rb = GetComponent<Rigidbody>();
 
         DistanceTravelled = Mathf.PI * (Random.Range(1, 100) / 100f);
-        targetPos = transform.position;
+        targetPos = parent.transform.position;
         canStart = true;
     }
 
@@ -137,8 +141,9 @@ public class Enemy : MonoBehaviour
         targetPos = Vector3.MoveTowards(targetPos, waypoints[waypointIndex + 1], moveSpeed * Time.fixedDeltaTime + randomMovement);
         float sinpos = Mathf.Abs(Mathf.Sin(timer * 5f));
         float sinsize = Mathf.Abs(Mathf.Sin(DistanceTravelled - (Mathf.PI / 5)));
-        transform.localScale = new Vector3(size, (renderSizeY * .8f) + (sinsize * renderSizeY * .2f), size);
-        transform.position = targetPos + new Vector3(0, (sinpos * 8f) + (renderSizeY/4), 0);
+        model.transform.localScale = new Vector3(size, (renderSizeY * .8f) + (sinsize * renderSizeY * .2f), size);
+        model.transform.localPosition = new Vector3(0, (sinpos * 8f) + (renderSizeY/4), 0);
+        parent.transform.position = targetPos;
     }
 
     /// <summary>
@@ -147,7 +152,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         BTD7.GameManager.instance.moneyManager.EarnMoney(moneyWorth);
-        Destroy(gameObject);
+        Destroy(parent);
     }
 
     public void Damage(int dmg)

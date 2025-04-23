@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17288378, g: 0.2160521, b: 0.29801264, a: 1}
+  m_IndirectSpecularColor: {r: 0.17288356, g: 0.2160517, b: 0.2980121, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4662,7 +4662,7 @@ MonoBehaviour:
   moneyManager: {fileID: 1459573115}
   waveManager: {fileID: 143490672}
   cardManager: {fileID: 1348480294}
-  enemy: {fileID: 7294189362684381154, guid: a4276a9052b49b643835578eab984f8e, type: 3}
+  enemy: {fileID: 2170255522252659619, guid: 5b942815d423e7a5e8babc4aa0af9c76, type: 3}
   projectile: {fileID: 256981420410339639, guid: 6b1314265e6922847856d7ac8eb041b2,
     type: 3}
   teleportSound: {fileID: 8300000, guid: 882c62336ef1140659ba9c5b1dbf4ab0, type: 3}
