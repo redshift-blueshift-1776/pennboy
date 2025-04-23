@@ -48,7 +48,6 @@ namespace BTD7
 
         void Update() {
             if (Input.GetKeyDown(KeyCode.H) && !inAnimation) {
-                print("H PRESSED");
                 CardPanelAnimator.SetTrigger("ChangePanelVisibility");
                 inAnimation = true;
             }
