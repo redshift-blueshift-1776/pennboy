@@ -142,7 +142,7 @@ public class Enemy : MonoBehaviour
         float sinpos = Mathf.Abs(Mathf.Sin(timer * 5f));
         float sinsize = Mathf.Abs(Mathf.Sin(DistanceTravelled - (Mathf.PI / 5)));
         model.transform.localScale = new Vector3(size, (renderSizeY * .8f) + (sinsize * renderSizeY * .2f), size);
-        model.transform.localPosition = new Vector3(0, (sinpos * 8f) + (renderSizeY/4), 0);
+        model.transform.localPosition = new Vector3(0, (sinpos * 5f) + (renderSizeY/4), 0);
         parent.transform.position = targetPos;
     }
 
