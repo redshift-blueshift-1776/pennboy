@@ -344,9 +344,6 @@ public class WaveManager : MonoBehaviour
                     enemyInfo.size + Random.Range(-0.3f, 0.3f),
                     enemyInfo.canTeleport
                     );
-                
-                Transform meshTransform = newEnemy.transform.Find("body");
-                meshTransform.GetComponent<Renderer>().material.color = enemyInfo.color;
 
                 enemies.Add(newEnemy);
                 enemySpawned++;

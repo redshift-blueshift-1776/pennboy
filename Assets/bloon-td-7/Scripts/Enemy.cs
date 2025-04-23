@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] public GameObject body;
+
     public float moveSpeed;
     public int waypointIndex = 0;
     protected List<Vector3> waypoints;
@@ -61,7 +63,7 @@ public class Enemy : MonoBehaviour
         this.size = size + Random.Range(-0.3f,0.3f);
         this.canTeleport = canTeleport;
 
-        this.GetComponent<Renderer>().material.color = originalColor;
+        body.GetComponent<Renderer>().material.color = originalColor;
 
         //height given random deviations to prevent ui glitching
         transform.localScale = new Vector3(size, size + Random.Range(-1f,4f), size);
@@ -117,7 +119,7 @@ public class Enemy : MonoBehaviour
         } else
         {
             isTeleporting = false;
-            GetComponent<Renderer>().material.color = originalColor;
+            body.GetComponent<Renderer>().material.color = originalColor;
             teleportColorChangeTimer = 0;
         }
 
@@ -126,7 +128,7 @@ public class Enemy : MonoBehaviour
             if (randomNum >= 970 && !isTeleporting)
             {
                 randomMovement = moveSpeed * Random.Range(0.5f,1.5f) + 2;
-                GetComponent<Renderer>().material.color = teleportColor;
+                body.GetComponent<Renderer>().material.color = teleportColor;
                 isTeleporting = true;
                 audioSource.clip = teleportSound;
                 audioSource?.Play();
