@@ -123,7 +123,7 @@ public class CardManager : MonoBehaviour
         }
     }
     // Breakup of deck by index, where (3,0) represents 3 cards of id 0
-    private static DeckPair[] deckBreakupByIndex =
+    private DeckPair[] deckBreakupByIndex =
     {
         new DeckPair (1, 0),
         new DeckPair (3, 1),
