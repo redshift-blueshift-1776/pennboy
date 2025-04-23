@@ -33,13 +33,11 @@ namespace BTD7
             instance = this;
         }
 
-        private void Start()
-{
-        if (winScreen != null)
-        {
-        winScreen.SetActive(false); // Hide it at game start
+        private void Start() {
+            if (winScreen != null) {
+                winScreen.SetActive(false); // Hide it at game start
+            }
         }
-}
 
         public void WinGame()
         {
