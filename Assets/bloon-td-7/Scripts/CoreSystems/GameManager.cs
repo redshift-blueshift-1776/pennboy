@@ -20,6 +20,8 @@ namespace BTD7
         public AudioClip explosionSound;
         public AudioClip laserShootSound;
         [SerializeField] public GameObject winScreen;
+        [SerializeField] private GameObject modeText;
+        [SerializeField] private GameObject cardPanel;
 
         public void ReloadScene()
         {
@@ -43,6 +45,8 @@ namespace BTD7
         {
         Time.timeScale = 0f; // optional: pause the game
         winScreen.SetActive(true);
+        cardPanel.SetActive(false);
+        modeText.SetActive(false);
         }
 
         public void RestartGame()
