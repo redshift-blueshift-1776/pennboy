@@ -53,12 +53,18 @@ public class ballScript : MonoBehaviour
             player2score++;
             soundManager.PlayEffect(0);
             UpdateScoreText();
+            GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+            GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+            SpawnBall();
         }
         if(other.gameObject.tag == "PennSoccerGoalR")
         {
             player1score++;
             soundManager.PlayEffect(0);
             UpdateScoreText();
+            GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+            GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+            SpawnBall();
         }
     }
 
