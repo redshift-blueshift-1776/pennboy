@@ -28,6 +28,8 @@ namespace BTD7
         [SerializeField] private Animator CardPanelAnimator;
 
         [NonSerialized] public bool isHidden = false;
+        [NonSerialized] public bool inAnimation = false;
+
 
         public void ReloadScene()
         {
@@ -46,9 +48,10 @@ namespace BTD7
         }
 
         void Update() {
-            if (Input.GetKeyDown(KeyCode.H)) {
+            if (Input.GetKeyDown(KeyCode.H) && !inAnimation) {
                 print("H PRESSED");
                 CardPanelAnimator.SetTrigger("ChangePanelVisibility");
+                inAnimation = true;
             }
         }
 
