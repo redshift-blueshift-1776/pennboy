@@ -27,7 +27,6 @@ namespace BTD7
         [SerializeField] private GameObject cardPanel;
         [SerializeField] private Animator CardPanelAnimator;
 
-        [NonSerialized] public bool isHidden = false;
         [NonSerialized] public bool inAnimation = false;
 
 
