@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
     {
         if (!canStart) return;
         DistanceTravelled += Time.deltaTime * Mathf.Sqrt(moveSpeed) * 1.5f;
-        if (CalcDistance(targetPos, waypoints[waypointIndex+1]) <= WAYPOINT_CHANGE_DISTANCE)
+        if (Vector3.Distance(targetPos, waypoints[waypointIndex+1]) <= WAYPOINT_CHANGE_DISTANCE)
         {
             targetPos = waypoints[waypointIndex + 1];
             waypointIndex++;
@@ -137,15 +137,6 @@ public class Enemy : MonoBehaviour
         float sinsize = Mathf.Abs(Mathf.Sin(DistanceTravelled - (Mathf.PI / 5)));
         transform.localScale = new Vector3(size, (renderSizeY * .8f) + (sinsize * renderSizeY * .2f), size);
         transform.position = targetPos + new Vector3(0, (sinpos * 8f) + (renderSizeY/4), 0);
-    }
-
-    private float CalcDistance(Vector3 pos1, Vector3 pos2)
-    {
-        float dx = pos2.x - pos1.x;
-        float dy = pos2.y - pos1.y;
-        float dz = pos2.z - pos1.z;
-
-        return Mathf.Sqrt((dx*dx)+(dy*dy)+(dz*dz));
     }
 
     /// <summary>
