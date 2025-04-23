@@ -5,8 +5,9 @@ using System;
 using System.Diagnostics.Tracing;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class CardManager : MonoBehaviour
+public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public PlacementSystem placementSystem;
 
@@ -19,6 +20,8 @@ public class CardManager : MonoBehaviour
     [SerializeField] private List<int> deck;
     [SerializeField] private Card[] CardTypes;
     [SerializeField] private GameObject[] towerObjects;
+
+    public bool MouseHovering {get; private set;} = false;
 
     private void Start()
     {
@@ -105,6 +108,16 @@ public class CardManager : MonoBehaviour
     public void UseCard(int cardNumber)
     {
         hand[cardNumber].isUsing = hand[cardNumber].Use();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        MouseHovering = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        MouseHovering = false;
     }
 
     private class DeckPair

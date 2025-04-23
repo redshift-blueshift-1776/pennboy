@@ -19,6 +19,7 @@ public class PlacementSystem : MonoBehaviour
     private List<Tower> towersToSacrifice;
     private int totalCost;
     [SerializeField] private TMP_Text modeText;
+    [SerializeField] private CardManager cardManager;
 
     private TowerIndicator towerIndicator;
 
@@ -79,6 +80,11 @@ public class PlacementSystem : MonoBehaviour
                 return;
             case PlacementMode.PlacingTower:
                 towerIndicator.gameObject.SetActive(true);
+
+                if (cardManager.MouseHovering) {
+                    towerIndicator.gameObject.SetActive(false);
+                    return;
+                }
 
                 // change range indicator size
                 towerIndicator.SetRangeIndicator(cardUsing.GetRange());

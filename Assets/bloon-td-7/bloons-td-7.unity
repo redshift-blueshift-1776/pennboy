@@ -726,6 +726,7 @@ MonoBehaviour:
   inputManager: {fileID: 1019288593}
   cardUsing: {fileID: 0}
   modeText: {fileID: 84802167}
+  cardManager: {fileID: 1348480294}
 --- !u!1 &84802165
 GameObject:
   m_ObjectHideFlags: 0
