@@ -15,10 +15,12 @@ public class TowerCard : Card
     private int cost;
     private string towerName;
 
+    private static readonly Vector3 raiseCard = new(0, 30*3, 0); 
+
     private void Start()
     {
         recttransform = GetComponent<RectTransform>();
-        origin = recttransform.position;
+        origin = recttransform.localPosition;
         Targetpos = origin;
     }
 
@@ -45,7 +47,7 @@ public class TowerCard : Card
             return false;
         }
 
-        Targetpos = origin + new Vector3(0, 30, 0);
+        Targetpos = origin + raiseCard;
         BTD7.GameManager.instance.cardManager.placementSystem.enableTowerPlacement(this);
         return true;
     }
@@ -71,10 +73,10 @@ public class TowerCard : Card
     {
 
         // moving schenanigains :)))))))))))
-        if ((recttransform.position - Targetpos).magnitude > .1 && !BTD7.GameManager.instance.isHidden)
+        if ((recttransform.localPosition - Targetpos).magnitude > .1)
         {
-            Vector3 moveamt = Vector3.Lerp(recttransform.position, Targetpos, 10f * Time.deltaTime);
-            recttransform.position = moveamt;
+            Vector3 moveamt = Vector3.Lerp(recttransform.localPosition, Targetpos, 10f * Time.deltaTime);
+            recttransform.localPosition = moveamt;
         }
 
         // veer's actual card stuff
