@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using BTD7;
 using TMPro;
 using UnityEngine;
 
@@ -70,7 +71,7 @@ public class TowerCard : Card
     {
 
         // moving schenanigains :)))))))))))
-        if ((recttransform.position - Targetpos).magnitude > .1)
+        if ((recttransform.position - Targetpos).magnitude > .1 && !BTD7.GameManager.instance.isHidden)
         {
             Vector3 moveamt = Vector3.Lerp(recttransform.position, Targetpos, 10f * Time.deltaTime);
             recttransform.position = moveamt;

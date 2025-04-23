@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,6 +25,9 @@ namespace BTD7
         [SerializeField] public GameObject winScreen;
         [SerializeField] private GameObject modeText;
         [SerializeField] private GameObject cardPanel;
+        [SerializeField] private Animator CardPanelAnimator;
+
+        [NonSerialized] public bool isHidden = false;
 
         public void ReloadScene()
         {
@@ -36,6 +42,13 @@ namespace BTD7
         private void Start() {
             if (winScreen != null) {
                 winScreen.SetActive(false); // Hide it at game start
+            }
+        }
+
+        void Update() {
+            if (Input.GetKeyDown(KeyCode.H)) {
+                print("H PRESSED");
+                CardPanelAnimator.SetTrigger("ChangePanelVisibility");
             }
         }
 
