@@ -4669,6 +4669,8 @@ MonoBehaviour:
   explosionSound: {fileID: 8300000, guid: ace391db6ba2745e486e6edc10d40d6c, type: 3}
   laserShootSound: {fileID: 8300000, guid: 2272df29926824d63aa7b14290762124, type: 3}
   winScreen: {fileID: 226098334}
+  modeText: {fileID: 84802165}
+  cardPanel: {fileID: 1348480290}
 --- !u!4 &1459573118
 Transform:
   m_ObjectHideFlags: 0
