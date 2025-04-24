@@ -141,12 +141,7 @@ public class HomePageManager : MonoBehaviour
         roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
         roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "Packaging & Publishing Team";
         roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text =
-            "Faye Zhang\nRobby DeMartino\nCharles Wang\nForest Ho-Chen\n";
-
-        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
-        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "Special Thanks";
-        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text =
-            "Tina Ni";
+            "Faye Zhang\nRobby DeMartino\nCharles Wang\nForest Ho-Chen\nTina Ni\nRaymond Feng";
 
         roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
         roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "<b>Thanks for playing! <3</b>";
