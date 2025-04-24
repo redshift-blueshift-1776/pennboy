@@ -81,12 +81,7 @@ public class TowerCard : Card
 
         // veer's actual card stuff
         base.Update();
-        if (isUsing)
-        {
-            text.text = towerName + "\n Tower \n\n" + "$" + cost + " USING";
-        }
-        else
-            text.text = towerName + "\n Tower \n\n" + "$" + cost + "";
+        text.text = towerName + "\n Tower \n\n" + "$" + cost;
     }
 
     public int GetCost()
