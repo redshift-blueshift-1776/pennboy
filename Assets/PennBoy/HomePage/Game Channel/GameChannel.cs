@@ -67,7 +67,7 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         tb.GetComponent<Image>().material = null;
 
         tbCopy = tb.AddComponent<CanvasGroup>();
-        tbCopy.alpha = 0f;
+        tbCopy.alpha = 1f;
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
@@ -96,7 +96,7 @@ public class GameChannel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         var initScale = outline.localScale;
         var finalScale = anim == ScaleAnim.Expand ? Vector3.one * SCALE_FINAL : Vector3.one * SCALE_INIT;
 
-        StartCoroutine(anim == ScaleAnim.Expand ? Anim.FadeIn(0.12f, tbCopy) : Anim.FadeOut(0.12f, tbCopy));
+        //StartCoroutine(anim == ScaleAnim.Expand ? Anim.FadeIn(0.12f, tbCopy) : Anim.FadeOut(0.12f, tbCopy));
 
         yield return Anim.Animate(duration, t => {
             outline.localScale = Vector3.Lerp(initScale, finalScale, Easing.EaseOutExpo(t));

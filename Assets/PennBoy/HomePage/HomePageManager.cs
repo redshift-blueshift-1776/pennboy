@@ -114,6 +114,7 @@ public class HomePageManager : MonoBehaviour
     private void Start() {
         overlayCoroutine = StartCoroutine(Anim.Animate(1f, t => {
             overlay.alpha = 1 - t;
+            //overlay.alpha = 1;
         }));
 
         foreach (Transform trans in gamesList.transform) {
@@ -132,6 +133,10 @@ public class HomePageManager : MonoBehaviour
         var roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
         roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "PennBoy UI";
         roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text = "Charles Wang";
+
+        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "PennBoy Mac Fix";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text = "Forest Ho-Chen";
 
         roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
         roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "UPGRADE Board 2024-2025";
@@ -176,6 +181,7 @@ public class HomePageManager : MonoBehaviour
         var enter = isDate ? dateCG : timeCG;
 
         yield return Anim.Animate(0.12f, t => {
+            //exit.alpha = 1 - t;
             exit.alpha = 1 - t;
         });
         yield return Anim.Animate(0.12f, t => {
