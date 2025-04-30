@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731725, g: 0.13414747, b: 0.121078715, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731722, g: 0.13414752, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2436,7 +2436,7 @@ PrefabInstance:
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
@@ -2481,7 +2481,7 @@ PrefabInstance:
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
@@ -3739,7 +3739,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 859.5
+  m_fontSize: 900
   m_fontSizeBase: 1200
   m_fontWeight: 400
   m_enableAutoSizing: 1
