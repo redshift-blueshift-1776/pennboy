@@ -45,10 +45,11 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(50f,100,25,20, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
         new EnemyInfo(100f,1000,100,35,new Color32(255,0,0,255),20), //13 dragon
         new EnemyInfo(40f,10,1,5, new Color32(0,0,0,255),4, false, true), //14 the flash
-        new EnemyInfo(5f, 1000, 5000, 1000, new Color32(255,255,255,255), 30), //15 god
+        new EnemyInfo(5f, 1000, 5000, 500, new Color32(255,255,255,255), 30), //15 god
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
-        new EnemyInfo(3f,1000,10000,10000,new Color(61, 110, 173),30) //16 - boss enemy
+        new EnemyInfo(3f,1000,50000,10000,new Color(0, 0, 0),60), //16 - boss enemy
+        new EnemyInfo(100f,1000,300,35,new Color32(255,128,0,255),25) //17 super dragon
     };
     /// <summary>
     /// WaveInfo(       all are in one string
@@ -196,14 +197,14 @@ public class WaveManager : MonoBehaviour
             ),
         //wave 18 break
         new WaveInfo(
-            "2,14",
+            "5,14",
             "50,10",
             "1,2",
             "0,10"
             ),
         //wave 19 packed stuff
         new WaveInfo(
-            "2,9,2",
+            "2,9,7",
             "100,3,500",
             "0.05,2,0.01",
             "0,1,10"
@@ -219,7 +220,7 @@ public class WaveManager : MonoBehaviour
             ),
         //wave 21 Round 63 but not
         new WaveInfo(
-            "3,7,7,7",
+            "3,13,13,13",
             "75,40,40,40",
             "0.6,0.01,0.01,0.01",
             "0,3.9,20,36"
@@ -228,21 +229,21 @@ public class WaveManager : MonoBehaviour
         new WaveInfo(
             "15",
             "2",
-            "10",
+            "15",
             "0"
             ),
         //wave 23 - EVEN MORE EVERYTHING
         new WaveInfo(
-            "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15",
+            "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17",
             //"100,100,10,10,100,50,25,25,100,50,25,25,10,5,1",
-            "100,150,40,10,100,50,25,25,100,50,25,25,5,5,3,1",
+            "100,150,40,10,100,50,25,25,100,50,25,25,5,5,3,1,3",
             //"0.3,0.4,2,2,0.6,1,2,2,0.8,0.6,2,2,4,15,1",
-            "0.3,0.3,0.5,2,0.6,1,2,2,0.8,0.6,2,2,5,10,1,1",
-            "0,0,2,2,0,2,2,4,0,3,6,6,7,15,30,10"
+            "0.3,0.3,0.5,2,0.6,1,2,2,0.8,0.6,2,2,5,10,1,1,3",
+            "2,0,0,2,0,2,2,4,0,3,6,6,7,15,30,10,20"
             ),
         //wave 24 Round 63 but not v2
         new WaveInfo(
-            "10,13,13,13",
+            "10,12,12,12",
             "75,40,40,40",
             "0.6,0.01,0.01,0.01",
             "0,3.9,20,36"
@@ -254,13 +255,13 @@ public class WaveManager : MonoBehaviour
             "1",
             "0"
             ),
-        //wave 26 break
-        new WaveInfo(
-            "2,14",
-            "50,10",
-            "1,2",
-            "0,10"
-            )
+        // //wave 26 break
+        // new WaveInfo(
+        //     "2,14",
+        //     "50,10",
+        //     "1,2",
+        //     "0,10"
+        //     )
     };
      
     void Update()
