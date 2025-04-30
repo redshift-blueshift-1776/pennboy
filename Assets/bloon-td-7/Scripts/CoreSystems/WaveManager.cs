@@ -45,10 +45,10 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(50f,100,25,20, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
         new EnemyInfo(100f,1000,100,35,new Color32(255,0,0,255),20), //13 dragon
         new EnemyInfo(40f,10,1,5, new Color32(0,0,0,255),4, false, true), //14 the flash
-        new EnemyInfo(5f, 1000, 5000, 1000, new Color32(255,255,255,255), 30), //15 god
+        new EnemyInfo(5f, 1000, 5000, 10000, new Color32(255,255,255,255), 30) //15 god
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
-        new EnemyInfo(3f,1000,10000,10000,new Color(61, 110, 173),30) //16 - boss enemy
+        //new EnemyInfo(3,100,1000,1000,new Color(61, 110, 173),30), //5 - boss enemy
     };
     /// <summary>
     /// WaveInfo(       all are in one string
@@ -194,72 +194,12 @@ public class WaveManager : MonoBehaviour
             "1",
             "0"
             ),
-        //wave 18 break
+        //wave 18
         new WaveInfo(
-            "2,14",
-            "50,10",
-            "1,2",
-            "0,10"
-            ),
-        //wave 19 packed stuff
-        new WaveInfo(
-            "2,9,2",
-            "100,3,500",
-            "0.05,2,0.01",
-            "0,1,10"
-            ),
-        //wave 20 - MORE EVERYTHING
-        new WaveInfo(
-            "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15",
-            //"100,100,10,10,100,50,25,25,100,50,25,25,10,5,1",
-            "100,150,40,10,100,50,25,25,100,50,25,25,5,3,1,1",
-            //"0.3,0.4,2,2,0.6,1,2,2,0.8,0.6,2,2,4,15,1",
-            "0.3,0.3,0.5,2,0.6,1,2,2,0.8,0.6,2,2,5,20,1,1",
-            "0,0,2,2,0,2,2,4,0,3,6,6,7,15,30,10"
-            ),
-        //wave 21 Round 63 but not
-        new WaveInfo(
-            "3,7,7,7",
-            "75,40,40,40",
-            "0.6,0.01,0.01,0.01",
-            "0,3.9,20,36"
-            ),
-        //wave 22 Two Gods
-        new WaveInfo(
-            "15",
-            "2",
+            "14",
             "10",
+            "2",
             "0"
-            ),
-        //wave 23 - EVEN MORE EVERYTHING
-        new WaveInfo(
-            "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15",
-            //"100,100,10,10,100,50,25,25,100,50,25,25,10,5,1",
-            "100,150,40,10,100,50,25,25,100,50,25,25,5,5,3,1",
-            //"0.3,0.4,2,2,0.6,1,2,2,0.8,0.6,2,2,4,15,1",
-            "0.3,0.3,0.5,2,0.6,1,2,2,0.8,0.6,2,2,5,10,1,1",
-            "0,0,2,2,0,2,2,4,0,3,6,6,7,15,30,10"
-            ),
-        //wave 24 Round 63 but not v2
-        new WaveInfo(
-            "10,13,13,13",
-            "75,40,40,40",
-            "0.6,0.01,0.01,0.01",
-            "0,3.9,20,36"
-            ),
-        //wave 25 Boss
-        new WaveInfo(
-            "16",
-            "1",
-            "1",
-            "0"
-            ),
-        //wave 26 break
-        new WaveInfo(
-            "2,14",
-            "50,10",
-            "1,2",
-            "0,10"
             )
     };
      
@@ -298,7 +238,7 @@ public class WaveManager : MonoBehaviour
                     waveOccurring = false;
                     waveIndex++;
                     spawnersCreated = 0;
-                    if (waveIndex >= waves.Count())
+                    if (waveIndex == 18)
                     {
                         BTD7.GameManager.instance.WinGame();
                     }
