@@ -41,6 +41,9 @@ public class Enemy : MonoBehaviour
 
     float timer;
 
+    [SerializeField] float dx;
+    [SerializeField] float dz;
+
     private void Start()
     {
         //Initialize(15f, 1, 3, 0, 1, false, 5);
@@ -144,6 +147,39 @@ public class Enemy : MonoBehaviour
         model.transform.localScale = new Vector3(size, (renderSizeY * .8f) + (sinsize * renderSizeY * .2f), size);
         model.transform.localPosition = new Vector3(0, (sinpos * 5f) + (renderSizeY/4), 0);
         parent.transform.position = targetPos;
+
+        // Handle rotation
+        dx = waypoints[waypointIndex + 1].x - targetPos.x;
+        dz = waypoints[waypointIndex + 1].z - targetPos.z;
+        if (dx > 0) {
+            if (dz > 0) {
+                if (dx > dz) {
+                    model.transform.localEulerAngles = new Vector3(0,0,0);
+                } else {
+                    model.transform.localEulerAngles = new Vector3(0,90,0);
+                }
+            } else {
+                if (dx > -1 * dz) {
+                    model.transform.localEulerAngles = new Vector3(0,0,0);
+                } else {
+                    model.transform.localEulerAngles = new Vector3(0,-90,0);
+                }
+            }
+        } else {
+            if (dz > 0) {
+                if (-1 * dx > dz) {
+                    model.transform.localEulerAngles = new Vector3(0,180,0);
+                } else {
+                    model.transform.localEulerAngles = new Vector3(0,-90,0);
+                }
+            } else {
+                if (-1 * dx > -1 * dz) {
+                    model.transform.localEulerAngles = new Vector3(0,180,0);
+                } else {
+                    model.transform.localEulerAngles = new Vector3(0,90,0);
+                }
+            }
+        }
     }
 
     /// <summary>

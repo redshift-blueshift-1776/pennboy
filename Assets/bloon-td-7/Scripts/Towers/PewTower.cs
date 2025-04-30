@@ -74,10 +74,13 @@ public class PewTower : Tower
                 return;
             case 4:
                 cooldown *= 0.5f;
-                damage += 7;
+                //damage += 7;
+                damage += 3;
                 projectilePierce += 5;
                 timeBetweenShots = 0.1f;
                 projectileSpeed = 500f;
+                numExtraShotsInBurst++;
+                numShots = numExtraShotsInBurst;
                 return;
             default:
                 cooldown *= 0.25f;

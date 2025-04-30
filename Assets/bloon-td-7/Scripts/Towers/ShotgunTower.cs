@@ -46,16 +46,21 @@ public class ShotgunTower : Tower
                 attackSpread = 17f;
                 return;
             case 2:
-                projectilePierce = 4;
-                damage = 3;
+                numExtraBullets = 2;
+                attackSpread = 17f;
+                //projectilePierce = 4;
+                //damage = 3;
                 cooldown = 1;
                 return;
             case 3:
                 numExtraBullets = 3;
                 attackSpread = 9f;
+                cooldown = 1;
                 return;
             case 4:
-                projectilePierce = 10;
+                //projectilePierce = 10;
+                numExtraBullets = 3;
+                attackSpread = 9f;
                 cooldown = 0.8f;
                 damage = 7;
                 return;
