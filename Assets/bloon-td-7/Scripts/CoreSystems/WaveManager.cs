@@ -53,8 +53,8 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(5f, 1000, 5000, 500, new Color32(255,255,255,255), 30), //15 god
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
-        new EnemyInfo(3f,1000,50000,10000,new Color(0, 0, 0),60), //16 - boss enemy
-        new EnemyInfo(100f,1000,300,30,new Color32(255,128,0,255),25) //17 super dragon
+        new EnemyInfo(3f,1000,30000,10000,new Color(0, 0, 0),60), //16 - boss enemy
+        new EnemyInfo(100f,1000,200,30,new Color32(255,128,0,255),25) //17 super dragon
     };
     /// <summary>
     /// WaveInfo(       all are in one string
@@ -210,7 +210,7 @@ public class WaveManager : MonoBehaviour
         //wave 19 packed stuff
         new WaveInfo(
             "2,9,7",
-            "100,3,200",
+            "200,3,200",
             "0.05,2,0.01",
             "0,1,10"
             ),
@@ -226,7 +226,7 @@ public class WaveManager : MonoBehaviour
         //wave 21 Round 63 but not
         new WaveInfo(
             "3,13,13,13",
-            "75,40,40,40",
+            "75,40,40,42",
             "0.6,0.01,0.01,0.01",
             "0,3.9,20,36"
             ),
@@ -237,7 +237,14 @@ public class WaveManager : MonoBehaviour
             "15",
             "0"
             ),
-        //wave 23 - EVEN MORE EVERYTHING
+        //wave 23 break 2
+        new WaveInfo(
+            "2,10,11",
+            "50,10,10",
+            "1,2,2",
+            "0,10,9"
+            ),
+        //wave 24 - EVEN MORE EVERYTHING
         new WaveInfo(
             "10,11,2,3,4,5,6,7,8,9,0,1,12,13,14,15,17",
             //"100,100,10,10,100,50,25,25,100,50,25,25,10,5,1",
@@ -246,14 +253,14 @@ public class WaveManager : MonoBehaviour
             "0.3,0.3,0.5,2,0.6,1,2,2,0.8,0.6,2,2,5,10,1,1,3",
             "2,0,0,2,0,2,2,4,0,3,6,6,7,15,30,10,20"
             ),
-        //wave 24 Round 63 but not v2
+        //wave 25 Round 63 but not v2
         new WaveInfo(
             "12,17,17,17",
-            "75,40,40,40",
+            "75,40,40,42",
             "0.6,0.01,0.01,0.01",
             "0,3.9,20,36"
             ),
-        //wave 25 Boss
+        //wave 26 Boss
         new WaveInfo(
             "16",
             "1",

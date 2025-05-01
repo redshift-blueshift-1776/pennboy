@@ -88,17 +88,17 @@ public class PewTower : Tower
                 // numExtraShotsInBurst++;
                 // numShots = numExtraShotsInBurst;
                 projectilePierce = 10;
-                damage = 2;
-                numExtraShotsInBurst = 3;
+                damage = 3;
+                numExtraShotsInBurst = 5;
                 numShots = numExtraShotsInBurst;
-                timeBetweenShots = 0.1f;
+                timeBetweenShots = 0.08f;
                 projectileSpeed = 450f;
-                cooldown = 0.75f;
+                cooldown = 0.5f;
                 return;
             default:
                 projectilePierce = 10;
                 damage = 2;
-                numExtraShotsInBurst = 3;
+                numExtraShotsInBurst = 5;
                 numShots = numExtraShotsInBurst;
                 projectileSpeed = 500f;
                 cooldown = 0.8f;
