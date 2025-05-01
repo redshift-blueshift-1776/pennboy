@@ -299,7 +299,7 @@ public class WaveManager : MonoBehaviour
                     waveOccurring = false;
                     waveIndex++;
                     spawnersCreated = 0;
-                    if (waveIndex >= waves.Count())
+                    if (waveIndex == waves.Count())
                     {
                         BTD7.GameManager.instance.WinGame();
                     }

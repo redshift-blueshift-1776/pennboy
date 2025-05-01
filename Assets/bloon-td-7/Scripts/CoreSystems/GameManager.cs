@@ -61,6 +61,13 @@ namespace BTD7
         modeText.SetActive(false);
         }
 
+        public void FreeplayMode() {
+            Time.timeScale = 1f; // optional: pause the game
+            winScreen.SetActive(false);
+            cardPanel.SetActive(true);
+            modeText.SetActive(true);
+        }
+
         public void RestartGame()
         {
         Time.timeScale = 1f;
