@@ -29,6 +29,8 @@ namespace BTD7
 
         [NonSerialized] public bool inAnimation = false;
 
+        private SoundManager soundManager;
+
 
         public void ReloadScene()
         {
@@ -38,6 +40,7 @@ namespace BTD7
         private void Awake()
         {
             instance = this;
+            soundManager = GetComponent<SoundManager>();
         }
 
         private void Start() {
@@ -66,6 +69,9 @@ namespace BTD7
             winScreen.SetActive(false);
             cardPanel.SetActive(true);
             modeText.SetActive(true);
+            waveManager.freeplay = true;
+            waveManager.waveIndex = 26;
+            soundManager.PlayMusic(1);
         }
 
         public void RestartGame()

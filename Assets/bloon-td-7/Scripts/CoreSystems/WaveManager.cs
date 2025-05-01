@@ -8,11 +8,15 @@ public class WaveManager : MonoBehaviour
 {
     private float waveCooldown;
     [SerializeField] private float globalTimer;
-    private bool waveOccurring = false;
-    [SerializeField] private int waveIndex;
+    [SerializeField] private bool waveOccurring = false;
+    [SerializeField] public int waveIndex;
     private List<Spawner> spawners;
     private int spawnersCreated;
     [SerializeField] private TextMeshProUGUI roundText;
+    public bool freeplay = false;
+
+    public int freeplayRound = 0;         // Counts how many freeplay rounds have passed
+    public float freeplayMultiplier = 1f; // Multiplier for HP and speed
 
     // Start is called before the first frame update
     private void Start()
@@ -23,6 +27,7 @@ public class WaveManager : MonoBehaviour
         waveIndex = 0;
         spawnersCreated = 0;
         spawners = new List<Spawner>();
+        freeplay = false;
     }
     // Update is called once per frame
     /// <summary>
@@ -32,7 +37,7 @@ public class WaveManager : MonoBehaviour
     {
         new EnemyInfo(10f,1,1,1, new Color32(0,255,0,255)),               //0 - slime
         new EnemyInfo(25f,1,1,2, new Color32(125,209,123, 255)),        //1 - goblin
-        new EnemyInfo(8f,4,5,5, new Color32(21, 92, 20, 255),8),         //2 - orcs
+        new EnemyInfo(8f,4,5,2, new Color32(21, 92, 20, 255),8),         //2 - orcs
         new EnemyInfo(6f,10,15,5,new Color32(70, 89, 70, 255),12),        //3 - ogres
         new EnemyInfo(20f,1,1,1,new Color32(255,255,255,255)),       //4 skeleton
         new EnemyInfo(10f,10,5,1, new Color32(64, 255, 150,255)),   //5 elf
@@ -43,13 +48,13 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(35f,40,12,10, new Color32(139, 155, 199,255)), //10 light wizard
         new EnemyInfo(35f,40,12,10, new Color32(0, 0, 46,255)), //11 dark wizard
         new EnemyInfo(50f,100,25,20, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
-        new EnemyInfo(100f,1000,100,35,new Color32(255,0,0,255),20), //13 dragon
+        new EnemyInfo(100f,1000,100,25,new Color32(255,0,0,255),20), //13 dragon
         new EnemyInfo(40f,10,1,5, new Color32(0,0,0,255),4, false, true), //14 the flash
         new EnemyInfo(5f, 1000, 5000, 500, new Color32(255,255,255,255), 30), //15 god
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
         new EnemyInfo(3f,1000,50000,10000,new Color(0, 0, 0),60), //16 - boss enemy
-        new EnemyInfo(100f,1000,300,35,new Color32(255,128,0,255),25) //17 super dragon
+        new EnemyInfo(100f,1000,300,30,new Color32(255,128,0,255),25) //17 super dragon
     };
     /// <summary>
     /// WaveInfo(       all are in one string
@@ -198,14 +203,14 @@ public class WaveManager : MonoBehaviour
         //wave 18 break
         new WaveInfo(
             "5,14",
-            "50,10",
+            "20,10",
             "1,2",
             "0,10"
             ),
         //wave 19 packed stuff
         new WaveInfo(
             "2,9,7",
-            "100,3,500",
+            "100,3,200",
             "0.05,2,0.01",
             "0,1,10"
             ),
@@ -267,7 +272,43 @@ public class WaveManager : MonoBehaviour
     void Update()
     {
         //stop waves after final wave
-        if(waveIndex >= waves.Count()) { return; }
+        if (waveIndex >= 26)
+        {
+            if (freeplay)
+            {
+                //spawn wave
+                if (!waveOccurring)
+                {   
+                    Debug.Log(waveIndex);
+                    StartFreeplayWave();
+                    WaveInfo currWave = waves[waveIndex];
+                    for (int i = 0; i < waves[waveIndex].enemyIdList.Count(); i++)
+                    {
+                        new Spawner(currWave.enemyIdList[i], currWave.enemyCount[i], currWave.spacing[i], currWave.time[i]);
+                    }
+                    //Instantiate(waveList.transform.GetChild(waveIndex).gameObject, transform.position, transform.rotation);
+                    waveOccurring = true;
+                    globalTimer = 0;
+                } else
+                { //update wave while wave is occurring
+                    for (int i = 0; i < spawners.Count; i++)
+                    {
+                        spawners[i].Update();
+                    }
+                    if (spawners.Count == 0 && spawnersCreated == waves[waveIndex].enemyIdList.Count())
+                    {
+                        waveOccurring = false;
+                        waveIndex++;
+                        spawnersCreated = 0;
+                    }
+                }
+            }
+            else
+            {
+                BTD7.GameManager.instance.WinGame();
+            }
+        }
+        //if(waveIndex >= waves.Count()) { return; }
         roundText.text = "Round:\n" + (waveIndex+1).ToString();
         //inbetween waves, wait until timer reached
         if (globalTimer < waveCooldown && !waveOccurring)
@@ -279,7 +320,7 @@ public class WaveManager : MonoBehaviour
             //spawn wave
             if (!waveOccurring)
             {   
-                //Debug.Log(waveIndex);
+                Debug.Log(waveIndex);
                 WaveInfo currWave = waves[waveIndex];
                 for (int i = 0; i < waves[waveIndex].enemyIdList.Count(); i++)
                 {
@@ -299,14 +340,52 @@ public class WaveManager : MonoBehaviour
                     waveOccurring = false;
                     waveIndex++;
                     spawnersCreated = 0;
-                    if (waveIndex == waves.Count())
-                    {
-                        BTD7.GameManager.instance.WinGame();
-                    }
                 }
             }
         }
 
+    }
+
+    void StartFreeplayWave()
+    {
+        Debug.Log("Started freeplay wave.");
+        waveOccurring = true;
+        globalTimer = 0;
+
+        freeplayRound++;
+        freeplayMultiplier *= 1.10f;
+
+        // You can tweak this function to control difficulty scaling
+        int numEnemyTypes = Random.Range(2, 5); // Use 2 to 4 types each round
+        List<int> enemyIds = new List<int>();
+        List<int> enemyCounts = new List<int>();
+        List<float> spacings = new List<float>();
+        List<float> times = new List<float>();
+
+        for (int i = 0; i < numEnemyTypes; i++)
+        {
+            int id = Random.Range(10, 18); // inclusive range 9-17
+            if (freeplayRound < 5) {
+                id--;
+            }
+            int count = Mathf.RoundToInt(1 + freeplayRound * 0.5f * Random.Range(0.8f, 1.2f));
+            float spacing = Random.Range(0.1f, 0.3f);
+            float time = i * 6f; // spawn clusters spaced out in time
+
+            enemyIds.Add(id);
+            enemyCounts.Add(count);
+            spacings.Add(spacing);
+            times.Add(time);
+        }
+
+        WaveInfo freeplayWave = new WaveInfo(
+            string.Join(",", enemyIds),
+            string.Join(",", enemyCounts),
+            string.Join(",", spacings),
+            string.Join(",", times)
+        );
+
+        waves = waves.Append(freeplayWave).ToArray(); // Add to wave list
     }
 
     public class EnemyInfo
@@ -395,9 +474,9 @@ public class WaveManager : MonoBehaviour
                     BTD7.GameManager.instance.waveManager.gameObject.transform.position,
                     BTD7.GameManager.instance.waveManager.gameObject.transform.rotation);
                 newEnemy.GetComponentInChildren<Enemy>().Initialize(
-                    enemyInfo.moveSpeed,
+                    enemyInfo.moveSpeed * BTD7.GameManager.instance.waveManager.freeplayMultiplier,
                     enemyInfo.dmg,
-                    enemyInfo.health,
+                    (int) Mathf.Ceil(enemyInfo.health * BTD7.GameManager.instance.waveManager.freeplayMultiplier),
                     enemyId,
                     enemyInfo.moneyWorth,
                     enemyInfo.color,

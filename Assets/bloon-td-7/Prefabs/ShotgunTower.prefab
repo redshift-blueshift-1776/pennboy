@@ -337,7 +337,7 @@ MonoBehaviour:
   damage: 1
   range: 7.5
   cost: 150
-  UpgradeCosts: 64000000c80000002c01000090010000
+  UpgradeCosts: 64000000c80000002c010000f4010000
   sacrificeIcon: {fileID: 7732110355202022399}
 --- !u!1001 &371425516678773251
 PrefabInstance:

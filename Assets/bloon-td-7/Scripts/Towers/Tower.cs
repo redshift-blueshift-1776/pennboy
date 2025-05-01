@@ -10,7 +10,7 @@ public class Tower : MonoBehaviour
     [SerializeField] protected int cost = 100;
     protected List<GameObject> enemiesInRange = new List<GameObject>();
     protected float remainingCooldown;
-    [SerializeField] protected int[] UpgradeCosts = { 100,200,300,400 };
+    [SerializeField] protected int[] UpgradeCosts = { 100,200,300,500 };
     protected int level = 0;
     protected bool selectedToSacrifice = false;
     [SerializeField] private GameObject sacrificeIcon;

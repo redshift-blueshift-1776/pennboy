@@ -337,7 +337,7 @@ MonoBehaviour:
   damage: 1
   range: 7.5
   cost: 75
-  UpgradeCosts: 64000000c80000002c01000090010000
+  UpgradeCosts: 64000000c80000002c010000f4010000
   sacrificeIcon: {fileID: 7891207619421272568}
   projectileSpeed: 240
 --- !u!1001 &3098808854646783698

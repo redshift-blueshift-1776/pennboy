@@ -52,41 +52,56 @@ public class PewTower : Tower
             case 0:
                 return;
             case 1:
-                projectilePierce++;
-                damage++;
+                projectilePierce = 2;
+                //damage++;
                 projectileSpeed = 300f;
                 return;
             case 2:
-                projectilePierce += 2;
-                cooldown *= 0.75f;
-                timeBetweenShots = 0.2f;
-                numExtraShotsInBurst++;
-                numShots = numExtraShotsInBurst;
+                // projectilePierce += 2;
+                // cooldown *= 0.75f;
+                // timeBetweenShots = 0.2f;
+                // numExtraShotsInBurst++;
+                // numShots = numExtraShotsInBurst;
+                projectilePierce = 2;
+                damage = 2;
                 projectileSpeed = 400f;
                 return;
             case 3:
-                damage += 3;
-                cooldown *= 0.75f;
-                timeBetweenShots = 0.15f;
-                numExtraShotsInBurst++;
+                // damage += 3;
+                // cooldown *= 0.75f;
+                // timeBetweenShots = 0.15f;
+                // numExtraShotsInBurst++;
+                // numShots = numExtraShotsInBurst;
+                projectilePierce = 2;
+                damage = 2;
+                numExtraShotsInBurst = 3;
                 numShots = numExtraShotsInBurst;
-                projectileSpeed = 375f;
+                projectileSpeed = 420f;
                 return;
             case 4:
-                cooldown *= 0.5f;
-                //damage += 7;
-                damage += 3;
-                projectilePierce += 5;
-                timeBetweenShots = 0.1f;
-                projectileSpeed = 500f;
-                numExtraShotsInBurst++;
+                // cooldown *= 0.5f;
+                // //damage += 7;
+                // damage += 3;
+                // projectilePierce += 5;
+                // timeBetweenShots = 0.1f;
+                // projectileSpeed = 500f;
+                // numExtraShotsInBurst++;
+                // numShots = numExtraShotsInBurst;
+                projectilePierce = 10;
+                damage = 2;
+                numExtraShotsInBurst = 3;
                 numShots = numExtraShotsInBurst;
+                timeBetweenShots = 0.1f;
+                projectileSpeed = 450f;
+                cooldown = 0.75f;
                 return;
             default:
-                cooldown *= 0.25f;
-                timeBetweenShots = 0.05f;
-                damage += 1;
-                projectilePierce += 10;
+                projectilePierce = 10;
+                damage = 2;
+                numExtraShotsInBurst = 3;
+                numShots = numExtraShotsInBurst;
+                projectileSpeed = 500f;
+                cooldown = 0.8f;
                 return;
         }
     }
