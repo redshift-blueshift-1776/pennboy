@@ -70,7 +70,7 @@ namespace BTD7
             cardPanel.SetActive(true);
             modeText.SetActive(true);
             waveManager.freeplay = true;
-            waveManager.waveIndex = 26;
+            waveManager.waveIndex = 27;
             soundManager.PlayMusic(1);
         }
 

@@ -48,16 +48,16 @@ public class TowerMain : Tower
             case 4:
                 // cooldown *= 0.5f;
                 // damage += 7;
-                projectilePierce += 2;
-                damage += 2;
-                cooldown *= 0.5f;
+                projectilePierce += 20;
+                damage = 10;
+                cooldown = 5;
                 //projectilePierce += 5;
                 projectileSpeed = 500f;
                 return;
             default:
                 cooldown *= 0.25f;
-                damage += 1;
-                projectilePierce += 10;
+                damage += 7;
+                projectilePierce += 3;
                 return;
         }
     }

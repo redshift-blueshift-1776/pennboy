@@ -28,7 +28,8 @@ public class Projectile : MonoBehaviour
     IEnumerator HitFX()
     {
         GameObject newhitfx = Instantiate(hitfx, rb.position, rb.rotation);
-        newhitfx.GetComponent<ParticleSystem>().Emit(10);
+        //newhitfx.GetComponent<ParticleSystem>().Emit(10);
+        newhitfx.GetComponent<ParticleSystem>().Emit(5);
         yield return new WaitForSeconds(1);
         Destroy(newhitfx);
     }

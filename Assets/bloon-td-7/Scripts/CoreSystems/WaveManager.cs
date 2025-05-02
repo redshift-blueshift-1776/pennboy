@@ -53,8 +53,8 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(5f, 1000, 5000, 500, new Color32(255,255,255,255), 30), //15 god
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
-        new EnemyInfo(3f,1000,30000,10000,new Color(0, 0, 0),60), //16 - boss enemy
-        new EnemyInfo(100f,1000,200,30,new Color32(255,128,0,255),25) //17 super dragon
+        new EnemyInfo(80f,1000,180,30,new Color32(255,128,0,255),25), //16 super dragon
+        new EnemyInfo(3f,1000,30000,10000,new Color(0, 0, 0),60) //17 - boss enemy
     };
     /// <summary>
     /// WaveInfo(       all are in one string
@@ -246,7 +246,7 @@ public class WaveManager : MonoBehaviour
             ),
         //wave 24 - EVEN MORE EVERYTHING
         new WaveInfo(
-            "10,11,2,3,4,5,6,7,8,9,0,1,12,13,14,15,17",
+            "10,11,2,3,4,5,6,7,8,9,0,1,12,13,14,15,16",
             //"100,100,10,10,100,50,25,25,100,50,25,25,10,5,1",
             "100,150,40,10,100,50,25,25,100,50,25,25,5,5,3,1,3",
             //"0.3,0.4,2,2,0.6,1,2,2,0.8,0.6,2,2,4,15,1",
@@ -255,14 +255,14 @@ public class WaveManager : MonoBehaviour
             ),
         //wave 25 Round 63 but not v2
         new WaveInfo(
-            "12,17,17,17",
+            "12,16,16,16",
             "75,40,40,42",
             "0.6,0.01,0.01,0.01",
             "0,3.9,20,36"
             ),
         //wave 26 Boss
         new WaveInfo(
-            "16",
+            "17",
             "1",
             "1",
             "0"
@@ -279,7 +279,7 @@ public class WaveManager : MonoBehaviour
     void Update()
     {
         //stop waves after final wave
-        if (waveIndex >= 26)
+        if (waveIndex >= 27)
         {
             if (freeplay)
             {
@@ -373,10 +373,12 @@ public class WaveManager : MonoBehaviour
         {
             int id = Random.Range(10, 18); // inclusive range 9-17
             if (freeplayRound < 5) {
-                id--;
+                id -= 2;
+            } else if (freeplayRound < 10) {
+                id -= 1;
             }
             int count = Mathf.RoundToInt(1 + freeplayRound * 0.5f * Random.Range(0.8f, 1.2f));
-            float spacing = Random.Range(0.1f, 0.3f);
+            float spacing = Random.Range(0.5f, 2.5f);
             float time = i * 6f; // spawn clusters spaced out in time
 
             enemyIds.Add(id);
