@@ -81,6 +81,11 @@ public class PlacementSystem : MonoBehaviour
             case PlacementMode.PlacingTower:
                 towerIndicator.gameObject.SetActive(true);
 
+                upgradeLevelText.gameObject.SetActive(true);
+                if (!towersToSacrifice.Any()) {
+                    upgradeLevelText.text = upgradeLevelString + 0;
+                }
+
                 if (cardManager.MouseHovering) {
                     towerIndicator.gameObject.SetActive(false);
                     return;
@@ -89,10 +94,7 @@ public class PlacementSystem : MonoBehaviour
                 // change range indicator size
                 towerIndicator.SetRangeIndicator(cardUsing.GetRange());
 
-                if (!towersToSacrifice.Any()) {
-                    upgradeLevelText.gameObject.SetActive(true);
-                    upgradeLevelText.text = upgradeLevelString + 0;
-                }
+                
                 // Logic for tower placement
                 (Vector3 MousePosition, bool validplacement) = inputManager.GetPlacementPosition();
 
