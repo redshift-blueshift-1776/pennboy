@@ -583,7 +583,7 @@ MonoBehaviour:
   treeDist: 1
   lRockDist: 0.431
   sRockDist: 0.632
-  scatterChance: 0.2
+  scatterChance: 0.01
   globalScale: 1
   heightRangeT: {x: -10, y: 0}
   heightRangeR: {x: 1, y: 2}
