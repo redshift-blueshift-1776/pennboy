@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class FENTGameManager : MonoBehaviour
 {
@@ -65,12 +66,14 @@ public class FENTGameManager : MonoBehaviour
             TimerTxt.text = string.Format("{0:00} : {1:00}", minutes, seconds);
 
             ScoreTxt.text = "Score: " + $"{score}";
-            Debug.Log(score);
+            //Debug.Log(score);
         }
         else
         {
             Debug.Log("Time's up! Game over.");
             // implement game end
+            SceneManager.LoadScene(30);
+            Destroy(gameObject);
         }
     }
     // temp func

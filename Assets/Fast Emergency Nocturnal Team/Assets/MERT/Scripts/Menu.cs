@@ -7,11 +7,12 @@ public class Menu : MonoBehaviour
 {
    public void OnPlayButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(31);
     }
 
     public void OnQuitButton()
     {
-        Application.Quit();
+        // Application.Quit();
+        SceneManager.LoadScene(2);
     }
 }

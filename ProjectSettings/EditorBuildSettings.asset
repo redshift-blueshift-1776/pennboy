@@ -95,4 +95,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/group13/SlidingPuzzle/SlidingPuzzle.unity
     guid: 89837ef5f2a52f54db316d7616ffad08
+  - enabled: 1
+    path: Assets/Fast Emergency Nocturnal Team/Assets/Scenes/TItle Screen.unity
+    guid: 9908a8cf148e746cf940c9e3bb3b111f
+  - enabled: 1
+    path: Assets/Fast Emergency Nocturnal Team/Assets/Scenes/DrivingScene.unity
+    guid: fa0dc3d1e6721440abb26cfb8ee1cd42
   m_configObjects: {}

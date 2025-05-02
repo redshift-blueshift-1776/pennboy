@@ -74,6 +74,11 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene("MoveInSettings");
     }
 
+    public void Secret()
+    {
+        SceneManager.LoadScene(30);
+    }
+
     public void LoadSpecifiedLevel() {
         SceneManager.LoadScene(lvl_name);
     }
