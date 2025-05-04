@@ -101,10 +101,6 @@ public class GameManager : MonoBehaviour
                 {
                     // Handle hit
                     SoundManager soundManager = this.GetComponent<SoundManager>();
-                    if (soundManager != null)
-                    {
-                        soundManager.PlayEffect(Random.Range(1, 4));
-                    }
 
                     // Go through the list, the index tells us the position.
                     for (int i = 0; i < pieces.Count; i++)
@@ -113,10 +109,30 @@ public class GameManager : MonoBehaviour
                         {
                             // Check each direction to see if valid move.
                             // We break out on success so we don't carry on and swap back again.
-                            if (SwapIfValid(i, -size, size)) { break; }
-                            if (SwapIfValid(i, +size, size)) { break; }
-                            if (SwapIfValid(i, -1, 0)) { break; }
-                            if (SwapIfValid(i, +1, size - 1)) { break; }
+                            if (SwapIfValid(i, -size, size)) { 
+                                    if (soundManager != null)
+                                    {
+                                        soundManager.PlayEffect(Random.Range(1, 4));
+                                    }
+                                    break; }
+                            if (SwapIfValid(i, +size, size)) { 
+                                    if (soundManager != null)
+                                    {
+                                        soundManager.PlayEffect(Random.Range(1, 4));
+                                    }
+                                    break; }
+                            if (SwapIfValid(i, -1, 0)) { 
+                                    if (soundManager != null)
+                                    {
+                                        soundManager.PlayEffect(Random.Range(1, 4));
+                                    }
+                                    break; }
+                            if (SwapIfValid(i, +1, size - 1)) { 
+                                    if (soundManager != null)
+                                    {
+                                        soundManager.PlayEffect(Random.Range(1, 4));
+                                    }
+                                    break; }
                         }
                     }
                 }

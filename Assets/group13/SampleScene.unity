@@ -3712,7 +3712,7 @@ MonoBehaviour:
   musicSource: {fileID: 1600673402}
   effectsSource: {fileID: 1600673401}
   musicClips:
-  - {fileID: 8300000, guid: 396d27dd97b02ff46835770a6a4afc6b, type: 3}
+  - {fileID: 8300000, guid: 8f0bbbf4ec3764b479a73ebb212eff2c, type: 3}
   effectClips:
   - {fileID: 8300000, guid: b336f1d0a0b2f7840804d856df1a8df2, type: 3}
 --- !u!1 &1703638962
