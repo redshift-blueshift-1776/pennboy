@@ -360,7 +360,7 @@ public class WaveManager : MonoBehaviour
         globalTimer = 0;
 
         freeplayRound++;
-        freeplayMultiplier *= 1.01f;
+        freeplayMultiplier *= 1.05f;
 
         // You can tweak this function to control difficulty scaling
         int numEnemyTypes = Random.Range(2, 5); // Use 2 to 4 types each round
