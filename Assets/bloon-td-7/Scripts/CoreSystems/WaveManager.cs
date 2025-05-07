@@ -45,16 +45,16 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(50f,15,3,5, new Color32(117, 12, 5,255)),    //7 demon
         new EnemyInfo(10f,3,4,1, new Color32(100,100,100,255)),    //8 dwarf
         new EnemyInfo(20f,20,5,5, new Color32(40, 96, 250,255)),   //9 wizard
-        new EnemyInfo(35f,40,12,10, new Color32(139, 155, 199,255)), //10 light wizard
-        new EnemyInfo(35f,40,12,10, new Color32(0, 0, 46,255)), //11 dark wizard
-        new EnemyInfo(50f,100,25,20, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
-        new EnemyInfo(100f,1000,100,25,new Color32(255,0,0,255),20), //13 dragon
+        new EnemyInfo(35f,40,12,5, new Color32(139, 155, 199,255)), //10 light wizard
+        new EnemyInfo(35f,40,12,5, new Color32(0, 0, 46,255)), //11 dark wizard
+        new EnemyInfo(50f,100,25,10, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
+        new EnemyInfo(100f,1000,100,15,new Color32(255,0,0,255),20), //13 dragon
         new EnemyInfo(40f,10,1,5, new Color32(0,0,0,255),4, false, true), //14 the flash
-        new EnemyInfo(5f, 1000, 5000, 500, new Color32(255,255,255,255), 30), //15 god
+        new EnemyInfo(5f, 1000, 5000, 300, new Color32(255,255,255,255), 30), //15 god
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
-        new EnemyInfo(80f,1000,180,30,new Color32(255,128,0,255),25), //16 super dragon
-        new EnemyInfo(3f,1000,30000,10000,new Color(0, 0, 0),60) //17 - boss enemy
+        new EnemyInfo(80f,1000,180,20,new Color32(255,128,0,255),25), //16 super dragon
+        new EnemyInfo(3f,1000,30000,1000,new Color(0, 0, 0),45) //17 - boss enemy
     };
     /// <summary>
     /// WaveInfo(       all are in one string
