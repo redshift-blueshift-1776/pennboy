@@ -91,9 +91,9 @@ public class PewTower : Tower
                 damage = 3;
                 numExtraShotsInBurst = 5;
                 numShots = numExtraShotsInBurst;
-                timeBetweenShots = 0.08f;
+                timeBetweenShots = 0.09f;
                 projectileSpeed = 450f;
-                cooldown = 0.5f;
+                cooldown = 0.6f;
                 return;
             default:
                 projectilePierce = 10;
@@ -101,7 +101,7 @@ public class PewTower : Tower
                 numExtraShotsInBurst = 5;
                 numShots = numExtraShotsInBurst;
                 projectileSpeed = 500f;
-                cooldown = 0.8f;
+                cooldown = 0.5f;
                 return;
         }
     }
