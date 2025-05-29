@@ -26,7 +26,7 @@ public class ShotgunTower : Tower
         float radAttackSpread = Mathf.Deg2Rad * attackSpread;
         for (int i = 1; i <= numExtraBullets; ++i)
         {
-            Debug.Log("Angle: " + (Mathf.Rad2Deg * angle) + " : A1: " + (Mathf.Rad2Deg*(angle + radAttackSpread * i)) + " : A2: " + (Mathf.Rad2Deg * (angle - radAttackSpread * i)));
+            //Debug.Log("Angle: " + (Mathf.Rad2Deg * angle) + " : A1: " + (Mathf.Rad2Deg*(angle + radAttackSpread * i)) + " : A2: " + (Mathf.Rad2Deg * (angle - radAttackSpread * i)));
             Projectile projectile2 = Instantiate(BTD7.GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
             projectile2.Initialize(damage, projectileSpeed, projectilePierce, new Vector3(transform.position.x+Mathf.Cos(angle+radAttackSpread*i), 0, transform.position.z+Mathf.Sin(angle+radAttackSpread*i)));
             Projectile projectile3 = Instantiate(BTD7.GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();

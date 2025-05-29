@@ -378,12 +378,12 @@ public class WaveManager : MonoBehaviour
 
     int ChooseEnemyId(int round) {
         if (round < 10)
-            return Random.Range(0, 15);
+            return Random.Range(5, 15);
         if (round < 15)
-            return Random.Range(0, 16);
+            return Random.Range(9, 16);
         if (round < 25)
-            return Random.Range(0, 17);
-        return Random.Range(0, 18);
+            return Random.Range(12, 17);
+        return Random.Range(13, 18);
     }
 
     void StartFreeplayWave()
@@ -395,7 +395,8 @@ public class WaveManager : MonoBehaviour
         freeplayRound++;
         freeplayMultiplier *= 1.05f;
 
-        int targetRBE = (int) Mathf.Floor(1000f * (freeplayRound + 1f) * freeplayMultiplier);
+        int targetRBE = (int) Mathf.Floor(500f * (freeplayRound + 1f) * freeplayMultiplier);
+        Debug.Log(targetRBE);
 
         List<int> enemyIds = new List<int>();
         List<int> enemyCounts = new List<int>();
@@ -423,7 +424,11 @@ public class WaveManager : MonoBehaviour
 
             enemyIds.Add(id);
             enemyCounts.Add(amountToSpawn);
-            spacings.Add(Random.Range(0.5f, 2.5f));
+            if (id == 15 || id == 17) {
+                spacings.Add(Random.Range(2f, 5f));
+            } else {
+                spacings.Add(Random.Range(0.1f, 1f));
+            }
             times.Add(enemyIds.Count * 6f); // cluster spacing by type
 
             currentRBE += amountToSpawn * healthPerEnemy;
