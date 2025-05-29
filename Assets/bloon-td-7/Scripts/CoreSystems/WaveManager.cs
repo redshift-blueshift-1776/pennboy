@@ -377,7 +377,7 @@ public class WaveManager : MonoBehaviour
     };
 
     int ChooseEnemyId(int round) {
-        if (round < 10)
+        if (round < 5)
             return Random.Range(5, 15);
         if (round < 15)
             return Random.Range(9, 16);
@@ -393,7 +393,7 @@ public class WaveManager : MonoBehaviour
         globalTimer = 0;
 
         freeplayRound++;
-        freeplayMultiplier *= 1.05f;
+        freeplayMultiplier *= 1.01f;
 
         int targetRBE = (int) Mathf.Floor(500f * (freeplayRound + 1f) * freeplayMultiplier);
         Debug.Log(targetRBE);
@@ -418,14 +418,14 @@ public class WaveManager : MonoBehaviour
             int amountToSpawn = Random.Range(1, maxAllowedCount + 1);
 
             // Special case for bosses
-            if (id == 17 && freeplayRound < 35) {
+            if (id == 17 && freeplayRound < 45) {
                 amountToSpawn = 1;
             }
 
             enemyIds.Add(id);
             enemyCounts.Add(amountToSpawn);
             if (id == 15 || id == 17) {
-                spacings.Add(Random.Range(2f, 5f));
+                spacings.Add(Random.Range(3f, 5f));
             } else {
                 spacings.Add(Random.Range(0.1f, 1f));
             }
