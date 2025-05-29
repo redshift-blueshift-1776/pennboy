@@ -24,7 +24,7 @@ public class WaveManager : MonoBehaviour
         waveCooldown = 1f;
         globalTimer = 0;
         waveOccurring = false;
-        waveIndex = 0;
+        waveIndex = 27;
         spawnersCreated = 0;
         spawners = new List<Spawner>();
         freeplay = false;
@@ -47,14 +47,14 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(20f,20,5,5, new Color32(40, 96, 250,255)),   //9 wizard
         new EnemyInfo(35f,40,12,5, new Color32(139, 155, 199,255)), //10 light wizard
         new EnemyInfo(35f,40,12,5, new Color32(0, 0, 46,255)), //11 dark wizard
-        new EnemyInfo(50f,100,25,10, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
-        new EnemyInfo(100f,1000,100,15,new Color32(255,0,0,255),20), //13 dragon
-        new EnemyInfo(40f,10,1,5, new Color32(0,0,0,255),4, false, true), //14 the flash
-        new EnemyInfo(5f, 1000, 5000, 300, new Color32(255,255,255,255), 30), //15 god
+        new EnemyInfo(50f,100,25,5, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
+        new EnemyInfo(100f,1000,100,10,new Color32(255,0,0,255),20), //13 dragon
+        new EnemyInfo(40f,10,1,1, new Color32(0,0,0,255),4, false, true), //14 the flash
+        new EnemyInfo(5f, 1000, 5000, 100, new Color32(255,255,255,255), 30), //15 god
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
-        new EnemyInfo(80f,1000,180,20,new Color32(255,128,0,255),25), //16 super dragon
-        new EnemyInfo(3f,1000,30000,1000,new Color(0, 0, 0),45) //17 - boss enemy
+        new EnemyInfo(80f,1000,180,10,new Color32(255,128,0,255),25), //16 super dragon
+        new EnemyInfo(3f,1000,30000,500,new Color(0, 0, 0),36) //17 - boss enemy
     };
     /// <summary>
     /// WaveInfo(       all are in one string
@@ -353,6 +353,39 @@ public class WaveManager : MonoBehaviour
 
     }
 
+    /// EnemyInfo(float moveSpeed, int dmg, int health, int moneyWorth, Color color, float size = 5, bool isCamo = false, bool canTeleport)
+    public int[] enemyHealthList =
+    {
+        1,               //0 - slime
+        1,        //1 - goblin
+        5,         //2 - orcs
+        15,        //3 - ogres
+        1,       //4 skeleton
+        5,   //5 elf
+        1,  //6 fairy
+        3,    //7 demon
+        4,    //8 dwarf
+        5,   //9 wizard
+        12, //10 light wizard
+        12, //11 dark wizard
+        25, //12 master wizard
+        100, //13 dragon
+        1, //14 the flash
+        5000, //15 god
+        180, //16 super dragon
+        30000, //17 - boss enemy
+    };
+
+    int ChooseEnemyId(int round) {
+        if (round < 10)
+            return Random.Range(0, 15);
+        if (round < 15)
+            return Random.Range(0, 16);
+        if (round < 25)
+            return Random.Range(0, 17);
+        return Random.Range(0, 18);
+    }
+
     void StartFreeplayWave()
     {
         Debug.Log("Started freeplay wave.");
@@ -362,39 +395,82 @@ public class WaveManager : MonoBehaviour
         freeplayRound++;
         freeplayMultiplier *= 1.05f;
 
-        // You can tweak this function to control difficulty scaling
-        int numEnemyTypes = Random.Range(2, 5); // Use 2 to 4 types each round
+        int targetRBE = (int) Mathf.Floor(1000f * (freeplayRound + 1f) * freeplayMultiplier);
+
         List<int> enemyIds = new List<int>();
         List<int> enemyCounts = new List<int>();
         List<float> spacings = new List<float>();
         List<float> times = new List<float>();
+        // Intended new system:
+        // Add groups of enemies, picking an enemy type at random,
+        // Then adding a random number between 1 and 50 of them,
+        // Provided that it doesn't go over the targetRBE
+        // If we ever go over, stop the loop and add low health enemies
+        int currentRBE = 0;
+        while (currentRBE < targetRBE) {
+            int id = ChooseEnemyId(freeplayRound);
+            int healthPerEnemy = enemyHealthList[id];
+            // Try to add a group of this enemy
+            int maxAllowedCount = Mathf.Min(50, (targetRBE - currentRBE) / healthPerEnemy);
+            if (maxAllowedCount <= 0) break;
 
-        for (int i = 0; i < numEnemyTypes; i++)
-        {
-            int id = Random.Range(10, 18); // inclusive range 9-17
-            if (freeplayRound < 5) {
-                id -= 2;
-            } else if (freeplayRound < 10) {
-                id -= 1;
+            int amountToSpawn = Random.Range(1, maxAllowedCount + 1);
+
+            // Special case for bosses
+            if (id == 17 && freeplayRound < 35) {
+                amountToSpawn = 1;
             }
-            int count = Mathf.RoundToInt(1 + freeplayRound * 0.5f * Random.Range(0.8f, 1.2f));
-            float spacing = Random.Range(0.5f, 2.5f);
-            float time = i * 6f; // spawn clusters spaced out in time
 
             enemyIds.Add(id);
-            enemyCounts.Add(count);
-            spacings.Add(spacing);
-            times.Add(time);
-        }
+            enemyCounts.Add(amountToSpawn);
+            spacings.Add(Random.Range(0.5f, 2.5f));
+            times.Add(enemyIds.Count * 6f); // cluster spacing by type
 
+            currentRBE += amountToSpawn * healthPerEnemy;
+        }
         WaveInfo freeplayWave = new WaveInfo(
             string.Join(",", enemyIds),
             string.Join(",", enemyCounts),
             string.Join(",", spacings),
             string.Join(",", times)
         );
+        waves = waves.Append(freeplayWave).ToArray();
 
-        waves = waves.Append(freeplayWave).ToArray(); // Add to wave list
+        // Old system below
+
+        // // You can tweak this function to control difficulty scaling
+        // int numEnemyTypes = Random.Range(2, 5); // Use 2 to 4 types each round
+        // List<int> enemyIds = new List<int>();
+        // List<int> enemyCounts = new List<int>();
+        // List<float> spacings = new List<float>();
+        // List<float> times = new List<float>();
+
+        // for (int i = 0; i < numEnemyTypes; i++)
+        // {
+        //     int id = Random.Range(10, 18); // inclusive range 9-17
+        //     if (freeplayRound < 5) {
+        //         id -= 2;
+        //     } else if (freeplayRound < 10) {
+        //         id -= 1;
+        //     }
+        //     int count = Mathf.RoundToInt(1 + freeplayRound * 0.5f * Random.Range(0.8f, 1.2f));
+        //     float spacing = Random.Range(0.5f, 2.5f);
+        //     float time = i * 6f; // spawn clusters spaced out in time
+
+        //     enemyIds.Add(id);
+        //     enemyCounts.Add(count);
+        //     spacings.Add(spacing);
+        //     times.Add(time);
+        // }
+
+        // WaveInfo freeplayWave = new WaveInfo(
+        //     string.Join(",", enemyIds),
+        //     string.Join(",", enemyCounts),
+        //     string.Join(",", spacings),
+        //     string.Join(",", times)
+        // );
+
+        // waves = waves.Append(freeplayWave).ToArray(); // Add to wave list
     }
 
     public class EnemyInfo
