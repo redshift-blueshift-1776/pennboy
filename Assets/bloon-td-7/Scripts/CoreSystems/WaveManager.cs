@@ -24,7 +24,7 @@ public class WaveManager : MonoBehaviour
         waveCooldown = 1f;
         globalTimer = 0;
         waveOccurring = false;
-        waveIndex = 27;
+        waveIndex = 0;
         spawnersCreated = 0;
         spawners = new List<Spawner>();
         freeplay = false;
@@ -396,7 +396,7 @@ public class WaveManager : MonoBehaviour
         freeplayMultiplier *= 1.01f;
 
         int targetRBE = (int) Mathf.Floor(500f * (freeplayRound + 1f)
-            * freeplayMultiplier * freeplayMultiplier);
+            * freeplayMultiplier * freeplayMultiplier * freeplayMultiplier);
         Debug.Log(targetRBE);
 
         List<int> enemyIds = new List<int>();
@@ -409,17 +409,21 @@ public class WaveManager : MonoBehaviour
         // Provided that it doesn't go over the targetRBE
         // If we ever go over, stop the loop and add low health enemies
         int currentRBE = 0;
-        while (currentRBE < targetRBE) {
+        while (currentRBE < targetRBE * 0.6f) {
             int id = ChooseEnemyId(freeplayRound);
             int healthPerEnemy = enemyHealthList[id];
             // Try to add a group of this enemy
             int maxAllowedCount = Mathf.Min(50, (targetRBE - currentRBE) / healthPerEnemy);
-            if (maxAllowedCount <= 0) break;
+            // if (maxAllowedCount <= 0) break;
+            if (maxAllowedCount <= 0) {
+                // Skip this ID, try another
+                continue;
+            }
 
             int amountToSpawn = Random.Range(1, maxAllowedCount + 1);
 
             // Special case for bosses
-            if (id == 17 && freeplayRound < 45) {
+            if (id == 17 && freeplayRound < 50) {
                 amountToSpawn = 1;
             }
 
@@ -440,7 +444,6 @@ public class WaveManager : MonoBehaviour
             string.Join(",", spacings),
             string.Join(",", times)
         );
-        Debug.Log(freeplayWave);
         waves = waves.Append(freeplayWave).ToArray();
 
         // Old system below
@@ -539,11 +542,28 @@ public class WaveManager : MonoBehaviour
         /// </param>
         public WaveInfo(string enemyIdList, string enemyCount, string spacing, string time)
         {
-            this.enemyIdList = enemyIdList?.Split(',')?.Select(int.Parse)?.ToArray();
-            this.enemyCount = enemyCount?.Split(',')?.Select(int.Parse)?.ToArray();
-            this.spacing = spacing?.Split(',')?.Select(float.Parse)?.ToArray();
-            this.time = time?.Split(',')?.Select(float.Parse)?.ToArray();
+            this.enemyIdList = enemyIdList?.Split(',')?.Select(s => int.Parse(s.Trim()))?.ToArray();
+            this.enemyCount = enemyCount?.Split(',')?.Select(s => int.Parse(s.Trim()))?.ToArray();
+            this.spacing = spacing?.Split(',')?.Select(s => float.Parse(s.Trim()))?.ToArray();
+            this.time = time?.Split(',')?.Select(s => float.Parse(s.Trim()))?.ToArray();
+
+            Debug.Log($"enemyIds: {enemyIdList}");
+            Debug.Log($"enemyCounts: {enemyCount}");
+            Debug.Log($"spacings: {spacing}");
+            Debug.Log($"times: {time}");
+
+            if (enemyIdList.Length != enemyCount.Length || enemyIdList.Length != spacing.Length || enemyIdList.Length != time.Length)
+            {
+                Debug.Log("WaveInfo: Mismatched list lengths.");
+            }
         }
+        // public WaveInfo(string enemyIdList, string enemyCount, string spacing, string time)
+        // {
+        //     this.enemyIdList = enemyIdList?.Split(',')?.Select(int.Parse)?.ToArray();
+        //     this.enemyCount = enemyCount?.Split(',')?.Select(int.Parse)?.ToArray();
+        //     this.spacing = spacing?.Split(',')?.Select(float.Parse)?.ToArray();
+        //     this.time = time?.Split(',')?.Select(float.Parse)?.ToArray();
+        // }
 
     }
     public class Spawner
