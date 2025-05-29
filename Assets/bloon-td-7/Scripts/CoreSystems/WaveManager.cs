@@ -395,7 +395,8 @@ public class WaveManager : MonoBehaviour
         freeplayRound++;
         freeplayMultiplier *= 1.01f;
 
-        int targetRBE = (int) Mathf.Floor(500f * (freeplayRound + 1f) * freeplayMultiplier);
+        int targetRBE = (int) Mathf.Floor(500f * (freeplayRound + 1f)
+            * freeplayMultiplier * freeplayMultiplier);
         Debug.Log(targetRBE);
 
         List<int> enemyIds = new List<int>();
@@ -439,6 +440,7 @@ public class WaveManager : MonoBehaviour
             string.Join(",", spacings),
             string.Join(",", times)
         );
+        Debug.Log(freeplayWave);
         waves = waves.Append(freeplayWave).ToArray();
 
         // Old system below

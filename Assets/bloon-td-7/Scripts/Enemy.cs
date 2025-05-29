@@ -30,6 +30,8 @@ public class Enemy : MonoBehaviour
 
     public float DistanceTravelled { get; protected set; }
 
+    public int originalHealth;
+
 
     private float teleportColorChangeTimer = 0;
     private float teleportColorChangeInterval = 0.05f;
@@ -59,6 +61,7 @@ public class Enemy : MonoBehaviour
     public void Initialize(float moveSpeed, int dmg, int health, int id, int moneyWorth, Color32 color, bool isCamo, float size, bool canTeleport)
     {
         this.health = health;
+        this.originalHealth = health;
         this.id = id;
         this.dmg = dmg;
         this.moveSpeed = moveSpeed;
@@ -187,9 +190,20 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Die()
     {
-        BTD7.GameManager.instance.moneyManager.EarnMoney(moneyWorth);
+        int moneyToGet = (int) Mathf.Ceil(moneyWorth
+            * IncomeMultiplier(BTD7.GameManager.instance.waveManager.waveIndex));
+        Debug.Log(moneyToGet);
+        BTD7.GameManager.instance.moneyManager.EarnMoney(moneyToGet);
         Destroy(parent);
     }
+
+    float IncomeMultiplier(int round)
+    {
+        if (round <= 20) return 1f;
+        Debug.Log(Mathf.Clamp01(0.99f - (round - 20) * 0.03f + 0.01f));
+        return Mathf.Clamp01(0.99f - (round - 20) * 0.03f + 0.01f); // 3% less per round after 20
+    }
+
 
     public void Damage(int dmg)
     {

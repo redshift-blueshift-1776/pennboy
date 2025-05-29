@@ -69,7 +69,7 @@ public class ShotgunTower : Tower
                 // attackSpread = 9f;
                 // cooldown = 0.8f;
                 // damage = 7;
-                projectilePierce = 4;
+                projectilePierce = 3;
                 damage = 6;
                 cooldown = 0.6f;
                 numExtraBullets = 2;
