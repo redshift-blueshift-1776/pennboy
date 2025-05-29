@@ -51,11 +51,11 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(50f,100,25,5, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
         new EnemyInfo(100f,1000,100,10,new Color32(255,0,0,255),20), //13 dragon
         new EnemyInfo(40f,10,1,1, new Color32(0,0,0,255),4, false, true), //14 the flash
-        new EnemyInfo(5f, 1000, 5000, 100, new Color32(255,255,255,255), 30), //15 god
+        new EnemyInfo(5f, 1000, 5000, 300, new Color32(255,255,255,255), 30), //15 god
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
         new EnemyInfo(80f,1000,180,10,new Color32(255,128,0,255),25), //16 super dragon
-        new EnemyInfo(3f,1000,30000,500,new Color(0, 0, 0),36) //17 - boss enemy
+        new EnemyInfo(3f,1000,30000,1000,new Color(0, 0, 0),36) //17 - boss enemy
     };
     /// <summary>
     /// WaveInfo(       all are in one string
