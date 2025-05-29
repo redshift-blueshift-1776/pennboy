@@ -154,32 +154,34 @@ public class Enemy : MonoBehaviour
         // Handle rotation
         dx = waypoints[waypointIndex + 1].x - targetPos.x;
         dz = waypoints[waypointIndex + 1].z - targetPos.z;
-        if (dx > 0) {
-            if (dz > 0) {
-                if (dx > dz) {
-                    model.transform.localEulerAngles = new Vector3(0,0,0);
+        if (dx != 0 || dz != 0) {
+            if (dx > 0) {
+                if (dz > 0) {
+                    if (dx > dz) {
+                        model.transform.localEulerAngles = new Vector3(0,0,0);
+                    } else {
+                        model.transform.localEulerAngles = new Vector3(0,90,0);
+                    }
                 } else {
-                    model.transform.localEulerAngles = new Vector3(0,90,0);
+                    if (dx > -1 * dz) {
+                        model.transform.localEulerAngles = new Vector3(0,0,0);
+                    } else {
+                        model.transform.localEulerAngles = new Vector3(0,90,0);
+                    }
                 }
             } else {
-                if (dx > -1 * dz) {
-                    model.transform.localEulerAngles = new Vector3(0,0,0);
+                if (dz > 0) {
+                    if (-1 * dx > dz) {
+                        model.transform.localEulerAngles = new Vector3(0,180,0);
+                    } else {
+                        model.transform.localEulerAngles = new Vector3(0,-90,0);
+                    }
                 } else {
-                    model.transform.localEulerAngles = new Vector3(0,-90,0);
-                }
-            }
-        } else {
-            if (dz > 0) {
-                if (-1 * dx > dz) {
-                    model.transform.localEulerAngles = new Vector3(0,180,0);
-                } else {
-                    model.transform.localEulerAngles = new Vector3(0,-90,0);
-                }
-            } else {
-                if (-1 * dx > -1 * dz) {
-                    model.transform.localEulerAngles = new Vector3(0,180,0);
-                } else {
-                    model.transform.localEulerAngles = new Vector3(0,90,0);
+                    if (-1 * dx > -1 * dz) {
+                        model.transform.localEulerAngles = new Vector3(0,180,0);
+                    } else {
+                        model.transform.localEulerAngles = new Vector3(0,90,0);
+                    }
                 }
             }
         }
