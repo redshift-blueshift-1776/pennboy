@@ -17,10 +17,15 @@ public class CartController : MonoBehaviour
 
     private UI uI;
 
+    [SerializeField] public GameObject gameAudio;
+    [SerializeField] public GameObject lossAudio;
+
     void Start()
     {
+        Time.timeScale = 1f;
         targetPosition = transform.position;
         uI = FindObjectOfType<UI>();
+        gameAudio.SetActive(true);
     }
 
     public void ResetCart() 
@@ -36,6 +41,8 @@ public class CartController : MonoBehaviour
         {
             Debug.LogError("UI component not found in the scene. Make sure a GameObject with the UI script is present.");
         }
+        gameAudio.SetActive(true);
+        lossAudio.SetActive(false);
     }
 
     void Update()
@@ -54,6 +61,8 @@ public class CartController : MonoBehaviour
         if (gameObject.transform.position.z > 600f) 
         {
             uI.won();
+            gameAudio.SetActive(false);
+            lossAudio.SetActive(false);
         }
     }
 
@@ -106,10 +115,14 @@ public class CartController : MonoBehaviour
             Counter.collision++;
             Debug.Log("Collision detected with ball");
             Destroy(col.gameObject);
+            uI.lose();
+            gameAudio.SetActive(false);
+            lossAudio.SetActive(true);
         }
         else if (col.gameObject.tag == "Locust_Coin") 
         {
-            Counter.coins++;
+            //Counter.coins++;
+            uI.coins++;
             Debug.Log("Collision detected with coin");
             Destroy(col.gameObject);
         }

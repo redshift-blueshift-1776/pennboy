@@ -13,10 +13,15 @@ public class UI : MonoBehaviour
 
      public GameObject play;
      public TMP_Text text;
+
+     public int coins;
+     public int stage;
     // Start is called before the first frame update
     void Start()
     {
         coinCounter();
+        winningCanvas.SetActive(false);
+        losingCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,11 +32,11 @@ public class UI : MonoBehaviour
     }
 
     public void coinCounter() {
-        scoreText.text = "Coins: " + Counter.coins.ToString();
+        scoreText.text = "Coins: " + coins;
     }
 
     public void stageText() {
-        text.text = "Stage: " + Counter.stage.ToString();
+        text.text = "Stage: " + stage;
     }
 
     public void won() {
@@ -42,7 +47,7 @@ public class UI : MonoBehaviour
 
     public void lose() {
         play.SetActive(false);
-        losingCanvas.SetActive(false);
+        losingCanvas.SetActive(true);
         Time.timeScale = 0f;
     }
 
