@@ -42,13 +42,13 @@ public class UI : MonoBehaviour
     public void won() {
         // play.SetActive(false);
         winningCanvas.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
     public void lose() {
         play.SetActive(false);
         losingCanvas.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
 }
