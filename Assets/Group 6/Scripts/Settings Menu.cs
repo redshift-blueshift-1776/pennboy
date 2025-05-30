@@ -10,6 +10,8 @@ public class SettingsMenu : MonoBehaviour {
     [SerializeField] private int coins;
 
     [SerializeField] private GameObject FENT;
+    [SerializeField] private GameObject LocustDash;
+    [SerializeField] private TMP_Text secretCoinsText;
 
     private void Start() {
         // Load saved sensitivity from PlayerPrefs or default to 1.0 if not set
@@ -25,6 +27,8 @@ public class SettingsMenu : MonoBehaviour {
         }
         coins = countCoins;
         FENT.SetActive(false);
+        LocustDash.SetActive(false);
+        secretCoinsText.text = "Secret Coins: " + coins;
     }
 
     public void SetMouseSensitivity(float sensitivity) {
@@ -35,5 +39,6 @@ public class SettingsMenu : MonoBehaviour {
 
     public void Update() {
         FENT.SetActive(coins >= 24);
+        LocustDash.SetActive(coins >= 12);
     }
 }

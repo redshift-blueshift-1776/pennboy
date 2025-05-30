@@ -6,9 +6,9 @@ public class CartController : MonoBehaviour
 {
     private float forwardSpeed = 16f;     // Constant forward movement speed
     //private float turnSpeed = 5f;        // Speed for horizontal movement
-    private float turnSpeed = 10f;        // Speed for horizontal movement
-    private float leftBound = -15.32462f;       // Left boundary for movement
-    private float rightBound = 15.67538f;       // Right boundary for movement
+    private float turnSpeed = 15f;        // Speed for horizontal movement
+    private float leftBound = -14.32462f;       // Left boundary for movement
+    private float rightBound = 14.67538f;       // Right boundary for movement
     private float tiltAngle = 15f;       // Angle to tilt the cart
     //private float tiltSpeed = 5f;        // Speed at which the cart tilts
     private float tiltSpeed = 10f;        // Speed at which the cart tilts
@@ -19,6 +19,7 @@ public class CartController : MonoBehaviour
 
     [SerializeField] public GameObject gameAudio;
     [SerializeField] public GameObject lossAudio;
+    [SerializeField] public GameObject winAudio;
 
     void Start()
     {
@@ -26,6 +27,8 @@ public class CartController : MonoBehaviour
         targetPosition = transform.position;
         uI = FindObjectOfType<UI>();
         gameAudio.SetActive(true);
+        lossAudio.SetActive(false);
+        winAudio.SetActive(false);
     }
 
     public void ResetCart() 
@@ -63,6 +66,7 @@ public class CartController : MonoBehaviour
             uI.won();
             gameAudio.SetActive(false);
             lossAudio.SetActive(false);
+            winAudio.SetActive(true);
         }
     }
 
