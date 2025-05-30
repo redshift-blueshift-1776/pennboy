@@ -107,4 +107,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/LocustDash/Scenes/GameScene.unity
     guid: 9b4ffa702a6f4e240ad87297bf12e94f
+  - enabled: 1
+    path: Assets/Sandwich/sandwichGame.unity
+    guid: b9c334a62e8a438448e25a5ebe458526
+  - enabled: 1
+    path: Assets/Sandwich/Game Over.unity
+    guid: 234b12c0aeceac04fbc8f37fbf82f2d9
   m_configObjects: {}
