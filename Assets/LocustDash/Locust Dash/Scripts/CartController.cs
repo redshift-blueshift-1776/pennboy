@@ -51,7 +51,7 @@ public class CartController : MonoBehaviour
 
         // Trigger the won method when the cart reaches the specified point
         //if (gameObject.transform.position.z > 50f) 
-        if (gameObject.transform.position.z > 320f) 
+        if (gameObject.transform.position.z > 600f) 
         {
             uI.won();
         }

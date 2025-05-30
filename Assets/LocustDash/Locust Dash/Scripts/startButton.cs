@@ -8,5 +8,9 @@ public class startButton : MonoBehaviour
     public void onClick() {
         SceneManager.LoadScene(33);
     }
+
+    public void onOtherClick() {
+        SceneManager.LoadScene(3);
+    }
    
 }

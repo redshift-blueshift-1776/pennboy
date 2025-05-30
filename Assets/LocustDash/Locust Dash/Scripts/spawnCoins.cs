@@ -38,7 +38,8 @@ public class SpawnCoins : MonoBehaviour
             //Vector3 spawnPosition = cart.transform.position + cart.transform.forward * 5;
             Vector3 spawnPosition = cart.transform.position + cart.transform.forward * 5;
 
-            spawnPosition.x += Random.Range(-deltaX / 2, deltaX / 2);
+            //spawnPosition.x += Random.Range(-deltaX / 2, deltaX / 2);
+            spawnPosition.x += Random.Range(-15.32462f, 15.67538f);
             spawnPosition.z += Random.Range(0, deltaZ);
             spawnPosition.y = -0.5f;
 
