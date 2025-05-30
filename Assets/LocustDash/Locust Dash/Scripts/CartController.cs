@@ -5,11 +5,13 @@ using UnityEngine;
 public class CartController : MonoBehaviour
 {
     private float forwardSpeed = 16f;     // Constant forward movement speed
-    private float turnSpeed = 5f;        // Speed for horizontal movement
-    private float leftBound = -10f;       // Left boundary for movement
-    private float rightBound = 10f;       // Right boundary for movement
+    //private float turnSpeed = 5f;        // Speed for horizontal movement
+    private float turnSpeed = 10f;        // Speed for horizontal movement
+    private float leftBound = -15.32462f;       // Left boundary for movement
+    private float rightBound = 15.67538f;       // Right boundary for movement
     private float tiltAngle = 15f;       // Angle to tilt the cart
-    private float tiltSpeed = 5f;        // Speed at which the cart tilts
+    //private float tiltSpeed = 5f;        // Speed at which the cart tilts
+    private float tiltSpeed = 10f;        // Speed at which the cart tilts
     private Vector3 targetPosition;     // Desired position to move towards
     private float horizontalVelocity;   // Tracks the movement speed horizontally
 
@@ -48,7 +50,8 @@ public class CartController : MonoBehaviour
         }
 
         // Trigger the won method when the cart reaches the specified point
-        if (gameObject.transform.position.z > 50f) 
+        //if (gameObject.transform.position.z > 50f) 
+        if (gameObject.transform.position.z > 320f) 
         {
             uI.won();
         }
