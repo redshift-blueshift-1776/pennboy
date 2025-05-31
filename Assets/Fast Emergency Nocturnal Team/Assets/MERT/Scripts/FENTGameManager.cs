@@ -19,6 +19,9 @@ public class FENTGameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI TimerTxt;
     [SerializeField] TextMeshProUGUI ScoreTxt;
 
+    [SerializeField] public Transform[] pickupSpots;
+    [SerializeField] public Transform[] dropoffSpots;
+
     public FENTGameManager(TextMeshProUGUI timerTxt, TextMeshProUGUI scoreTxt)
     {
         TimerTxt = timerTxt;

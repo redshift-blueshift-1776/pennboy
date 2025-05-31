@@ -17,6 +17,18 @@ public class CarMovement : MonoBehaviour
     private float currentBrakingForce = 0f;
     private float currentTurnAngle = 0f;
 
+    [SerializeField] GameObject indicator;
+    [SerializeField] Transform dropoffZone;
+    [SerializeField] Transform pickupZone;
+
+    private void Update() {
+        if (FENTGameManager.Instance.HasPassenger) {
+            indicator.transform.LookAt(dropoffZone);
+        } else {
+            indicator.transform.LookAt(pickupZone);
+        }
+    }
+
     private void FixedUpdate()
     {
         int vert = 0;
