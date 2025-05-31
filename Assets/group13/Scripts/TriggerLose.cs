@@ -72,6 +72,12 @@ public class TriggerLose : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void ToSandwich()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(34);
+    }
+
     private IEnumerator WaitBeforePause(Collider player)
     {
         yield return new WaitForSecondsRealtime(0.2f);
