@@ -369,10 +369,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Love Truck Rider
       objectReference: {fileID: 0}
+    - target: {fileID: 5497464430688600012, guid: 486b67dc315174e0faebbbb47e15ed61,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 006f1354968b6e54e82a70df86da387b, type: 2}
+    - target: {fileID: 6567215977899950141, guid: 486b67dc315174e0faebbbb47e15ed61,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 006f1354968b6e54e82a70df86da387b, type: 2}
     - target: {fileID: 7185856461986450371, guid: 486b67dc315174e0faebbbb47e15ed61,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7185856461986450371, guid: 486b67dc315174e0faebbbb47e15ed61,
         type: 3}
