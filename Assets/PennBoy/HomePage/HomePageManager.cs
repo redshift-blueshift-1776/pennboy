@@ -131,12 +131,16 @@ public class HomePageManager : MonoBehaviour
 
         // Terribleness but I don't care anymore
         var roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
-        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "PennBoy UI";
-        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text = "Charles Wang";
-
-        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
         roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "PennBoy Mac Fix";
         roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text = "Forest Ho-Chen";
+
+        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "PennBoy Mac Additions";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text = "Forest Ho-Chen";
+
+        roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
+        roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "PennBoy UI";
+        roleGroupTrans.GetChild(1).GetComponent<TMP_Text>().text = "Charles Wang";
 
         roleGroupTrans = Instantiate(roleGroupPrefab, spacer.transform).transform;
         roleGroupTrans.GetChild(0).GetComponent<TMP_Text>().text = "UPGRADE Board 2024-2025";
