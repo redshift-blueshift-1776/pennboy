@@ -54,7 +54,7 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(5f, 1000, 5000, 300, new Color32(255,255,255,255), 30), //15 god
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
-        new EnemyInfo(80f,1000,180,10,new Color32(255,128,0,255),25), //16 super dragon
+        new EnemyInfo(100f,1000,200,10,new Color32(255,128,0,255),25), //16 super dragon
         new EnemyInfo(3f,1000,30000,1000,new Color(0, 0, 0),36) //17 - boss enemy
     };
     /// <summary>
@@ -394,7 +394,7 @@ public class WaveManager : MonoBehaviour
         globalTimer = 0;
 
         freeplayRound++;
-        freeplayMultiplier *= 1.015f;
+        freeplayMultiplier *= 1.02f;
 
         int targetRBE = (int) Mathf.Floor(500f * (freeplayRound + 1f)
             * freeplayMultiplier * freeplayMultiplier * freeplayMultiplier);

@@ -194,16 +194,16 @@ public class Enemy : MonoBehaviour
     {
         int moneyToGet = (int) Mathf.Ceil(moneyWorth
             * IncomeMultiplier(BTD7.GameManager.instance.waveManager.waveIndex));
-        Debug.Log(moneyToGet);
+        //Debug.Log(moneyToGet);
         BTD7.GameManager.instance.moneyManager.EarnMoney(moneyToGet);
         Destroy(parent);
     }
 
     float IncomeMultiplier(int round)
     {
-        if (round <= 20) return 1f;
-        Debug.Log(Mathf.Clamp01(0.99f - (round - 18) * 0.05f) + 0.01f);
-        return Mathf.Clamp01(0.99f - (round - 18) * 0.05f) + 0.01f; // 5% less per round after 18
+        if (round <= 18) return 1f;
+        Debug.Log(Mathf.Clamp01(0.95f - (round - 18) * 0.05f) + 0.05f);
+        return Mathf.Clamp01(0.95f - (round - 18) * 0.05f) + 0.05f; // 5% less per round after 18
     }
 
 
