@@ -10,7 +10,14 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Barlow
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b5da7d6f9be82954bbe69a48410a00da, type: 3}
+  - {fileID: 12800000, guid: 02118aa98ca9c024899e50d4c1e32e75, type: 3}
+  - {fileID: 12800000, guid: fcffa0b56c120ce43b1ebaf46b0ff636, type: 3}
+  - {fileID: 12800000, guid: 8a0925db46695f147b561b548e928996, type: 3}
+  - {fileID: 12800000, guid: 92bb29861bf0e414284c6d51ec65bc9f, type: 3}
+  - {fileID: 12800000, guid: c3a100dc1310ffa4caacd2c9ebd3763c, type: 3}
+  - {fileID: 12800000, guid: 7d057faf6c49bf44285d589791e70008, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
