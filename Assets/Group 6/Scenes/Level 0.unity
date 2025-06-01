@@ -151,6 +151,38 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1678587385945451316, guid: 33406a9cee39601daac966ad90e6fff7,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
+    - target: {fileID: 1678587385945451316, guid: 33406a9cee39601daac966ad90e6fff7,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1678587385945451316, guid: 33406a9cee39601daac966ad90e6fff7,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979212544188574439, guid: 33406a9cee39601daac966ad90e6fff7,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
+    - target: {fileID: 1979212544188574439, guid: 33406a9cee39601daac966ad90e6fff7,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1979212544188574439, guid: 33406a9cee39601daac966ad90e6fff7,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2396563093193455793, guid: 33406a9cee39601daac966ad90e6fff7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -509,8 +541,7 @@ MonoBehaviour:
   m_text: Push the luggage cart towards the pink zone!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -534,7 +565,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.2
+  m_fontSize: 15.35
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -599,7 +630,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
+  - {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
