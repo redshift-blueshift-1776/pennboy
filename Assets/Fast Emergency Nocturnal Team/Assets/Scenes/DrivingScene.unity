@@ -6029,7 +6029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8f6a9880030410bb1d5d6a4c570563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 120
+  timeRemaining: 351
   TimerTxt: {fileID: 816569271}
   ScoreTxt: {fileID: 832680584}
   pickupSpots:
@@ -7176,11 +7176,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fb2e7f4cd05414daa8ec48b5f5d2f0f6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 05ff1bd12ab7048f0b326bfcba8b237d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

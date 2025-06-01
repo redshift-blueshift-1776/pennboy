@@ -14,7 +14,7 @@ public class FENTGameManager : MonoBehaviour
 
     public bool HasPassenger { get; set; } = false;
     private int score = 0;
-    public float timeRemaining = 120f; // 2 min
+    [SerializeField] public float timeRemaining = 120f; // 2 min
 
     [SerializeField] TextMeshProUGUI TimerTxt;
     [SerializeField] TextMeshProUGUI ScoreTxt;
@@ -66,7 +66,9 @@ public class FENTGameManager : MonoBehaviour
             float minutes = Mathf.FloorToInt(timeRemaining / 60);
             float seconds = Mathf.FloorToInt(timeRemaining % 60);
 
-            TimerTxt.text = string.Format("{0:00} : {1:00}", minutes, seconds);
+            if (timeRemaining > 0) {
+                TimerTxt.text = string.Format("{0:00} : {1:00}", minutes, seconds);
+            }
 
             ScoreTxt.text = "Score: " + $"{score}";
             //Debug.Log(score);
