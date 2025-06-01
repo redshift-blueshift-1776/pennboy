@@ -29,6 +29,7 @@ public class HUD : MonoBehaviour
     void Start()
     {
         timeStore = Time.time;
+        updateDisplayedCoins();
         InvokeRepeating("updateBudgetDisplay", 0, updateBudgetDisplayTime);
     }
 
@@ -77,7 +78,7 @@ public class HUD : MonoBehaviour
     }
 
     private void updateDisplayedCoins() {
-        coinText.text = "Secret Coins: " + $"{secretCoins}";
+        coinText.text = "Flags: " + $"{secretCoins}";
     }
 
     // TODO: Optimize later (only process non first elements once....)
