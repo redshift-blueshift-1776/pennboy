@@ -28,7 +28,7 @@ public class SettingsMenu : MonoBehaviour {
         coins = countCoins;
         FENT.SetActive(false);
         LocustDash.SetActive(false);
-        secretCoinsText.text = "Secret Coins: " + coins;
+        secretCoinsText.text = "Flags: " + coins;
     }
 
     public void SetMouseSensitivity(float sensitivity) {
