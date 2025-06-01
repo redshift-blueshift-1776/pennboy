@@ -113,4 +113,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Sandwich/Game Over.unity
     guid: 234b12c0aeceac04fbc8f37fbf82f2d9
+  - enabled: 1
+    path: Assets/Group 6/Scenes/Level 0 v2.unity
+    guid: cf810166a93ed4ab1acdf52c5ce817db
   m_configObjects: {}

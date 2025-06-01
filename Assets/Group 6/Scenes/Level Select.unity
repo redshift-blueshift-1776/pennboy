@@ -754,8 +754,7 @@ MonoBehaviour:
   m_text: Level 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1035,8 +1034,7 @@ MonoBehaviour:
   m_text: Level 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1170,8 +1168,7 @@ MonoBehaviour:
   m_text: Level 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1305,8 +1302,7 @@ MonoBehaviour:
   m_text: Level 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1440,8 +1436,7 @@ MonoBehaviour:
   m_text: Level 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1575,8 +1570,7 @@ MonoBehaviour:
   m_text: Level 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1838,8 +1832,7 @@ MonoBehaviour:
   m_text: Level 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2651,7 +2644,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1894589090}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: LoadTutorialScene
+        m_MethodName: LoadLevel0V2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2771,8 +2764,7 @@ MonoBehaviour:
   m_text: Level 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3052,8 +3044,7 @@ MonoBehaviour:
   m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -77,7 +77,7 @@ public class HUD : MonoBehaviour
     }
 
     private void updateDisplayedCoins() {
-        coinText.text = "Secret Coins: " + $"{secretCoins}";
+        coinText.text = "Flags: " + $"{secretCoins}";
     }
 
     // TODO: Optimize later (only process non first elements once....)

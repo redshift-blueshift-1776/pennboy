@@ -185,11 +185,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Secret Coins: 0'
+  m_text: 'Flags: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -658,8 +657,7 @@ MonoBehaviour:
   m_text: 'Time: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
-  m_sharedMaterial: {fileID: 2738091362781035273, guid: 6b350fe1d08e74f4886d372ab9f15885,
-    type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6b350fe1d08e74f4886d372ab9f15885, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

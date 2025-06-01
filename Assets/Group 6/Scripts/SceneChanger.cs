@@ -84,6 +84,11 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(32);
     }
 
+    public void LoadLevel0V2()
+    {
+        SceneManager.LoadScene(36);
+    }
+
     public void LoadSpecifiedLevel() {
         SceneManager.LoadScene(lvl_name);
     }
