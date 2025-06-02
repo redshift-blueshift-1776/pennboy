@@ -1653,6 +1653,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Secret Coin (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5404653756345921667, guid: 2c0aec63b40d14876b6c88ca342837c9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b3190fabdd929f04fa55967550f8dcca, type: 2}
     - target: {fileID: 5785534793589166558, guid: 2c0aec63b40d14876b6c88ca342837c9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3060,6 +3065,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Secret Coin (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5404653756345921667, guid: 2c0aec63b40d14876b6c88ca342837c9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 34b245b05beb2405d889cdc1c7528751, type: 2}
     - target: {fileID: 5785534793589166558, guid: 2c0aec63b40d14876b6c88ca342837c9,
         type: 3}
       propertyPath: m_LocalPosition.x
