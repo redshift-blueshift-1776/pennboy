@@ -38,7 +38,7 @@ public class TowerCard : Card
 
     public override bool Use()
     {
-        Debug.Log("scafa");
+        //Debug.Log("scafa");
         if (isUsing)
         {
             Targetpos = origin;
@@ -98,6 +98,10 @@ public class TowerCard : Card
         else if (id == 1)
         {
             return "Pew";
+        }
+        else if (id == 3)
+        {
+            return "Machine Gun";
         }
         else
         {

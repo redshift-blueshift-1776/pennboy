@@ -63,6 +63,9 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         // actually generate deck
         List<DeckPair> deckCopy = new List<DeckPair>(deckBreakupByIndex);
+        if (BTD7.GameManager.instance.waveManager.waveIndex > 18) {
+            deckCopy.Add(new DeckPair (1, 3));
+        }
         while (deckCopy.Count > 0)
         {
             int index = UnityEngine.Random.Range(0, deckCopy.Count);
