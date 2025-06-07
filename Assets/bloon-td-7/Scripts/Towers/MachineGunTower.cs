@@ -86,14 +86,14 @@ public class MachineGunTower : Tower
                 // projectileSpeed = 500f;
                 // numExtraShotsInBurst++;
                 // numShots = numExtraShotsInBurst;
-                projectilePierce = 10;
+                projectilePierce = 3;
                 damage = 3;
-                timeBetweenShots = 0.025f;
+                timeBetweenShots = 0.02f;
                 projectileSpeed = 450f;
-                cooldown = 0.6f;
+                //cooldown = 0.6f;
                 return;
             default:
-                projectilePierce = 10;
+                projectilePierce = 5;
                 damage = 2;
                 numExtraShotsInBurst = 5;
                 numShots = numExtraShotsInBurst;
