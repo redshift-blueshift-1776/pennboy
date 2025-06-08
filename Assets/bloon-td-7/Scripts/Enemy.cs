@@ -201,7 +201,7 @@ public class Enemy : MonoBehaviour
 
     float IncomeMultiplier(int round)
     {
-        if (round <= 18) return 1f;
+        if (round <= 20) return 1f;
         Debug.Log(Mathf.Clamp01(0.95f - (round - 16) * 0.05f) + 0.05f);
         return Mathf.Clamp01(0.95f - (round - 16) * 0.05f) + 0.05f; // 5% less per round after 18
     }
