@@ -86,7 +86,7 @@ public class MachineGunTower : Tower
                 // projectileSpeed = 500f;
                 // numExtraShotsInBurst++;
                 // numShots = numExtraShotsInBurst;
-                //projectilePierce = 3;
+                projectilePierce = 2;
                 damage = 3;
                 timeBetweenShots = 0.05f;
                 projectileSpeed = 300f;
