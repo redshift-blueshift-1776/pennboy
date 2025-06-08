@@ -2436,7 +2436,7 @@ PrefabInstance:
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
@@ -2481,7 +2481,7 @@ PrefabInstance:
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 6416028773422591178, guid: 9f54efac8c14a114f8cd2ce0ebb19ea9,
         type: 3}
@@ -2815,7 +2815,7 @@ PrefabInstance:
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}
       propertyPath: sceneName
-      value: bloons-td-7
+      value: BTD7 Menu
       objectReference: {fileID: 0}
     - target: {fileID: 6631515606081111200, guid: e8164c763b5cc4a49bfeeb81b3460f5b,
         type: 3}

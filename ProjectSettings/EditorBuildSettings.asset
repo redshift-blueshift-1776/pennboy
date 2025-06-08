@@ -113,4 +113,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Sandwich/Game Over.unity
     guid: 234b12c0aeceac04fbc8f37fbf82f2d9
+  - enabled: 1
+    path: Assets/bloon-td-7/BTD7 Menu.unity
+    guid: d174bf2dde8dd434daec8557e3b12cf3
+  - enabled: 1
+    path: Assets/bloon-td-7/bloons-td-7-map2.unity
+    guid: eef43c899d125452d9d77bde83b05636
+  - enabled: 1
+    path: Assets/bloon-td-7/bloons-td-7-map3.unity
+    guid: 917630e2ac51d47cbb409399c7274259
   m_configObjects: {}
