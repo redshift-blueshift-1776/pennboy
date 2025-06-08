@@ -92,6 +92,15 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             if (hand[i] == card)
             {
+                // Check if we're past round 18 and want to allow cardId 3
+                if (BTD7.GameManager.instance.waveManager.waveIndex >= 18)
+                {
+                    // Add the new card directly into the deck if it hasn't been added yet
+                    bool alreadyAdded = deck.Contains(3);
+                    if (!alreadyAdded)
+                        deck.Add(3); // or insert multiple copies if you prefer
+                }
+
                 int newId = deck[0];
                 deck.RemoveAt(0);
                 deck.Add(card.id);
@@ -141,6 +150,5 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         new DeckPair (1, 0),
         new DeckPair (3, 1),
         new DeckPair (6, 2),
-        new DeckPair (1, 3)
     };
 }

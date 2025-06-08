@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MachineGunTower : Tower
 {
-    [SerializeField] protected float projectileSpeed = 240f;
-    protected float timeBetweenShots = 0.1f;
+    [SerializeField] protected float projectileSpeed = 200f;
+    protected float timeBetweenShots = 0.2f;
     protected float attackCooldownTimer = 0;
     protected int numExtraShotsInBurst = 2;
     protected int numShots = 2;
@@ -52,9 +52,9 @@ public class MachineGunTower : Tower
             case 0:
                 return;
             case 1:
-                projectilePierce = 2;
+                //projectilePierce = 2;
                 //damage++;
-                projectileSpeed = 300f;
+                projectileSpeed = 240f;
                 return;
             case 2:
                 // projectilePierce += 2;
@@ -62,9 +62,9 @@ public class MachineGunTower : Tower
                 // timeBetweenShots = 0.2f;
                 // numExtraShotsInBurst++;
                 // numShots = numExtraShotsInBurst;
-                projectilePierce = 2;
+                //projectilePierce = 2;
                 damage = 2;
-                projectileSpeed = 400f;
+                projectileSpeed = 240f;
                 return;
             case 3:
                 // damage += 3;
@@ -72,10 +72,10 @@ public class MachineGunTower : Tower
                 // timeBetweenShots = 0.15f;
                 // numExtraShotsInBurst++;
                 // numShots = numExtraShotsInBurst;
-                projectilePierce = 2;
+                //projectilePierce = 2;
                 damage = 2;
-                timeBetweenShots = 0.05f;
-                projectileSpeed = 420f;
+                timeBetweenShots = 0.1f;
+                projectileSpeed = 240f;
                 return;
             case 4:
                 // cooldown *= 0.5f;
@@ -86,20 +86,20 @@ public class MachineGunTower : Tower
                 // projectileSpeed = 500f;
                 // numExtraShotsInBurst++;
                 // numShots = numExtraShotsInBurst;
-                projectilePierce = 3;
-                damage = 3;
-                timeBetweenShots = 0.02f;
-                projectileSpeed = 450f;
+                //projectilePierce = 3;
+                damage = 2;
+                timeBetweenShots = 0.05f;
+                projectileSpeed = 300f;
                 //cooldown = 0.6f;
                 return;
             default:
-                projectilePierce = 5;
+                //projectilePierce = 5;
                 damage = 2;
-                numExtraShotsInBurst = 5;
-                numShots = numExtraShotsInBurst;
+                // numExtraShotsInBurst = 5;
+                // numShots = numExtraShotsInBurst;
                 projectileSpeed = 500f;
                 timeBetweenShots = 0.025f;
-                cooldown = 0.5f;
+                //cooldown = 0.5f;
                 return;
         }
     }
