@@ -20,6 +20,7 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private List<int> deck;
     [SerializeField] private Card[] CardTypes;
     [SerializeField] private GameObject[] towerObjects;
+    bool alreadyAdded;
 
     public bool MouseHovering {get; private set;} = false;
 
@@ -96,9 +97,9 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 if (BTD7.GameManager.instance.waveManager.waveIndex >= 18)
                 {
                     // Add the new card directly into the deck if it hasn't been added yet
-                    bool alreadyAdded = deck.Contains(3);
                     if (!alreadyAdded)
                         deck.Add(3); // or insert multiple copies if you prefer
+                    alreadyAdded = true;
                 }
 
                 int newId = deck[0];
