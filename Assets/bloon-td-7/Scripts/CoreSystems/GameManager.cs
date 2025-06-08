@@ -47,6 +47,7 @@ namespace BTD7
             if (winScreen != null) {
                 winScreen.SetActive(false); // Hide it at game start
             }
+            Time.timeScale = 1f;
         }
 
         void Update() {
