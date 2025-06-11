@@ -98,7 +98,10 @@ public class CardManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 {
                     // Add the new card directly into the deck if it hasn't been added yet
                     if (!alreadyAdded)
+                    {
                         deck.Add(3); // or insert multiple copies if you prefer
+                        deck.Add(4);
+                    }
                     alreadyAdded = true;
                 }
 

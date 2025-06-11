@@ -103,6 +103,10 @@ public class TowerCard : Card
         {
             return "Machine Gun";
         }
+        else if (id == 4)
+        {
+            return "Ring";
+        }
         else
         {
             return "Basic";
