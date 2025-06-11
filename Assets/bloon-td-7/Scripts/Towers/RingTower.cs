@@ -71,7 +71,7 @@ public class RingTower : Tower
                 // damage = 7;
                 projectilePierce = 3;
                 damage = 6;
-                cooldown = 0.25f;
+                cooldown = 0.3f;
                 numExtraBullets = 15;
                 attackSpread = 22.5f;
                 return;
