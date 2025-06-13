@@ -25,7 +25,7 @@ public class WaveManager : MonoBehaviour
         globalTimer = 0;
         waveOccurring = false;
         waveIndex = 0;
-        //waveIndex = 27;
+        //waveIndex = 18;
         spawnersCreated = 0;
         spawners = new List<Spawner>();
         freeplay = false;
@@ -394,7 +394,7 @@ public class WaveManager : MonoBehaviour
         globalTimer = 0;
 
         freeplayRound++;
-        freeplayMultiplier *= 1.05f;
+        freeplayMultiplier *= 1.035f;
 
         int targetRBE = (int) Mathf.Floor(500f * (freeplayRound + 1f)
             * freeplayMultiplier * freeplayMultiplier * freeplayMultiplier);

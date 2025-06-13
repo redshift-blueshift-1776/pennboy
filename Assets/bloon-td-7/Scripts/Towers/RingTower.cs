@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RingTower : Tower
 {
-    protected float projectileSpeed = 240f;
+    protected float projectileSpeed = 120f;
     protected int projectilePierce = 2;
     protected int numExtraBullets = 7;
     protected float attackSpread = 45f;
@@ -45,6 +45,8 @@ public class RingTower : Tower
                 // numExtraBullets = 2;
                 // attackSpread = 17f;
                 projectilePierce = 3;
+                projectileSpeed = 240f;
+                range = 7.5f;
                 return;
             case 2:
                 // numExtraBullets = 2;
@@ -53,6 +55,8 @@ public class RingTower : Tower
                 // //damage = 3;
                 cooldown = 0.5f;
                 projectilePierce = 3;
+                projectileSpeed = 240f;
+                range = 7.5f;
                 //damage = 2;
                 return;
             case 3:
@@ -61,7 +65,9 @@ public class RingTower : Tower
                 // cooldown = 1;
                 projectilePierce = 3;
                 damage = 2;
-                cooldown = 0.5f;
+                cooldown = 0.25f;
+                projectileSpeed = 240f;
+                range = 7.5f;
                 return;
             case 4:
                 //projectilePierce = 10;
@@ -70,10 +76,12 @@ public class RingTower : Tower
                 // cooldown = 0.8f;
                 // damage = 7;
                 projectilePierce = 3;
-                damage = 6;
-                cooldown = 0.3f;
+                damage = 3;
+                cooldown = 0.25f;
                 numExtraBullets = 15;
                 attackSpread = 22.5f;
+                projectileSpeed = 240f;
+                range = 7.5f;
                 return;
             default:
                 projectilePierce = 10;
@@ -81,6 +89,7 @@ public class RingTower : Tower
                 cooldown = 0.8f;
                 numExtraBullets = 5;
                 attackSpread = 3f;
+                range = 7.5f;
                 return;
         }
     }
