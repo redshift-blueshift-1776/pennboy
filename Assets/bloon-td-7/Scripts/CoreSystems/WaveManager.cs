@@ -51,12 +51,27 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(50f,100,25,5, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
         new EnemyInfo(100f,1000,100,10,new Color32(255,0,0,255),20), //13 dragon
         new EnemyInfo(40f,10,1,1, new Color32(0,0,0,255),4, false, true), //14 the flash
-        new EnemyInfo(5f, 1000, 5000, 300, new Color32(255,255,255,255), 30), //15 god
+        new EnemyInfo(5f, 1000, 5000, 300, new Color32(255,255,255,255), 30), //15 god, G.O.D.
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
         new EnemyInfo(150f,1000,200,10,new Color32(255,128,0,255),25), //16 super dragon
-        new EnemyInfo(3f,1000,30000,1000,new Color(0, 0, 0),36) //17 - boss enemy
+        // New Super Dragons pop into Dragons
+        new EnemyInfo(3f,1000,30000,1000,new Color(0, 0, 0),36) //17 - old boss enemy
+        //new EnemyInfo(3f,1000,11750,1000,new Color(0, 0, 0),36) //17 - new boss enemy, B.O.S.S.
+        // New Boss enemy spawns: 3 G.O.D.s, 10 super dragons, 10 dragons, and 10 master wizards
+        // RBE: 11750 + 3(5000) + 10(200) + 10(100) + 10(25)
     };
+
+    // Enemy ID → List of child enemy IDs it breaks into
+    // public Dictionary<int, List<int>> layeredEnemyBreakdown = new Dictionary<int, List<int>>()
+    // {
+    //     { 16, new List<int> { 13 } },  // E.g., enemy 3 becomes two enemy 2s
+    //     { 17, new List<int> { 15, 15, 15,
+    //                         16, 16, 16, 16, 16, 16, 16, 16, 16, 16,
+    //                         13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+    //                         12, 12, 12, 12, 12, 12, 12, 12, 12, 12 } }
+    // };
+
     /// <summary>
     /// WaveInfo(       all are in one string
     /// enemyIds,
@@ -238,12 +253,12 @@ public class WaveManager : MonoBehaviour
             "15",
             "0"
             ),
-        //wave 23 break 2
+        //wave 23 break 2 but super dragon
         new WaveInfo(
-            "2,10,11",
-            "50,10,10",
-            "1,2,2",
-            "0,10,9"
+            "2,10,11,16",
+            "50,10,10,1",
+            "1,2,2,1",
+            "0,10,9,12"
             ),
         //wave 24 - EVEN MORE EVERYTHING
         new WaveInfo(
@@ -373,7 +388,7 @@ public class WaveManager : MonoBehaviour
         100, //13 dragon
         1, //14 the flash
         5000, //15 god
-        180, //16 super dragon
+        200, //16 super dragon
         30000, //17 - boss enemy
     };
 
@@ -639,6 +654,7 @@ public class WaveManager : MonoBehaviour
             return true;
         }
     }
+
 }
 
 

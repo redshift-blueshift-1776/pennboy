@@ -196,8 +196,49 @@ public class Enemy : MonoBehaviour
             * IncomeMultiplier(BTD7.GameManager.instance.waveManager.waveIndex));
         //Debug.Log(moneyToGet);
         BTD7.GameManager.instance.moneyManager.EarnMoney(moneyToGet);
+
+        // Spawn child enemies (layering)
+        // List<int> childIds;
+        // if (BTD7.GameManager.instance.waveManager.layeredEnemyBreakdown.TryGetValue(id, out childIds))
+        // {
+        //     foreach (int childId in childIds)
+        //     {
+        //         SpawnChildEnemy(childId);
+        //     }
+        // }
+
         Destroy(parent);
     }
+
+    private void SpawnChildEnemy(int childId)
+    {
+        WaveManager.EnemyInfo childInfo = BTD7.GameManager.instance.waveManager.enemyList[childId];
+        GameObject child = Instantiate(
+            BTD7.GameManager.instance.enemy,
+            parent.transform.position,
+            Quaternion.identity
+        );
+
+        child.GetComponentInChildren<Enemy>().Initialize(
+            childInfo.moveSpeed * BTD7.GameManager.instance.waveManager.freeplayMultiplier,
+            childInfo.dmg,
+            (int)Mathf.Ceil(childInfo.health * BTD7.GameManager.instance.waveManager.freeplayMultiplier),
+            childId,
+            childInfo.moneyWorth,
+            childInfo.color,
+            childInfo.isCamo,
+            childInfo.size + Random.Range(-0.3f, 0.3f),
+            childInfo.canTeleport
+        );
+
+        // Optional: apply some offset or delay to avoid exact stacking
+        Rigidbody rb = child.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.AddForce(new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)), ForceMode.Impulse);
+        }
+    }
+
 
     float IncomeMultiplier(int round)
     {

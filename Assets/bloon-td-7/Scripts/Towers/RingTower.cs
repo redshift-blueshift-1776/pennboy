@@ -46,7 +46,7 @@ public class RingTower : Tower
                 // attackSpread = 17f;
                 projectilePierce = 3;
                 projectileSpeed = 240f;
-                range = 7.5f;
+                //range = 7.5f;
                 return;
             case 2:
                 // numExtraBullets = 2;
@@ -56,7 +56,7 @@ public class RingTower : Tower
                 cooldown = 0.5f;
                 projectilePierce = 3;
                 projectileSpeed = 240f;
-                range = 7.5f;
+                //range = 7.5f;
                 //damage = 2;
                 return;
             case 3:
@@ -67,7 +67,7 @@ public class RingTower : Tower
                 damage = 2;
                 cooldown = 0.25f;
                 projectileSpeed = 240f;
-                range = 7.5f;
+                //range = 7.5f;
                 return;
             case 4:
                 //projectilePierce = 10;
@@ -81,7 +81,7 @@ public class RingTower : Tower
                 numExtraBullets = 15;
                 attackSpread = 22.5f;
                 projectileSpeed = 240f;
-                range = 7.5f;
+                //range = 7.5f;
                 return;
             default:
                 projectilePierce = 10;
@@ -89,7 +89,7 @@ public class RingTower : Tower
                 cooldown = 0.8f;
                 numExtraBullets = 5;
                 attackSpread = 3f;
-                range = 7.5f;
+                //range = 7.5f;
                 return;
         }
     }
