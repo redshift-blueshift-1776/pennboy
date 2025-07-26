@@ -210,33 +210,66 @@ public class Enemy : MonoBehaviour
         Destroy(parent);
     }
 
-    private void SpawnChildEnemy(int childId)
+    // public WaveManager.EnemyInfo[] enemyList =
+    // {
+    //     new EnemyInfo(10f,1,1,1, new Color32(0,255,0,255)),               //0 - slime
+    //     new EnemyInfo(25f,1,1,2, new Color32(125,209,123, 255)),        //1 - goblin
+    //     new EnemyInfo(8f,4,5,2, new Color32(21, 92, 20, 255),8),         //2 - orcs
+    //     new EnemyInfo(6f,10,15,5,new Color32(70, 89, 70, 255),12),        //3 - ogres
+    //     new EnemyInfo(20f,1,1,1,new Color32(255,255,255,255)),       //4 skeleton
+    //     new EnemyInfo(10f,10,5,1, new Color32(64, 255, 150,255)),   //5 elf
+    //     new EnemyInfo(40f,2,1,1, new Color32(222, 182, 250,255)),  //6 fairy
+    //     new EnemyInfo(50f,15,3,5, new Color32(117, 12, 5,255)),    //7 demon
+    //     new EnemyInfo(10f,3,4,1, new Color32(100,100,100,255)),    //8 dwarf
+    //     new EnemyInfo(20f,20,5,5, new Color32(40, 96, 250,255)),   //9 wizard
+    //     new EnemyInfo(35f,40,12,5, new Color32(139, 155, 199,255)), //10 light wizard
+    //     new EnemyInfo(35f,40,12,5, new Color32(0, 0, 46,255)), //11 dark wizard
+    //     new EnemyInfo(50f,100,25,5, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
+    //     new EnemyInfo(100f,1000,100,10,new Color32(255,0,0,255),20), //13 dragon
+    //     new EnemyInfo(40f,10,1,1, new Color32(0,0,0,255),4, false, true), //14 the flash
+    //     new EnemyInfo(5f, 1000, 5000, 300, new Color32(255,255,255,255), 30), //15 god, G.O.D.
+    //     //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
+    //     //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
+    //     new EnemyInfo(150f,1000,200,10,new Color32(255,128,0,255),25), //16 super dragon
+    //     // New Super Dragons pop into Dragons
+    //     new EnemyInfo(3f,1000,30000,1000,new Color(0, 0, 0),36) //17 - old boss enemy
+    //     //new EnemyInfo(3f,1000,11750,1000,new Color(0, 0, 0),36) //17 - new boss enemy, B.O.S.S.
+    //     // New Boss enemy spawns: 3 G.O.D.s, 10 super dragons, 10 dragons, and 10 master wizards
+    //     // RBE: 11750 + 3(5000) + 10(200) + 10(100) + 10(25)
+    // };
+
+    public Dictionary<int, int> layeredEnemyBreakdown = new Dictionary<int, int>()
+    {
+        { 2, 0 },
+        { 3, 2 },
+        { 12, 9 },
+        { 16, 13 },
+        { 17, 15 }
+    };
+
+    private void BecomeChildEnemy(int childId)
     {
         WaveManager.EnemyInfo childInfo = BTD7.GameManager.instance.waveManager.enemyList[childId];
-        GameObject child = Instantiate(
-            BTD7.GameManager.instance.enemy,
-            parent.transform.position,
-            Quaternion.identity
-        );
+        
+        this.health = childInfo.health;
+        //this.originalHealth = childInfo.health;
+        //this.id = childInfo.id;
+        this.dmg = childInfo.dmg;
+        this.moveSpeed = childInfo.moveSpeed;
+        this.originalColor = childInfo.color;
+        this.isCamo = childInfo.isCamo;
+        //this.moneyWorth = childInfo.moneyWorth;
+        this.size = childInfo.size + Random.Range(-0.3f,0.3f);
+        this.canTeleport = childInfo.canTeleport;
 
-        child.GetComponentInChildren<Enemy>().Initialize(
-            childInfo.moveSpeed * BTD7.GameManager.instance.waveManager.freeplayMultiplier,
-            childInfo.dmg,
-            (int)Mathf.Ceil(childInfo.health * BTD7.GameManager.instance.waveManager.freeplayMultiplier),
-            childId,
-            childInfo.moneyWorth,
-            childInfo.color,
-            childInfo.isCamo,
-            childInfo.size + Random.Range(-0.3f, 0.3f),
-            childInfo.canTeleport
-        );
+        body.GetComponent<Renderer>().material.color = originalColor;
 
-        // Optional: apply some offset or delay to avoid exact stacking
-        Rigidbody rb = child.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.AddForce(new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)), ForceMode.Impulse);
-        }
+        //height given random deviations to prevent ui glitching
+        Vector3 scaleVector = new Vector3(size, size + Random.Range(-1f,4f), size);
+        transform.localScale = scaleVector;
+        model.transform.localScale = scaleVector;
+        renderSizeY = size + Random.Range(-1f, 4f);
+        parent.layer = 2;
     }
 
 
@@ -257,6 +290,14 @@ public class Enemy : MonoBehaviour
         {
             // Add money count to game manager
             Die();
+        }
+        if (health < originalHealth / 3) {
+            int childId;
+            Debug.Log(layeredEnemyBreakdown.TryGetValue(this.id, out childId));
+            if (layeredEnemyBreakdown.TryGetValue(this.id, out childId)) {
+                Debug.Log(this.id + " becoming " + childId);
+                BecomeChildEnemy(childId);
+            }
         }
     }
 
