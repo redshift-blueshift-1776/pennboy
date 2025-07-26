@@ -54,7 +54,7 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(5f, 1000, 5000, 300, new Color32(255,255,255,255), 30), //15 god, G.O.D.
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
-        new EnemyInfo(150f,1000,200,10,new Color32(255,128,0,255),25), //16 super dragon
+        new EnemyInfo(150f,1000,300,10,new Color32(255,128,0,255),25), //16 super dragon
         // New Super Dragons pop into Dragons
         new EnemyInfo(3f,1000,30000,1000,new Color(0, 0, 0),36) //17 - old boss enemy
         //new EnemyInfo(3f,1000,11750,1000,new Color(0, 0, 0),36) //17 - new boss enemy, B.O.S.S.

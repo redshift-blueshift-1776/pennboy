@@ -252,7 +252,7 @@ public class Enemy : MonoBehaviour
         WaveManager.EnemyInfo childInfo = BTD7.GameManager.instance.waveManager.enemyList[childId];
         
         this.health = childInfo.health;
-        //this.originalHealth = childInfo.health;
+        this.originalHealth = childInfo.health;
         //this.id = childInfo.id;
         this.dmg = childInfo.dmg;
         this.moveSpeed = childInfo.moveSpeed;

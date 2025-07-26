@@ -3463,6 +3463,8 @@ GameObject:
   - component: {fileID: 1032740200}
   - component: {fileID: 1032740199}
   - component: {fileID: 1032740198}
+  - component: {fileID: 1032740202}
+  - component: {fileID: 1032740203}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -3511,7 +3513,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0c1f7fd3b4f294643bfff7973f272be4, type: 2}
+  - {fileID: 2100000, guid: d50582ade521b478f832307280df9ad1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3556,6 +3558,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1032740202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032740197}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 10
+  tileSizeZ: 10
+--- !u!114 &1032740203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032740197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b668f32ff6864433a4d8d96f49cb0e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1137561815
 GameObject:
   m_ObjectHideFlags: 0
@@ -4317,7 +4345,7 @@ MonoBehaviour:
   musicSource: {fileID: 1459573119}
   effectsSource: {fileID: 0}
   musicClips:
-  - {fileID: 8300000, guid: 9a4ba2c526d4f47c0ae8166507a47555, type: 3}
+  - {fileID: 8300000, guid: a78d8f29e564c4221934d2b403b6179d, type: 3}
   - {fileID: 8300000, guid: ab9062c1a77ad408c84e1b0f5e5c4e5a, type: 3}
   effectClips: []
 --- !u!1001 &1465567202
