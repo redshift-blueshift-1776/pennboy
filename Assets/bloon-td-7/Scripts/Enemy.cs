@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public int dmg;
     public int health;
     public int id;
+    public int id2;
     public int moneyWorth;
     public string modifiers;
     private const float WAYPOINT_CHANGE_DISTANCE = 0.01f;
@@ -63,6 +64,7 @@ public class Enemy : MonoBehaviour
         this.health = health;
         this.originalHealth = health;
         this.id = id;
+        this.id2 = id;
         this.dmg = dmg;
         this.moveSpeed = moveSpeed;
         this.originalColor = color;
@@ -240,20 +242,36 @@ public class Enemy : MonoBehaviour
 
     public Dictionary<int, int> layeredEnemyBreakdown = new Dictionary<int, int>()
     {
+        { 1, 0 },
         { 2, 0 },
         { 3, 2 },
+        { 4, 0 },
+        { 5, 0 },
+        { 6, 0 },
+        { 7, 6 },
+        { 8, 4 },
+        { 9, 1 },
+        { 10, 9 },
+        { 11, 9 },
         { 12, 9 },
+        { 13, 3 },
+        { 15, 13 },
         { 16, 13 },
         { 17, 15 }
     };
 
     private void BecomeChildEnemy(int childId)
     {
+        int moneyToGet = (int) Mathf.Ceil(moneyWorth
+            * IncomeMultiplier(BTD7.GameManager.instance.waveManager.waveIndex));
+        //Debug.Log(moneyToGet);
+        BTD7.GameManager.instance.moneyManager.EarnMoney(moneyToGet);
+
         WaveManager.EnemyInfo childInfo = BTD7.GameManager.instance.waveManager.enemyList[childId];
         
         this.health = childInfo.health;
-        this.originalHealth = childInfo.health;
-        //this.id = childInfo.id;
+        //this.originalHealth = childInfo.health;
+        this.id2 = childId;
         this.dmg = childInfo.dmg;
         this.moveSpeed = childInfo.moveSpeed;
         this.originalColor = childInfo.color;
@@ -286,17 +304,15 @@ public class Enemy : MonoBehaviour
         health -= dmg;
         audioSource.clip = explosionSound;
         audioSource?.Play();
-        if (health <= 0)
-        {
-            // Add money count to game manager
-            Die();
-        }
-        if (health < originalHealth / 3) {
+        if (health <= 0) {
             int childId;
-            Debug.Log(layeredEnemyBreakdown.TryGetValue(this.id, out childId));
-            if (layeredEnemyBreakdown.TryGetValue(this.id, out childId)) {
-                Debug.Log(this.id + " becoming " + childId);
+            //Debug.Log(layeredEnemyBreakdown.TryGetValue(this.id2, out childId));
+            if (layeredEnemyBreakdown.TryGetValue(this.id2, out childId)) {
+                Debug.Log(this.id2 + " becoming " + childId);
                 BecomeChildEnemy(childId);
+            } else {
+                // Add money count to game manager
+                Die();
             }
         }
     }
