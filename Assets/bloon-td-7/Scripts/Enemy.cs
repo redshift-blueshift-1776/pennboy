@@ -194,9 +194,13 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Die()
     {
+        float multiplier = IncomeMultiplier(BTD7.GameManager.instance.waveManager.waveIndex);
         int moneyToGet = (int) Mathf.Ceil(moneyWorth
-            * IncomeMultiplier(BTD7.GameManager.instance.waveManager.waveIndex));
+            * multiplier);
         //Debug.Log(moneyToGet);
+        if ((moneyWorth == 1) && (multiplier < 0.1)) {
+            moneyToGet = 0;
+        }
         BTD7.GameManager.instance.moneyManager.EarnMoney(moneyToGet);
 
         // Spawn child enemies (layering)
@@ -262,9 +266,13 @@ public class Enemy : MonoBehaviour
 
     private void BecomeChildEnemy(int childId)
     {
+        float multiplier = IncomeMultiplier(BTD7.GameManager.instance.waveManager.waveIndex);
         int moneyToGet = (int) Mathf.Ceil(moneyWorth
-            * IncomeMultiplier(BTD7.GameManager.instance.waveManager.waveIndex));
+            * multiplier);
         //Debug.Log(moneyToGet);
+        if ((moneyWorth == 1) && (multiplier < 0.1)) {
+            moneyToGet = 0;
+        }
         BTD7.GameManager.instance.moneyManager.EarnMoney(moneyToGet);
 
         WaveManager.EnemyInfo childInfo = BTD7.GameManager.instance.waveManager.enemyList[childId];
@@ -294,8 +302,8 @@ public class Enemy : MonoBehaviour
     float IncomeMultiplier(int round)
     {
         if (round <= 20) return 1f;
-        Debug.Log(Mathf.Clamp01(0.95f - (round - 16) * 0.05f) + 0.05f);
-        return Mathf.Clamp01(0.95f - (round - 16) * 0.05f) + 0.05f; // 5% less per round after 18
+        Debug.Log(Mathf.Clamp01(0.95f - (round - 10) * 0.05f) + 0.05f);
+        return Mathf.Clamp01(0.95f - (round - 10) * 0.05f) + 0.05f; // 5% less per round after 18
     }
 
 
