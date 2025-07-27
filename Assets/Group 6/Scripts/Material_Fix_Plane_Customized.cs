@@ -14,8 +14,13 @@ public class Material_Fix_Plane_Customized : MonoBehaviour
 
         renderer.material = new Material(renderer.material);
 
-        renderer.material.mainTextureScale = new Vector2(scale.x / tileSizeX, scale.z / tileSizeZ);
+        Vector2 tiling = new Vector2(scale.x / tileSizeX, scale.z / tileSizeZ);
+        renderer.material.mainTextureScale = tiling;
+
+        // Center the texture
+        renderer.material.mainTextureOffset = new Vector2(0.5f * (1 - tiling.x), 0.5f * (1 - tiling.y));
     }
+
 
     // Update is called once per frame
     void Update()

@@ -1452,6 +1452,7 @@ GameObject:
   - component: {fileID: 291624052}
   - component: {fileID: 291624051}
   - component: {fileID: 291624050}
+  - component: {fileID: 291624053}
   m_Layer: 0
   m_Name: Cube (7)
   m_TagString: BTD7PlacementBlocker
@@ -1469,7 +1470,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 115, y: 1, z: 42.5}
-  m_LocalScale: {x: 5, y: 0.1, z: 30}
+  m_LocalScale: {x: 5, y: 0.1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2057371545}
@@ -1515,7 +1516,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a0a69f10c68e894a9881abbc390e2ae, type: 2}
+  - {fileID: 2100000, guid: bf9cbfe3b5bfa47ae8721db2ae9ea3ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1545,6 +1546,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291624048}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &291624053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291624048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 5
+  tileSizeZ: 5
 --- !u!1 &332431118
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,6 +1572,7 @@ GameObject:
   - component: {fileID: 332431122}
   - component: {fileID: 332431121}
   - component: {fileID: 332431120}
+  - component: {fileID: 332431123}
   m_Layer: 0
   m_Name: Cube (8)
   m_TagString: BTD7PlacementBlocker
@@ -1620,7 +1636,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a0a69f10c68e894a9881abbc390e2ae, type: 2}
+  - {fileID: 2100000, guid: bf9cbfe3b5bfa47ae8721db2ae9ea3ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1650,6 +1666,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332431118}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &332431123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332431118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 5
+  tileSizeZ: 5
 --- !u!1 &485681330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,6 +1775,7 @@ GameObject:
   - component: {fileID: 556065086}
   - component: {fileID: 556065085}
   - component: {fileID: 556065084}
+  - component: {fileID: 556065087}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: BTD7PlacementBlocker
@@ -1808,7 +1839,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a0a69f10c68e894a9881abbc390e2ae, type: 2}
+  - {fileID: 2100000, guid: bf9cbfe3b5bfa47ae8721db2ae9ea3ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1838,6 +1869,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556065082}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &556065087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556065082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 5
+  tileSizeZ: 5
 --- !u!1 &584029332
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,6 +2174,7 @@ GameObject:
   - component: {fileID: 683602785}
   - component: {fileID: 683602784}
   - component: {fileID: 683602783}
+  - component: {fileID: 683602786}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: BTD7PlacementBlocker
@@ -2145,7 +2191,7 @@ Transform:
   m_GameObject: {fileID: 683602781}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 57.6, y: 1, z: 72}
+  m_LocalPosition: {x: 57.5, y: 1, z: 72}
   m_LocalScale: {x: 70, y: 0.1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2192,7 +2238,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a0a69f10c68e894a9881abbc390e2ae, type: 2}
+  - {fileID: 2100000, guid: bf9cbfe3b5bfa47ae8721db2ae9ea3ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2222,6 +2268,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683602781}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &683602786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683602781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 5
+  tileSizeZ: 5
 --- !u!1 &702960714
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,6 +2554,7 @@ GameObject:
   - component: {fileID: 780447992}
   - component: {fileID: 780447991}
   - component: {fileID: 780447990}
+  - component: {fileID: 780447993}
   m_Layer: 0
   m_Name: Cube (10)
   m_TagString: BTD7PlacementBlocker
@@ -2510,7 +2571,7 @@ Transform:
   m_GameObject: {fileID: 780447988}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 96, y: 1, z: 15}
+  m_LocalPosition: {x: 95.5, y: 1, z: 15}
   m_LocalScale: {x: 132, y: 0.1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2557,7 +2618,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a0a69f10c68e894a9881abbc390e2ae, type: 2}
+  - {fileID: 2100000, guid: bf9cbfe3b5bfa47ae8721db2ae9ea3ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2587,6 +2648,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 780447988}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &780447993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780447988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 5
+  tileSizeZ: 5
 --- !u!1 &783254486
 GameObject:
   m_ObjectHideFlags: 0
@@ -3513,7 +3588,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d50582ade521b478f832307280df9ad1, type: 2}
+  - {fileID: 2100000, guid: 5b53804835b924412934799c1ee7ab5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3565,13 +3640,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032740197}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSizeX: 10
-  tileSizeZ: 10
+  tileSizeX: 8
+  tileSizeZ: 4.5
 --- !u!114 &1032740203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3579,7 +3654,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032740197}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b668f32ff6864433a4d8d96f49cb0e7, type: 3}
   m_Name: 
@@ -3679,6 +3754,7 @@ GameObject:
   - component: {fileID: 1202447797}
   - component: {fileID: 1202447796}
   - component: {fileID: 1202447795}
+  - component: {fileID: 1202447798}
   m_Layer: 0
   m_Name: Cube (9)
   m_TagString: BTD7PlacementBlocker
@@ -3696,7 +3772,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 32, y: 1, z: 35}
-  m_LocalScale: {x: 5, y: 0.1, z: 45}
+  m_LocalScale: {x: 5, y: 0.1, z: 35}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2057371545}
@@ -3742,7 +3818,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a0a69f10c68e894a9881abbc390e2ae, type: 2}
+  - {fileID: 2100000, guid: bf9cbfe3b5bfa47ae8721db2ae9ea3ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3772,6 +3848,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202447793}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1202447798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202447793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 5
+  tileSizeZ: 5
 --- !u!1 &1348480290
 GameObject:
   m_ObjectHideFlags: 0
@@ -4026,6 +4116,7 @@ GameObject:
   - component: {fileID: 1436480119}
   - component: {fileID: 1436480118}
   - component: {fileID: 1436480117}
+  - component: {fileID: 1436480120}
   m_Layer: 0
   m_Name: Cube
   m_TagString: BTD7PlacementBlocker
@@ -4089,7 +4180,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a0a69f10c68e894a9881abbc390e2ae, type: 2}
+  - {fileID: 2100000, guid: bf9cbfe3b5bfa47ae8721db2ae9ea3ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4119,6 +4210,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436480115}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1436480120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436480115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 5
+  tileSizeZ: 5
 --- !u!1 &1439199229 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9054721832674411252, guid: c72a129b6cff47241af9a7c2d166ccfb,
@@ -4438,6 +4543,7 @@ GameObject:
   - component: {fileID: 1465705861}
   - component: {fileID: 1465705860}
   - component: {fileID: 1465705859}
+  - component: {fileID: 1465705862}
   m_Layer: 0
   m_Name: Cube (6)
   m_TagString: BTD7PlacementBlocker
@@ -4501,7 +4607,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a0a69f10c68e894a9881abbc390e2ae, type: 2}
+  - {fileID: 2100000, guid: bf9cbfe3b5bfa47ae8721db2ae9ea3ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4531,6 +4637,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465705857}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1465705862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465705857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 5
+  tileSizeZ: 5
 --- !u!1 &1477361489
 GameObject:
   m_ObjectHideFlags: 0
@@ -4956,6 +5076,7 @@ GameObject:
   - component: {fileID: 1666386418}
   - component: {fileID: 1666386417}
   - component: {fileID: 1666386416}
+  - component: {fileID: 1666386419}
   m_Layer: 0
   m_Name: Cube (5)
   m_TagString: BTD7PlacementBlocker
@@ -4973,7 +5094,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 123, y: 1, z: 45}
-  m_LocalScale: {x: 5, y: 0.1, z: 35}
+  m_LocalScale: {x: 5, y: 0.1, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2057371545}
@@ -5019,7 +5140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a0a69f10c68e894a9881abbc390e2ae, type: 2}
+  - {fileID: 2100000, guid: bf9cbfe3b5bfa47ae8721db2ae9ea3ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5049,6 +5170,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666386414}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1666386419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666386414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 5
+  tileSizeZ: 5
 --- !u!1 &1694231083
 GameObject:
   m_ObjectHideFlags: 0
@@ -5061,6 +5196,7 @@ GameObject:
   - component: {fileID: 1694231087}
   - component: {fileID: 1694231086}
   - component: {fileID: 1694231085}
+  - component: {fileID: 1694231088}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: BTD7PlacementBlocker
@@ -5078,7 +5214,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 90, y: 1, z: 66}
-  m_LocalScale: {x: 5, y: 0.1, z: 17}
+  m_LocalScale: {x: 5, y: 0.1, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2057371545}
@@ -5124,7 +5260,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a0a69f10c68e894a9881abbc390e2ae, type: 2}
+  - {fileID: 2100000, guid: bf9cbfe3b5bfa47ae8721db2ae9ea3ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5154,6 +5290,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694231083}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1694231088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694231083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 5
+  tileSizeZ: 5
 --- !u!1 &1822411302
 GameObject:
   m_ObjectHideFlags: 0
@@ -5442,6 +5592,7 @@ GameObject:
   - component: {fileID: 1859448242}
   - component: {fileID: 1859448241}
   - component: {fileID: 1859448240}
+  - component: {fileID: 1859448243}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: BTD7PlacementBlocker
@@ -5459,7 +5610,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 25, y: 1, z: 76}
-  m_LocalScale: {x: 5, y: 0.1, z: 12.5}
+  m_LocalScale: {x: 5, y: 0.1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2057371545}
@@ -5505,7 +5656,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a0a69f10c68e894a9881abbc390e2ae, type: 2}
+  - {fileID: 2100000, guid: bf9cbfe3b5bfa47ae8721db2ae9ea3ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5535,6 +5686,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859448238}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1859448243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859448238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82a50ae8ff3a44b3a28fea7db12af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSizeX: 5
+  tileSizeZ: 5
 --- !u!1 &1882257976
 GameObject:
   m_ObjectHideFlags: 0
