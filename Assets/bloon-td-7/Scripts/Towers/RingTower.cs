@@ -13,7 +13,7 @@ public class RingTower : Tower
         base.Start();
 
         UpgradeCosts = new int[] { 350, 450, 550, 750, 1000};
-        cost = 300;
+        cost = 1000;
     }
     protected override void Attack(GameObject target)
     {
@@ -65,7 +65,7 @@ public class RingTower : Tower
                 // cooldown = 1;
                 projectilePierce = 3;
                 damage = 2;
-                cooldown = 0.25f;
+                cooldown = 0.5f;
                 projectileSpeed = 240f;
                 //range = 7.5f;
                 return;
@@ -77,7 +77,7 @@ public class RingTower : Tower
                 // damage = 7;
                 projectilePierce = 3;
                 damage = 3;
-                cooldown = 0.25f;
+                cooldown = 0.375f;
                 numExtraBullets = 15;
                 attackSpread = 22.5f;
                 projectileSpeed = 240f;
