@@ -79,6 +79,15 @@ public class HUD : MonoBehaviour
 
     private void updateDisplayedCoins() {
         coinText.text = "Flags: " + $"{secretCoins}";
+        StartCoroutine(FlashText(coinText));
+    }
+
+    private IEnumerator FlashText(TMP_Text text)
+    {
+        Color originalColor = text.color;
+        text.color = Color.yellow;
+        yield return new WaitForSeconds(0.5f);
+        text.color = originalColor;
     }
 
     // TODO: Optimize later (only process non first elements once....)
