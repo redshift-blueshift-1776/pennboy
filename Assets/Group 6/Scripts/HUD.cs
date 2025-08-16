@@ -79,15 +79,28 @@ public class HUD : MonoBehaviour
 
     private void updateDisplayedCoins() {
         coinText.text = "Flags: " + $"{secretCoins}";
-        StartCoroutine(FlashText(coinText));
     }
 
     private IEnumerator FlashText(TMP_Text text)
     {
         Color originalColor = text.color;
         text.color = Color.yellow;
-        yield return new WaitForSeconds(0.5f);
+        text.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        // yield return new WaitForSeconds(0.5f);
+        float duration = 1f;
+        float elapsed = 0f;
+        while (elapsed < duration) {
+            float t = elapsed / duration;
+
+            text.color = Color.Lerp(Color.yellow, originalColor, t);
+            text.transform.localScale = Vector3.Lerp(new Vector3(1.5f, 1.5f, 1.5f), new Vector3(1f, 1f, 1f), t);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
         text.color = originalColor;
+        text.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     // TODO: Optimize later (only process non first elements once....)
@@ -113,6 +126,7 @@ public class HUD : MonoBehaviour
     public void addCoin() {
         //Debug.Log("Adding coin in HUD");
         this.secretCoins++;
+        StartCoroutine(FlashText(coinText));
         updateDisplayedCoins();
     }
 
