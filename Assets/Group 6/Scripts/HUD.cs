@@ -93,7 +93,7 @@ public class HUD : MonoBehaviour
             float t = elapsed / duration;
 
             text.color = Color.Lerp(Color.yellow, originalColor, t);
-            text.transform.localScale = Vector3.Lerp(new Vector3(1.5f, 1.5f, 1.5f), new Vector3(1f, 1f, 1f), t);
+            text.transform.localScale = Vector3.Lerp(new Vector3(1.5f, 1.5f, 1.5f), new Vector3(1f, 1f, 1f), t * t);
 
             elapsed += Time.deltaTime;
             yield return null;
