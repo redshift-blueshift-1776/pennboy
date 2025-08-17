@@ -33,15 +33,15 @@ public class PlacementSystem : MonoBehaviour
         {"Basic3", "Stinging Shots: Bullets now do more damage!"},
         {"Basic4", "Deadly Shots: Bullets now do even more damage!"},
         {"Pew0", "Pew Tower"},
-        {"Pew1", "Pew Tower"},
-        {"Pew2", "Pew Tower"},
-        {"Pew3", "Pew Tower"},
-        {"Pew4", "Pew Tower"},
+        {"Pew1", "Piercer: Bullets can now hit two enemies at once!"},
+        {"Pew2", "Damager: Bullets do double the damage."},
+        {"Pew3", "Burster: Burst includes more bullets."},
+        {"Pew4", "Mega Pew: More bullets, faster cooldown, more pierce, more damage!"},
         {"Shotgun0", "Shotgun Tower"},
-        {"Shotgun1", "Shotgun Tower"},
-        {"Shotgun2", "Shotgun Tower"},
-        {"Shotgun3", "Shotgun Tower"},
-        {"Shotgun4", "Shotgun Tower"},
+        {"Shotgun1", "Fire in the Hole: More pierce!"},
+        {"Shotgun2", "Shotgun Tower: Need better descriptions."},
+        {"Shotgun3", "Faster Shooting: Shoots much faster!"},
+        {"Shotgun4", "Five Fears: Fires five bullets at once!"},
     };
 
     private void Start()
