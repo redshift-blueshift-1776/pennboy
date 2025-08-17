@@ -59,14 +59,14 @@ namespace BTD7
 
         public void WinGame()
         {
-        Time.timeScale = 0f; // optional: pause the game
+        Time.timeScale = 0f; // Pause the game
         winScreen.SetActive(true);
         cardPanel.SetActive(false);
         modeText.SetActive(false);
         }
 
         public void FreeplayMode() {
-            Time.timeScale = 1f; // optional: pause the game
+            Time.timeScale = 1f; // Unpause the game
             winScreen.SetActive(false);
             cardPanel.SetActive(true);
             modeText.SetActive(true);

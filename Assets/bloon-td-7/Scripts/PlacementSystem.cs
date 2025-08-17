@@ -29,7 +29,19 @@ public class PlacementSystem : MonoBehaviour
     {
         {"Basic0", "Basic Tower"},
         {"Basic1", "Powerful Shots: With heavier ammunition, the tower can now hit two enemies at once!"},
-        {"Basic2", "Powerful Shots: With heavier ammunition, the tower can now hit two enemies at once!"}
+        {"Basic2", "Faster Bullets: Bullets now move at more than twice the speed!"},
+        {"Basic3", "Stinging Shots: Bullets now do more damage!"},
+        {"Basic4", "Deadly Shots: Bullets now do even more damage!"},
+        {"Pew0", "Pew Tower"},
+        {"Pew1", "Pew Tower"},
+        {"Pew2", "Pew Tower"},
+        {"Pew3", "Pew Tower"},
+        {"Pew4", "Pew Tower"},
+        {"Shotgun0", "Shotgun Tower"},
+        {"Shotgun1", "Shotgun Tower"},
+        {"Shotgun2", "Shotgun Tower"},
+        {"Shotgun3", "Shotgun Tower"},
+        {"Shotgun4", "Shotgun Tower"},
     };
 
     private void Start()
@@ -53,6 +65,9 @@ public class PlacementSystem : MonoBehaviour
                 modeText.text = "Sacrifice Mode";
                 upgradePanel.SetActive(true);
                 upgradeText.text = "CardUsing: " + cardUsing.GetName() + " " + cardUsing.id;
+                if (towerDescriptions.TryGetValue(cardUsing.GetName() + cardUsing.GetLevel(totalCost), out string description)) {
+                    upgradeText.text = description;
+                }
             }
             else
             {
@@ -155,7 +170,11 @@ public class PlacementSystem : MonoBehaviour
 
     private void updateUpgradeLevelText() {
         upgradeLevelText.text = upgradeLevelString + cardUsing.GetLevel(totalCost);
-        upgradeText.text = "CardUsing: " + cardUsing.GetName() + " " + cardUsing.id;
+        Debug.Log(cardUsing.GetName() + cardUsing.GetLevel(totalCost));
+        if (towerDescriptions.TryGetValue(cardUsing.GetName() + cardUsing.GetLevel(totalCost), out string description)) {
+            upgradeText.text = description;
+        }
+        
     }
 
     /// <summary>
