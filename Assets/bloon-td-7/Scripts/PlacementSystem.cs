@@ -20,8 +20,17 @@ public class PlacementSystem : MonoBehaviour
     private int totalCost;
     [SerializeField] private TMP_Text modeText;
     [SerializeField] private CardManager cardManager;
+    [SerializeField] private GameObject upgradePanel;
+    [SerializeField] private TMP_Text upgradeText;
 
     private TowerIndicator towerIndicator;
+
+    private Dictionary<string, string> towerDescriptions = new Dictionary<string, string>()
+    {
+        {"Basic0", "Basic Tower"},
+        {"Basic1", "Powerful Shots: With heavier ammunition, the tower can now hit two enemies at once!"},
+        {"Basic2", "Powerful Shots: With heavier ammunition, the tower can now hit two enemies at once!"}
+    };
 
     private void Start()
     {
@@ -30,6 +39,7 @@ public class PlacementSystem : MonoBehaviour
         currentMode = PlacementMode.Selection;
         modeText.text = "Placement Mode";
         towerIndicator = mouseIndicator.GetComponent<TowerIndicator>();
+        upgradePanel.SetActive(false);
     }
 
     private void Update()
@@ -41,11 +51,14 @@ public class PlacementSystem : MonoBehaviour
             {
                 currentMode = PlacementMode.Sacrificing;
                 modeText.text = "Sacrifice Mode";
+                upgradePanel.SetActive(true);
+                upgradeText.text = "CardUsing: " + cardUsing.GetName() + " " + cardUsing.id;
             }
             else
             {
                 currentMode = PlacementMode.PlacingTower;
                 modeText.text = "Placement Mode";
+                upgradePanel.SetActive(false);
             }
         }
 
@@ -142,6 +155,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void updateUpgradeLevelText() {
         upgradeLevelText.text = upgradeLevelString + cardUsing.GetLevel(totalCost);
+        upgradeText.text = "CardUsing: " + cardUsing.GetName() + " " + cardUsing.id;
     }
 
     /// <summary>

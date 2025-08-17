@@ -30,27 +30,27 @@ public class TowerMain : Tower
             case 1:
                 projectilePierce++;
                 //damage++;
-                projectileSpeed = 275f;
+                //projectileSpeed = 275f;
                 return;
             case 2:
                 projectilePierce++;
-                damage++;
+                //damage++;
                 //cooldown *= 0.75f;
-                projectileSpeed = 325f;
+                projectileSpeed = 500f;
                 return;
             case 3:
                 //damage += 3;
                 projectilePierce++;
                 damage++;
-                cooldown *= 0.5f;
-                projectileSpeed = 375f;
+                //cooldown *= 0.5f;
+                projectileSpeed = 500f;
                 return;
             case 4:
                 // cooldown *= 0.5f;
                 // damage += 7;
                 projectilePierce += 20;
-                damage = 10;
-                cooldown = 5;
+                damage = 30;
+                //cooldown = 5;
                 //projectilePierce += 5;
                 projectileSpeed = 500f;
                 return;
