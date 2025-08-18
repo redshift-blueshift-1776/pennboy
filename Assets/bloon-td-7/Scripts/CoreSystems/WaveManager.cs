@@ -43,7 +43,7 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(20f,1,1,1,new Color32(255,255,255,255)),       //4 skeleton
         new EnemyInfo(10f,10,5,1, new Color32(64, 255, 150,255)),   //5 elf
         new EnemyInfo(40f,2,1,1, new Color32(222, 182, 250,255)),  //6 fairy
-        new EnemyInfo(50f,15,3,5, new Color32(117, 12, 5,255)),    //7 demon
+        new EnemyInfo(50f,15,3,3, new Color32(117, 12, 5,255)),    //7 demon
         new EnemyInfo(10f,3,3,1, new Color32(100,100,100,255)),    //8 dwarf
         new EnemyInfo(20f,20,5,5, new Color32(40, 96, 250,255)),   //9 wizard
         new EnemyInfo(35f,40,12,5, new Color32(139, 155, 199,255)), //10 light wizard

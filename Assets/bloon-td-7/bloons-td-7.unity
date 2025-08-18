@@ -5747,6 +5747,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BTD7 Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 3156124650773553518, guid: 68ee57185fffe498ebd5bcc6c483621d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4488232411136568664, guid: 68ee57185fffe498ebd5bcc6c483621d,
         type: 3}
       propertyPath: SceneCamera

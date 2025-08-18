@@ -122,4 +122,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/bloon-td-7/bloons-td-7-map3.unity
     guid: 917630e2ac51d47cbb409399c7274259
+  - enabled: 1
+    path: Assets/bloon-td-7/bloons-td-7-map4.unity
+    guid: aec638ac56b5f49ecbe8f78b7bddf308
+  - enabled: 1
+    path: Assets/bloon-td-7/BTD7 Level Select.unity
+    guid: 2fc65d3934f6f49e58e086435d516462
   m_configObjects: {}
