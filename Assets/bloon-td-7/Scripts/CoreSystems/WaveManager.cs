@@ -39,9 +39,9 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(10f,1,1,1, new Color32(0,255,0,255)),               //0 - slime
         new EnemyInfo(25f,1,1,2, new Color32(125,209,123, 255)),        //1 - goblin
         new EnemyInfo(8f,4,5,2, new Color32(21, 92, 20, 255),8),         //2 - orcs
-        new EnemyInfo(6f,10,10,3,new Color32(70, 89, 70, 255),12),        //3 - ogres
+        new EnemyInfo(6f,10,10,2,new Color32(70, 89, 70, 255),12),        //3 - ogres
         new EnemyInfo(20f,1,1,1,new Color32(255,255,255,255)),       //4 skeleton
-        new EnemyInfo(10f,10,5,2, new Color32(64, 255, 150,255)),   //5 elf
+        new EnemyInfo(10f,10,5,1, new Color32(64, 255, 150,255)),   //5 elf
         new EnemyInfo(40f,2,1,1, new Color32(222, 182, 250,255)),  //6 fairy
         new EnemyInfo(50f,15,3,5, new Color32(117, 12, 5,255)),    //7 demon
         new EnemyInfo(10f,3,3,1, new Color32(100,100,100,255)),    //8 dwarf
@@ -241,7 +241,7 @@ public class WaveManager : MonoBehaviour
             ),
         //wave 21 Round 63 but not
         new WaveInfo(
-            "3,13,13,13",
+            "9,13,13,13",
             "75,40,40,42",
             "0.6,0.01,0.01,0.01",
             "0,3.9,20,36"

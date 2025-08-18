@@ -53,6 +53,15 @@ public class Projectile : MonoBehaviour
         enemy.Damage(dmg);
         pierce_counter++;
         StartCoroutine(HitFX());
+        if (enemy.id2 == 8) {
+            StartCoroutine(Remove());
+        }
+        if (enemy.id2 == 15) {
+            StartCoroutine(Remove());
+        }
+        if (enemy.id2 == 17) {
+            StartCoroutine(Remove());
+        }
         if (pierce_counter >= pierce_cap) StartCoroutine(Remove());
     }
 

@@ -247,10 +247,10 @@ public class Enemy : MonoBehaviour
     public Dictionary<int, int> layeredEnemyBreakdown = new Dictionary<int, int>()
     {
         { 1, 0 },
-        { 2, 0 },
+        { 2, 1 },
         { 3, 2 },
         { 4, 0 },
-        { 5, 0 },
+        { 5, 1 },
         { 6, 0 },
         { 7, 6 },
         { 8, 4 },
