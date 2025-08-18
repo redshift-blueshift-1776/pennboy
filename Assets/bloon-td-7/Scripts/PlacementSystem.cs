@@ -39,9 +39,19 @@ public class PlacementSystem : MonoBehaviour
         {"Pew4", "Mega Pew: More bullets, faster cooldown, more pierce, more damage!"},
         {"Shotgun0", "Shotgun Tower"},
         {"Shotgun1", "Fire in the Hole: More pierce!"},
-        {"Shotgun2", "Shotgun Tower: Need better descriptions."},
+        {"Shotgun2", "Power Tower: Double damage!"},
         {"Shotgun3", "Faster Shooting: Shoots much faster!"},
         {"Shotgun4", "Five Fears: Fires five bullets at once!"},
+        {"Machine Gun0", "Machine Gun Tower"},
+        {"Machine Gun1", "Speedy Bullets: Bullets move 25% faster."},
+        {"Machine Gun2", "Double Kill: Deals twice the damage."},
+        {"Machine Gun3", "Speedy Barrel: Increased firing rate."},
+        {"Machine Gun4", "Super Gun: Fires 25 bullets per second!"},
+        {"Ring0", "Ring Tower"},
+        {"Ring1", "Sharp Rings: Bullets can now hit three enemies at once!"},
+        {"Ring2", "Faster Shooting: Fires twice as fast!"},
+        {"Ring3", "Ring Zone: Bullets do more damage."},
+        {"Ring4", "Ring Lord: Fires 16 powerful bullets instead of 8!"},
     };
 
     private void Start()

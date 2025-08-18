@@ -54,7 +54,7 @@ public class MachineGunTower : Tower
             case 1:
                 //projectilePierce = 2;
                 //damage++;
-                projectileSpeed = 240f;
+                projectileSpeed = 250f;
                 return;
             case 2:
                 // projectilePierce += 2;
@@ -64,7 +64,7 @@ public class MachineGunTower : Tower
                 // numShots = numExtraShotsInBurst;
                 //projectilePierce = 2;
                 damage = 2;
-                projectileSpeed = 240f;
+                projectileSpeed = 250f;
                 return;
             case 3:
                 // damage += 3;
@@ -75,7 +75,7 @@ public class MachineGunTower : Tower
                 //projectilePierce = 2;
                 damage = 2;
                 timeBetweenShots = 0.1f;
-                projectileSpeed = 240f;
+                projectileSpeed = 250f;
                 return;
             case 4:
                 // cooldown *= 0.5f;
