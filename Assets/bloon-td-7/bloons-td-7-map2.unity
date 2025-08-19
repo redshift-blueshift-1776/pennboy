@@ -2230,6 +2230,11 @@ PrefabInstance:
       propertyPath: SceneCamera
       value: 
       objectReference: {fileID: 899411285}
+    - target: {fileID: 5742885756950636615, guid: 68ee57185fffe498ebd5bcc6c483621d,
+        type: 3}
+      propertyPath: musicClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: cc3ad5c6aed5c4a9c9d08d9043848a8a, type: 3}
     - target: {fileID: 9223153758187487945, guid: 68ee57185fffe498ebd5bcc6c483621d,
         type: 3}
       propertyPath: m_LocalPosition.x

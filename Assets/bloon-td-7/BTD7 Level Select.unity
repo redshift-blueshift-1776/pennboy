@@ -725,18 +725,23 @@ PrefabInstance:
     - target: {fileID: 217486497262486616, guid: ca8da25f2329f99e19c648a8cebde48b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1766
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 217486497262486616, guid: ca8da25f2329f99e19c648a8cebde48b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 994
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 327846220644929067, guid: ca8da25f2329f99e19c648a8cebde48b,
         type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 972af70b0c93d4543a5ad930dd320fa9, type: 3}
+      objectReference: {fileID: 2800000, guid: a6611dd9a103e4289982406765e9f9a5, type: 3}
+    - target: {fileID: 535311012221740075, guid: ca8da25f2329f99e19c648a8cebde48b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1625328395872539174, guid: ca8da25f2329f99e19c648a8cebde48b,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
