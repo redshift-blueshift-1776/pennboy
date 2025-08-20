@@ -27,31 +27,40 @@ public class PlacementSystem : MonoBehaviour
 
     private Dictionary<string, string> towerDescriptions = new Dictionary<string, string>()
     {
+        // Basic Tower (single shots)
         {"Basic0", "Basic Tower"},
-        {"Basic1", "Powerful Shots: With heavier ammunition, the tower can now hit two enemies at once!"},
-        {"Basic2", "Faster Bullets: Bullets now move at more than twice the speed!"},
-        {"Basic3", "Stinging Shots: Bullets now do more damage!"},
-        {"Basic4", "Deadly Shots: Bullets now do even more damage!"},
+        {"Basic1", "Twin Shot: Bullets pierce 1 extra enemy."},
+        {"Basic2", "Swift Rounds: Bullets fly much faster."},
+        {"Basic3", "Hardened Ammo: Stronger bullets deal more damage."},
+        {"Basic4", "Lethal Shots: Massive damage with every hit."},
+
+        // Pew Tower (3-round burst tower)
         {"Pew0", "Pew Tower"},
-        {"Pew1", "Piercer: Bullets can now hit two enemies at once!"},
-        {"Pew2", "Damager: Bullets do double the damage."},
-        {"Pew3", "Burster: Burst includes more bullets."},
-        {"Pew4", "Mega Pew: More bullets, faster cooldown, more pierce, more damage!"},
+        {"Pew1", "Piercing Burst: Each bullet pierces an extra enemy."},
+        {"Pew2", "Impact Rounds: Double damage per shot."},
+        {"Pew3", "Rapid Burst: Fires more bullets per burst."},
+        {"Pew4", "Overdrive: Huge bursts, faster cooldown, more power."},
+
+        // Shotgun Tower (spread fire)
         {"Shotgun0", "Shotgun Tower"},
-        {"Shotgun1", "Fire in the Hole: More pierce!"},
-        {"Shotgun2", "Power Tower: Double damage!"},
-        {"Shotgun3", "Faster Shooting: Shoots much faster!"},
-        {"Shotgun4", "Five Fears: Fires five bullets at once!"},
+        {"Shotgun1", "Scatter Shot: Bullets pierce extra enemies."},
+        {"Shotgun2", "Heavy Shells: Double bullet damage."},
+        {"Shotgun3", "Quick Loader: Faster firing speed."},
+        {"Shotgun4", "Bullet Storm: Fires five shells at once!"},
+
+        // Machine Gun Tower (continuous fire)
         {"Machine Gun0", "Machine Gun Tower"},
-        {"Machine Gun1", "Speedy Bullets: Bullets move 25% faster."},
-        {"Machine Gun2", "Double Kill: Deals twice the damage."},
-        {"Machine Gun3", "Speedy Barrel: Increased firing rate."},
-        {"Machine Gun4", "Super Gun: Fires 25 bullets per second!"},
+        {"Machine Gun1", "High Velocity: Bullets travel faster."},
+        {"Machine Gun2", "Shredding Rounds: Double bullet damage."},
+        {"Machine Gun3", "Spinning Barrel: Increased fire rate."},
+        {"Machine Gun4", "Gatling Fury: Unleashes 25 bullets per second!"},
+
+        // Ring Tower (8-way radial fire)
         {"Ring0", "Ring Tower"},
-        {"Ring1", "Sharp Rings: Bullets can now hit three enemies at once!"},
-        {"Ring2", "Faster Shooting: Fires twice as fast!"},
-        {"Ring3", "Ring Zone: Bullets do more damage."},
-        {"Ring4", "Ring Lord: Fires 16 powerful bullets instead of 8!"},
+        {"Ring1", "Razor Rings: Each ring pierces 2 extra enemies."},
+        {"Ring2", "Ring Haste: Fires twice as often."},
+        {"Ring3", "Charged Rings: Rings deal extra damage."},
+        {"Ring4", "Ring Mastery: Launches 16 empowered rings!"}
     };
 
     private void Start()
