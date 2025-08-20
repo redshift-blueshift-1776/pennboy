@@ -136,10 +136,11 @@ public class Tower : MonoBehaviour
     /// <returns></returns>
     public int GetCost()
     {
+        int savedDifficulty = PlayerPrefs.GetInt("BTD7Difficulty", 0);
         int sum = cost;
         for (int i = 0; i < level; i++)
             sum += UpgradeCosts[i];
-        return sum;
+        return Mathf.RoundToInt(sum * (1.0f + savedDifficulty * 0.2f));
     }
 
     /// <summary>

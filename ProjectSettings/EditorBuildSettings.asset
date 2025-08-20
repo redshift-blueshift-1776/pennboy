@@ -131,4 +131,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/bloon-td-7/BTD7 How To Play.unity
     guid: 59d2f7b296ee34b01b8b2ff9144712cb
+  - enabled: 1
+    path: Assets/bloon-td-7/BTD7 Settings.unity
+    guid: a5d9f9f754ca9494e9b34eb68e51645f
   m_configObjects: {}
