@@ -553,12 +553,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 828131646}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: LoadMainMenu
-        m_Mode: 1
+        m_MethodName: LoadSceneByNumber
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 40
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -911,21 +911,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WASD to move, space to jump
+  m_text: 'Select cards with the mouse, then place the tower with the mouse.
 
 
-    Left click to push, right click to pull
+    You
+    cannot place towers on the track or in the water.
 
 
-    Avoid
-    obstacles while moving the luggage cart to the pink area
-
-
-    Collect money
-    on the ground to increase budget.
-
-
-    M to go to main menu'
+    Upgrade the tower before
+    you place it down by sacrificing towers. Press Q to switch the mode to sacrifice
+    mode, then select towers to sacrifice. Once you are done, press Q again to go
+    back to placement mode and place the upgraded tower down.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e986d286c9425ac48954713d63d73291, type: 2}
   m_sharedMaterial: {fileID: 3009258599721380811, guid: e986d286c9425ac48954713d63d73291,
@@ -1168,7 +1164,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 09ea5e5a568ad4786bcdd98d550342c9, type: 3}
+      objectReference: {fileID: 2800000, guid: 53f1bf82dbe0ae24aa6c4e4bd1777ba2, type: 3}
     - target: {fileID: 1625328395872539174, guid: ca8da25f2329f99e19c648a8cebde48b,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
