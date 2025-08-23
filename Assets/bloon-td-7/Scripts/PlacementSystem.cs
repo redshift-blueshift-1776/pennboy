@@ -82,10 +82,13 @@ public class PlacementSystem : MonoBehaviour
             {
                 currentMode = PlacementMode.Sacrificing;
                 modeText.text = "Sacrifice Mode";
-                upgradePanel.SetActive(true);
-                upgradeText.text = "CardUsing: " + cardUsing.GetName() + " " + cardUsing.id;
-                if (towerDescriptions.TryGetValue(cardUsing.GetName() + cardUsing.GetLevel(totalCost), out string description)) {
-                    upgradeText.text = description;
+                int savedDescription = PlayerPrefs.GetInt("BTD7Descriptions", 1);
+                if (savedDescription == 1) {
+                    upgradePanel.SetActive(true);
+                    upgradeText.text = "CardUsing: " + cardUsing.GetName() + " " + cardUsing.id;
+                    if (towerDescriptions.TryGetValue(cardUsing.GetName() + cardUsing.GetLevel(totalCost), out string description)) {
+                        upgradeText.text = description;
+                    }
                 }
             }
             else
@@ -189,9 +192,11 @@ public class PlacementSystem : MonoBehaviour
 
     private void updateUpgradeLevelText() {
         upgradeLevelText.text = upgradeLevelString + cardUsing.GetLevel(totalCost);
-        Debug.Log(cardUsing.GetName() + cardUsing.GetLevel(totalCost));
-        if (towerDescriptions.TryGetValue(cardUsing.GetName() + cardUsing.GetLevel(totalCost), out string description)) {
-            upgradeText.text = description;
+        int savedDescription = PlayerPrefs.GetInt("BTD7Descriptions", 1);
+        if (savedDescription == 1) {
+            if (towerDescriptions.TryGetValue(cardUsing.GetName() + cardUsing.GetLevel(totalCost), out string description)) {
+                upgradeText.text = description;
+            }
         }
         
     }
