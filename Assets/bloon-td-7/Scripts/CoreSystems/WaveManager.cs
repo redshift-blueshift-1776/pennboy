@@ -332,7 +332,7 @@ public class WaveManager : MonoBehaviour
             }
         }
         //if(waveIndex >= waves.Count()) { return; }
-        roundText.text = "Round:\n" + (waveIndex+1).ToString();
+        roundText.text = "Round: " + (waveIndex+1).ToString();
         //inbetween waves, wait until timer reached
         if (globalTimer < waveCooldown && !waveOccurring)
         {

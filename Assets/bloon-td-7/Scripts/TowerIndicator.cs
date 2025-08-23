@@ -8,6 +8,7 @@ public class TowerIndicator : MonoBehaviour
 {
     [SerializeField] private GameObject building;
     [SerializeField] private GameObject rangeIndicator;
+    [SerializeField] private GameObject doNotPlaceAround;
     private static readonly Color cantPlaceColor = new(1, 0, 0, 0.5f);
     private static readonly Color canPlaceColor = new(0.5f, 0.5f, 0.5f, 0.5f);
     
@@ -25,12 +26,18 @@ public class TowerIndicator : MonoBehaviour
         foreach (Material m in materials) {
             m.color = cantPlaceColor;
         }
+        Renderer objectRenderer = doNotPlaceAround.GetComponent<Renderer>();
+        Material objectMaterial = objectRenderer.material;
+        objectMaterial.SetColor("_Color", new Color(1f, 0f, 0f, 0.5f));
     }
 
     public void CanPlace() {
         foreach (Material m in materials) {
             m.color = canPlaceColor;
         }
+        Renderer objectRenderer = doNotPlaceAround.GetComponent<Renderer>();
+        Material objectMaterial = objectRenderer.material;
+        objectMaterial.SetColor("_Color", new Color(0.5f, 0.5f, 0.5f, 0.5f));
     }
 
     public void SetRangeIndicator(float range) {
