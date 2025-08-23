@@ -86,7 +86,11 @@ public class PlacementSystem : MonoBehaviour
                 if (savedDescription == 1) {
                     upgradePanel.SetActive(true);
                     upgradeText.text = "CardUsing: " + cardUsing.GetName() + " " + cardUsing.id;
-                    if (towerDescriptions.TryGetValue(cardUsing.GetName() + cardUsing.GetLevel(totalCost), out string description)) {
+                    int upgradeAmount = totalCost;
+                    int savedDifficulty = PlayerPrefs.GetInt("BTD7Difficulty", 0);
+                    int adjustedAmount = Mathf.RoundToInt(upgradeAmount / (1.0f + savedDifficulty * 0.2f));
+                    upgradeLevelText.text = upgradeLevelString + cardUsing.GetLevel(adjustedAmount);
+                    if (towerDescriptions.TryGetValue(cardUsing.GetName() + cardUsing.GetLevel(adjustedAmount), out string description)) {
                         upgradeText.text = description;
                     }
                 }
@@ -170,7 +174,9 @@ public class PlacementSystem : MonoBehaviour
                     if (cardUsing.canSacrifice)
                     {
                         int upgradeAmount = calculateTotalSacrifice();
-                        t.CalcLevel(upgradeAmount);
+                        int savedDifficulty = PlayerPrefs.GetInt("BTD7Difficulty", 0);
+                        int adjustedAmount = Mathf.RoundToInt(upgradeAmount / (1.0f + savedDifficulty * 0.2f));
+                        t.CalcLevel(adjustedAmount);
                     }
 
                     disableTowerPlacement(true);
@@ -191,10 +197,13 @@ public class PlacementSystem : MonoBehaviour
     }
 
     private void updateUpgradeLevelText() {
-        upgradeLevelText.text = upgradeLevelString + cardUsing.GetLevel(totalCost);
+        int upgradeAmount = totalCost;
+        int savedDifficulty = PlayerPrefs.GetInt("BTD7Difficulty", 0);
+        int adjustedAmount = Mathf.RoundToInt(upgradeAmount / (1.0f + savedDifficulty * 0.2f));
+        upgradeLevelText.text = upgradeLevelString + cardUsing.GetLevel(adjustedAmount);
         int savedDescription = PlayerPrefs.GetInt("BTD7Descriptions", 1);
         if (savedDescription == 1) {
-            if (towerDescriptions.TryGetValue(cardUsing.GetName() + cardUsing.GetLevel(totalCost), out string description)) {
+            if (towerDescriptions.TryGetValue(cardUsing.GetName() + cardUsing.GetLevel(adjustedAmount), out string description)) {
                 upgradeText.text = description;
             }
         }
