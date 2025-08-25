@@ -37,15 +37,15 @@ public class WaveManager : MonoBehaviour
     public EnemyInfo[] enemyList =
     {
         new EnemyInfo(10f,1,1,1, new Color32(0,255,0,255)),               //0 - slime
-        new EnemyInfo(25f,1,1,2, new Color32(125,209,123, 255)),        //1 - goblin
-        new EnemyInfo(8f,4,5,2, new Color32(21, 92, 20, 255),8),         //2 - orcs
-        new EnemyInfo(6f,10,10,2,new Color32(70, 89, 70, 255),12),        //3 - ogres
-        new EnemyInfo(20f,1,1,1,new Color32(255,255,255,255)),       //4 skeleton
-        new EnemyInfo(10f,10,5,1, new Color32(64, 255, 150,255)),   //5 elf
+        new EnemyInfo(20f,2,1,1, new Color32(125,209,123, 255)),        //1 - goblin
+        new EnemyInfo(8f,3,5,2, new Color32(21, 92, 20, 255),8),         //2 - orcs
+        new EnemyInfo(6f,4,10,2,new Color32(70, 89, 70, 255),12),        //3 - ogres
+        new EnemyInfo(25f,2,1,2,new Color32(255,255,255,255)),       //4 skeleton
+        new EnemyInfo(10f,3,5,1, new Color32(64, 255, 150,255)),   //5 elf
         new EnemyInfo(40f,2,1,1, new Color32(222, 182, 250,255)),  //6 fairy
-        new EnemyInfo(50f,15,3,3, new Color32(117, 12, 5,255)),    //7 demon
+        new EnemyInfo(50f,3,3,2, new Color32(117, 12, 5,255)),    //7 demon
         new EnemyInfo(10f,3,3,1, new Color32(100,100,100,255)),    //8 dwarf
-        new EnemyInfo(20f,20,5,5, new Color32(40, 96, 250,255)),   //9 wizard
+        new EnemyInfo(20f,20,5,3, new Color32(40, 96, 250,255)),   //9 wizard
         new EnemyInfo(35f,40,12,5, new Color32(139, 155, 199,255)), //10 light wizard
         new EnemyInfo(35f,40,12,5, new Color32(0, 0, 46,255)), //11 dark wizard
         new EnemyInfo(50f,100,25,5, new Color32(114, 0, 252,255),8, false, true), //12 master wizard
@@ -91,10 +91,10 @@ public class WaveManager : MonoBehaviour
                 "0.6",
                 "0"
             ),
-        //wave 1 - slime + skeletons
+        //wave 1 - slime + goblins
         new WaveInfo(
-                "0,4",
-                "10,6",
+                "0,1",
+                "20,6",
                 "0.5,0.4",
                 "0,3"
             ),
@@ -105,10 +105,10 @@ public class WaveManager : MonoBehaviour
                 "0.3",
                 "0"
             ),
-        //wave 3 - slime + goblins
+        //wave 3 - slime + goblins + skeleton
         new WaveInfo(
-                "0,1,0,1",
-                "30,10,15,8",
+                "0,1,0,4",
+                "50,10,15,3",
                 "0.5,0.2,0.5,0.2",
                 "0,1,2.5,4"
             ),
@@ -151,8 +151,8 @@ public class WaveManager : MonoBehaviour
         new WaveInfo(
             "0,1,2,3,4,5,6",
             //"100,100,10,10,200,30,30",
-            "100,100,20,10,200,30,30",
-            "0.5,0.5,2,2,0.3,1,1",
+            "100,200,20,10,50,30,20",
+            "0.5,0.25,2,2,0.3,1,1",
             "0,0.25,1,1,0,0.5,0.5"
             ),
         //wave 10 - demons
@@ -167,8 +167,8 @@ public class WaveManager : MonoBehaviour
             //"100,40,20",
             "250,50,20",
             //"0.4,0.5,0.5",
-            "0.2,0.5,0.5",
-            "0,0,2"),
+            "0.15,0.5,0.5",
+            "0,0,3"),
         //wave 12 - wizard
         new WaveInfo(
             "5,6,9",
@@ -204,7 +204,7 @@ public class WaveManager : MonoBehaviour
         new WaveInfo(
             "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14",
             //"100,100,10,10,100,50,25,25,100,50,25,25,10,5,1",
-            "100,150,40,10,100,50,25,25,100,50,25,25,5,3,1",
+            "50,150,40,10,100,50,25,25,100,50,25,25,5,3,1",
             //"0.3,0.4,2,2,0.6,1,2,2,0.8,0.6,2,2,4,15,1",
             "0.3,0.3,0.5,2,0.6,1,2,2,0.8,0.6,2,2,5,20,1",
             "0,0,2,2,0,2,2,4,0,3,6,6,7,15,30"
@@ -226,7 +226,7 @@ public class WaveManager : MonoBehaviour
         //wave 19 packed stuff
         new WaveInfo(
             "2,9,7",
-            "200,3,200",
+            "100,3,200",
             "0.05,2,0.01",
             "0,1,10"
             ),
@@ -234,7 +234,7 @@ public class WaveManager : MonoBehaviour
         new WaveInfo(
             "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15",
             //"100,100,10,10,100,50,25,25,100,50,25,25,10,5,1",
-            "10,15,4,1,10,50,25,25,100,50,25,25,5,3,1,1",
+            "10,15,4,1,10,50,25,25,100,50,25,25,5,6,10,1",
             //"0.3,0.4,2,2,0.6,1,2,2,0.8,0.6,2,2,4,15,1",
             "0.3,0.3,0.5,2,0.6,1,2,2,0.8,0.6,2,2,5,2,1,1",
             "0,0,2,2,0,2,2,4,0,3,6,6,7,15,30,20"
@@ -262,12 +262,12 @@ public class WaveManager : MonoBehaviour
             ),
         //wave 24 - EVEN MORE EVERYTHING
         new WaveInfo(
-            "10,11,2,3,4,5,6,7,8,9,0,1,12,13,14,15,16",
+            "13,10,11,2,3,4,5,6,7,8,9,0,1,12,13,14,15,16",
             //"100,100,10,10,100,50,25,25,100,50,25,25,10,5,1",
-            "100,150,40,10,100,50,25,25,100,50,25,25,5,5,3,1,3",
+            "3,150,150,40,10,100,50,25,25,100,50,25,25,5,5,3,1,3",
             //"0.3,0.4,2,2,0.6,1,2,2,0.8,0.6,2,2,4,15,1",
-            "0.3,0.3,0.5,2,0.6,1,2,2,0.8,0.6,2,2,5,10,1,1,5",
-            "2,0,0,2,0,2,2,4,0,3,6,6,7,15,30,10,25"
+            "1,0.3,0.3,0.5,2,0.6,1,2,2,0.8,0.6,2,2,5,10,1,1,5",
+            "0,0.15,0,0,2,0,2,2,4,0,3,6,6,7,15,30,10,25"
             ),
         //wave 25 Round 63 but not v2
         new WaveInfo(

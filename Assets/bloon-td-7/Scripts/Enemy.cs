@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
     private float teleportColorChangeInterval = 0.05f;
     private bool isTeleporting = false;
 
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
     private AudioClip teleportSound;
     private AudioClip explosionSound;
 
@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
     {
         //Initialize(15f, 1, 3, 0, 1, false, 5);
         Initialize(moveSpeed, dmg, health, id, moneyWorth, originalColor, isCamo, size, canTeleport);
-        audioSource = BTD7.GameManager.instance.waveManager.GetComponent<AudioSource>();
+        audioSource = BTD7.GameManager.instance.explosionSource;
         teleportSound = BTD7.GameManager.instance.teleportSound;
         explosionSound = BTD7.GameManager.instance.explosionSound;
     }

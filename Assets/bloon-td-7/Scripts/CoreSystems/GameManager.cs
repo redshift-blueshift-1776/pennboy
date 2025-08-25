@@ -31,6 +31,8 @@ namespace BTD7
 
         private SoundManager soundManager;
 
+        public AudioSource explosionSource;
+
 
         public void ReloadScene()
         {
