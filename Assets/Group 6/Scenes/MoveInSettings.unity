@@ -3789,12 +3789,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8fd95293e8b478b8b73053ade64458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivitySlider: {fileID: 790749625}
+  sensitivitySlider: {fileID: 551517617}
   sensitivityValueText: {fileID: 0}
   coins: 0
-  FENT: {fileID: 1941650572}
-  LocustDash: {fileID: 632953720}
-  secretCoinsText: {fileID: 81665445}
+  FENT: {fileID: 1325831576}
+  LocustDash: {fileID: 679761452}
+  secretCoinsText: {fileID: 1783804046}
 --- !u!1 &1679124712
 GameObject:
   m_ObjectHideFlags: 0
