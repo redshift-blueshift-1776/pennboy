@@ -6,12 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/DDD Menu/DDD Menu.unity
+    guid: b9678e3a4fca14e32b9bd0f4efa0652b
+  - enabled: 1
+    path: Assets/bloon-td-7/BTD7 Settings.unity
+    guid: a5d9f9f754ca9494e9b34eb68e51645f
+  - enabled: 1
+    path: Assets/bloon-td-7/BTD7 How To Play.unity
+    guid: 59d2f7b296ee34b01b8b2ff9144712cb
+  - enabled: 0
     path: Assets/PennBoy/Intro/Intro.unity
     guid: b2ca2af4986adcd4891de8bb3b19671b
-  - enabled: 1
+  - enabled: 0
     path: Assets/PennBoy/PulseTransition/PulseTransition.unity
     guid: 318f9c251c30a9d4db558f6db7d5da02
-  - enabled: 1
+  - enabled: 0
     path: Assets/PennBoy/HomePage/HomePage.unity
     guid: e692064671f259f48a0a8c2bd2bbca7e
   - enabled: 1
@@ -128,10 +137,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/bloon-td-7/BTD7 Level Select.unity
     guid: 2fc65d3934f6f49e58e086435d516462
-  - enabled: 1
-    path: Assets/bloon-td-7/BTD7 How To Play.unity
-    guid: 59d2f7b296ee34b01b8b2ff9144712cb
-  - enabled: 1
-    path: Assets/bloon-td-7/BTD7 Settings.unity
-    guid: a5d9f9f754ca9494e9b34eb68e51645f
   m_configObjects: {}
