@@ -38,8 +38,8 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void Update() {
-        FENT.SetActive(coins >= 24);
-        LocustDash.SetActive(coins >= 12);
+        // FENT.SetActive(coins >= 24);
+        // LocustDash.SetActive(coins >= 12);
         secretCoinsText.text = "Flags: " + coins;
     }
 }
