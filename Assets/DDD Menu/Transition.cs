@@ -11,6 +11,8 @@ public class Transition : MonoBehaviour
     [SerializeField] public GameObject topWall;
     [SerializeField] public GameObject bottomWall;
     [SerializeField] public GameObject transitionSound;
+    [SerializeField] public List<GameObject> toDisable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,9 @@ public class Transition : MonoBehaviour
 
     public IEnumerator LoadBTD7() {
         transitionSound.SetActive(true);
+        foreach (GameObject g in toDisable) {
+            g.SetActive(false);
+        }
         yield return new WaitForSeconds(2f);
         float duration = 1.5f;
         float elapsed = 0f;
@@ -49,6 +54,9 @@ public class Transition : MonoBehaviour
 
     public IEnumerator LoadMoveInDay() {
         transitionSound.SetActive(true);
+        foreach (GameObject g in toDisable) {
+            g.SetActive(false);
+        }
         yield return new WaitForSeconds(2f);
         float duration = 1.5f;
         float elapsed = 0f;
@@ -75,5 +83,38 @@ public class Transition : MonoBehaviour
 
     public void ToMoveInDay() {
         StartCoroutine(LoadMoveInDay());
+    }
+
+    public IEnumerator LoadDDD() {
+        transitionSound.SetActive(true);
+        foreach (GameObject g in toDisable) {
+            g.SetActive(false);
+        }
+        yield return new WaitForSeconds(2f);
+        float duration = 1.5f;
+        float elapsed = 0f;
+        Vector3 ogRWpos = new Vector3(rightWall.transform.localPosition.x, rightWall.transform.localPosition.y, rightWall.transform.localPosition.z);
+        Vector3 ogLWpos = new Vector3(leftWall.transform.localPosition.x, leftWall.transform.localPosition.y, leftWall.transform.localPosition.z);
+        Vector3 ogTWpos = new Vector3(topWall.transform.localPosition.x, topWall.transform.localPosition.y, topWall.transform.localPosition.z);
+        Vector3 ogBWpos = new Vector3(bottomWall.transform.localPosition.x, bottomWall.transform.localPosition.y, bottomWall.transform.localPosition.z);
+        while (elapsed < duration) {
+            float t = elapsed / duration;
+            rightWall.transform.localPosition = Vector3.Lerp(ogRWpos, new Vector3(0f, 0f, 0f), t);
+            leftWall.transform.localPosition = Vector3.Lerp(ogLWpos, new Vector3(0f, 0f, 0f), t);
+            topWall.transform.localPosition = Vector3.Lerp(ogTWpos, new Vector3(0f, 0f, 0f), t);
+            bottomWall.transform.localPosition = Vector3.Lerp(ogBWpos, new Vector3(0f, 0f, 0f), t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        rightWall.transform.localPosition = new Vector3(0f, 0f, 0f);
+        leftWall.transform.localPosition = new Vector3(0f, 0f, 0f);
+        topWall.transform.localPosition = new Vector3(0f, 0f, 0f);
+        bottomWall.transform.localPosition = new Vector3(0f, 0f, 0f);
+        SceneManager.LoadScene(0);
+
+    }
+
+    public void ToDDD() {
+        StartCoroutine(LoadDDD());
     }
 }
