@@ -31,19 +31,39 @@ public class Transition : MonoBehaviour
             g.SetActive(false);
         }
         yield return new WaitForSeconds(2f);
-        float duration = 1.5f;
+        float duration = 0.75f;
         float elapsed = 0f;
         Vector3 ogRWpos = new Vector3(rightWall.transform.localPosition.x, rightWall.transform.localPosition.y, rightWall.transform.localPosition.z);
         Vector3 ogLWpos = new Vector3(leftWall.transform.localPosition.x, leftWall.transform.localPosition.y, leftWall.transform.localPosition.z);
+        Vector3 ogTWpos = new Vector3(topWall.transform.localPosition.x, topWall.transform.localPosition.y, topWall.transform.localPosition.z);
+        Vector3 ogBWpos = new Vector3(bottomWall.transform.localPosition.x, bottomWall.transform.localPosition.y, bottomWall.transform.localPosition.z);
+        while (elapsed < duration) {
+            float t = elapsed / duration;
+            rightWall.transform.localPosition = Vector3.Lerp(ogRWpos, ogRWpos / 2f, t * t * t);
+            bottomWall.transform.localPosition = Vector3.Lerp(ogBWpos, ogBWpos / 2f, t * t * t);
+            leftWall.transform.localPosition = Vector3.Lerp(ogLWpos, ogLWpos / 2f, t * t * t);
+            topWall.transform.localPosition = Vector3.Lerp(ogTWpos, ogTWpos / 2f, t * t * t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        elapsed = 0f;
+        ogRWpos = new Vector3(rightWall.transform.localPosition.x, rightWall.transform.localPosition.y, rightWall.transform.localPosition.z);
+        ogLWpos = new Vector3(leftWall.transform.localPosition.x, leftWall.transform.localPosition.y, leftWall.transform.localPosition.z);
+        ogTWpos = new Vector3(topWall.transform.localPosition.x, topWall.transform.localPosition.y, topWall.transform.localPosition.z);
+        ogBWpos = new Vector3(bottomWall.transform.localPosition.x, bottomWall.transform.localPosition.y, bottomWall.transform.localPosition.z);
         while (elapsed < duration) {
             float t = elapsed / duration;
             rightWall.transform.localPosition = Vector3.Lerp(ogRWpos, new Vector3(0f, 0f, 0f), t * t * t);
+            bottomWall.transform.localPosition = Vector3.Lerp(ogBWpos, new Vector3(0f, 0f, 0f), t * t * t);
+            topWall.transform.localPosition = Vector3.Lerp(ogTWpos, new Vector3(0f, 0f, 0f), t * t * t);
             leftWall.transform.localPosition = Vector3.Lerp(ogLWpos, new Vector3(0f, 0f, 0f), t * t * t);
             elapsed += Time.deltaTime;
             yield return null;
         }
         rightWall.transform.localPosition = new Vector3(0f, 0f, 0f);
+        bottomWall.transform.localPosition = new Vector3(0f, 0f, 0f);
         leftWall.transform.localPosition = new Vector3(0f, 0f, 0f);
+        topWall.transform.localPosition = new Vector3(0f, 0f, 0f);
         SceneManager.LoadScene(19);
 
     }
@@ -66,10 +86,10 @@ public class Transition : MonoBehaviour
         Vector3 ogBWpos = new Vector3(bottomWall.transform.localPosition.x, bottomWall.transform.localPosition.y, bottomWall.transform.localPosition.z);
         while (elapsed < duration) {
             float t = elapsed / duration;
-            rightWall.transform.localPosition = Vector3.Lerp(ogRWpos, new Vector3(0f, 0f, 0f), t * t);
-            leftWall.transform.localPosition = Vector3.Lerp(ogLWpos, new Vector3(0f, 0f, 0f), t * t);
-            topWall.transform.localPosition = Vector3.Lerp(ogTWpos, new Vector3(0f, 0f, 0f), t * t);
-            bottomWall.transform.localPosition = Vector3.Lerp(ogBWpos, new Vector3(0f, 0f, 0f), t * t);
+            rightWall.transform.localPosition = Vector3.Lerp(ogRWpos, new Vector3(0f, 0f, 0f), t * t * t * t);
+            leftWall.transform.localPosition = Vector3.Lerp(ogLWpos, new Vector3(0f, 0f, 0f), t * t * t * t);
+            topWall.transform.localPosition = Vector3.Lerp(ogTWpos, new Vector3(0f, 0f, 0f), t * t * t * t);
+            bottomWall.transform.localPosition = Vector3.Lerp(ogBWpos, new Vector3(0f, 0f, 0f), t * t * t * t);
             elapsed += Time.deltaTime;
             yield return null;
         }
