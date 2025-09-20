@@ -77,4 +77,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/bloon-td-7/BTD7 Level Select.unity
     guid: 2fc65d3934f6f49e58e086435d516462
+  - enabled: 1
+    path: Assets/bloon-td-7/BTD7 Credits.unity
+    guid: 472c6bcd317fd4b17940b6cd1f91b893
   m_configObjects: {}

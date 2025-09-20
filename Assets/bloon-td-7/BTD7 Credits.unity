@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: How to Play
+  m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 27921f777dd8ef54cb45fa51b6e85366, type: 2}
   m_sharedMaterial: {fileID: -4282082697756602854, guid: 27921f777dd8ef54cb45fa51b6e85366,
@@ -911,17 +911,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Select cards with the mouse, then place the tower with the mouse.
+  m_text: 'Original Game: Logan Judge, Veer Kakar, Justin Zou, Satya Nihal Maddirala
 
 
-    You
-    cannot place towers on the track or in the water.
+    Expansion
+    Pack and Soundtrack: Forest Ho-Chen
 
 
-    Upgrade the tower before
-    you place it down by sacrificing towers. Press Q to switch the mode to sacrifice
-    mode, then select towers to sacrifice. Once you are done, press Q again to go
-    back to placement mode and place the upgraded tower down.'
+    Special Thanks: Robby DeMartino, Raymond
+    Feng, Tina Ni, Charles Wang, Christina Qiu, Jonathan Cheng, Anthony Ge, Faye
+    Zhang'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e986d286c9425ac48954713d63d73291, type: 2}
   m_sharedMaterial: {fileID: 3009258599721380811, guid: e986d286c9425ac48954713d63d73291,
@@ -1026,7 +1025,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0c500270b59384c308bea97535dd7ec7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cc3ad5c6aed5c4a9c9d08d9043848a8a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
