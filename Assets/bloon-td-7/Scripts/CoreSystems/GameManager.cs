@@ -57,10 +57,10 @@ namespace BTD7
                 CardPanelAnimator.SetTrigger("ChangePanelVisibility");
                 inAnimation = true;
             }
-            if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.M)) {
-                GoToMainMenu();
+            if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.M)) {
+                SceneManager.LoadScene(19);
             }
-            if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.G)) {
+            if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.G)) {
                 SceneManager.LoadScene(0);
             }
         }
@@ -92,7 +92,7 @@ namespace BTD7
         public void GoToMainMenu()
         {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); // replace with your menu scene name
+        SceneManager.LoadScene(19); // replace with your menu scene name
         }
 
 
