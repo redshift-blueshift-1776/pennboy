@@ -57,6 +57,12 @@ namespace BTD7
                 CardPanelAnimator.SetTrigger("ChangePanelVisibility");
                 inAnimation = true;
             }
+            if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.M)) {
+                GoToMainMenu();
+            }
+            if (Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.G)) {
+                SceneManager.LoadScene(0);
+            }
         }
 
         public void WinGame()
