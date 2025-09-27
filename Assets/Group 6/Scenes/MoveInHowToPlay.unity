@@ -1795,7 +1795,7 @@ MonoBehaviour:
     on the ground to increase budget.
 
 
-    M to go to main menu'
+    Q + M to go to main menu'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e986d286c9425ac48954713d63d73291, type: 2}
   m_sharedMaterial: {fileID: 3009258599721380811, guid: e986d286c9425ac48954713d63d73291,
